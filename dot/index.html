@@ -308,6 +308,7 @@ footer p{margin:0}
 <footer>
  <p>모든 장면은 이 페이지 안의 코드로 그립니다. 색은 GrafxKid의 Sweetie 16 팔레트입니다.</p>
  <p>본 콘텐츠에는 (주)HS효성의 HS HYOSUNG 서체가 사용되었습니다.</p>
+ <p>방문 수는 쿠키 없이 Cloudflare Web Analytics로 셉니다.</p>
 </footer>
 <noscript><p>시연 장면은 자바스크립트를 켜야 보입니다. 글은 그대로 읽을 수 있습니다.</p></noscript>
 </div>
@@ -710,4 +711,5 @@ let last=0;function loop(now){const dt=last?Math.min(.05,(now-last)/1000):0;last
 window.__seekDot=(id,t)=>{const it=items.find(q=>q.root.id===id||q.root.dataset.demo===id);it.st.playing=false;it.st.t=t;it.st.clock=t;it.cvs.forEach(cv=>renderDemo(it,cv))};
 Promise.all([document.fonts.load(`700 16px ${FONT}`),document.fonts.load(`500 16px ${FONT}`)]).catch(()=>{}).then(()=>{fitAll();requestAnimationFrame(loop)});
 
-</script></body></html>
+</script><!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "eb9c31f861f94b378f5ca0eb41d716d7"}'></script><!-- End Cloudflare Web Analytics -->
+</body></html>
