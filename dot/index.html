@@ -537,7 +537,7 @@ function rigAt(t){const ph=t*Math.PI*2*1.1,bob=Math.round(Math.abs(Math.sin(ph))
 DEMO.rig={w:36,h:28,anim:1,fps:4,smooth:1,tog:{bones:1,flip:0},
  draw(n,side,st){stage(n,36,28,25);if(side==='a'){putK(n,RIGA[((Math.floor(st.t*4)%4)+4)%4],18,25)}else{const r=rigAt(st.t);putK(n,r.g,18,25)}},
  over(o,side,st){const c=o.ctx,s=o.s;if(side==='b'&&st.tog.bones){const r=rigAt(st.t),ox=18-KA[0],oy=25-KA[1];c.lineWidth=2*o.u;c.strokeStyle=PAL.c;c.fillStyle=PAL.c;
-   Object.values(r.J).forEach(ch=>{c.beginPath();ch.forEach(([x,y],i)=>{const X=(ox+x)*s,Y=(oy+y)*s;i?c.lineTo(X,Y):c.moveTo(X,Y)});c.stroke();ch.forEach(([x,y])=>{c.beginPath();c.arc((ox+x)*s,(oy+y)*s,3.2*o.u,0,7);c.fill()})})}
+   const fx=x=>st.tog.flip?o.W-(ox+x)*s:(ox+x)*s;Object.values(r.J).forEach(ch=>{c.beginPath();ch.forEach(([x,y],i)=>{const X=fx(x),Y=(oy+y)*s;i?c.lineTo(X,Y):c.moveTo(X,Y)});c.stroke();ch.forEach(([x,y])=>{c.beginPath();c.arc(fx(x),(oy+y)*s,3.2*o.u,0,7);c.fill()})})}
   o.tagPx(side==='a'?'그린 그림 4장':'그린 조각 7개',8*o.u,8*o.u,PAL.o,PAL.W)},
  flip:st=>st.tog.flip};
 // 05 격자가 어긋난 픽셀
@@ -559,7 +559,7 @@ function slimeClean(w,h){const g=new Grid(w+2,h+2);for(let y=0;y<h;y++)for(let x
  const ex=Math.round(w*.26)+1,ey=Math.round(h*.4)+1;[[ex,ey],[ex,ey+1],[ex+1,ey],[ex+1,ey+1],[ex+5,ey],[ex+5,ey+1],[ex+6,ey],[ex+6,ey+1]].forEach(([x,y])=>g.set(x,y,'o'));g.outline();return g}
 const ORPH={a:slimeNoisy(36,22),b:slimeClean(36,22)};
 function orphans(g){const out=[];for(let y=0;y<g.h;y++)for(let x=0;x<g.w;x++){const c=g.get(x,y);if(!c)continue;let same=false;for(let dy=-1;dy<=1&&!same;dy++)for(let dx=-1;dx<=1;dx++){if((dx||dy)&&g.get(x+dx,y+dy)===c){same=true;break}}if(!same)out.push([x,y])}return out}
-DEMO.orphan={w:44,h:30,tog:{mark:1},
+DEMO.orphan={w:44,h:30,tog:{mark:0},
  draw(n,side){stage(n,44,30,27);n.drawImage(gcv(ORPH[side]),3,27-ORPH[side].h+1)},
  over(o,side,st){const g=ORPH[side],list=orphans(g);if(st.tog.mark)list.forEach(([x,y])=>o.cell(3+x,27-g.h+1+y,OV.hit));o.tagPx(`외톨이 픽셀 ${list.length}개`,8*o.u,8*o.u,PAL.o,PAL.W)}};
 // 07 알파 테두리
@@ -605,7 +605,7 @@ const ROT8=scale2x(scale2x(scale2x(ROTSRC)));
 function rotSprite(th){const g=new Grid(RN,RN),c=Math.cos(-th),s=Math.sin(-th);for(let y=0;y<RN;y++)for(let x=0;x<RN;x++){const dx=x+.5-RC,dy=y+.5-RC,k=ROT8.get(Math.floor((RC+dx*c-dy*s)*8),Math.floor((RC+dx*s+dy*c)*8));if(k)g.set(x,y,k)}return g}
 // 바깥선이 끊긴 곳: 안쪽 색이 투명한 칸과 바로 맞닿은 칸
 function breaks(g){const out=[];for(let y=0;y<g.h;y++)for(let x=0;x<g.w;x++){const c=g.get(x,y);if(!c||c==='o')continue;if(N4.some(([dx,dy])=>!g.get(x+dx,y+dy)))out.push([x,y])}return out}
-DEMO.rotate={w:RN,h:RN,anim:1,sl:{deg:0},tog:{brk:1},
+DEMO.rotate={w:RN,h:RN,anim:1,sl:{deg:0},tog:{brk:0},
  ang(st){return st.manual?st.sl.deg*Math.PI/180:st.t*.55},
  draw(n,side,st){n.fillStyle=PAL.c;n.fillRect(0,0,RN,RN);const th=this.ang(st),g=side==='a'?rotNear(th):rotSprite(th);n.drawImage(g.canvas(),0,0)},
  over(o,side,st){const deg=((Math.round(this.ang(st)*180/Math.PI)%360)+360)%360,th=this.ang(st),br=breaks(side==='a'?rotNear(th):rotSprite(th));if(st.tog.brk)br.forEach(([x,y])=>o.cell(x,y,OV.hit));
