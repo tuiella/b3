@@ -267,8 +267,8 @@ footer p{margin:0}
   <div class="term-head"><span class="no">12</span><h3>기준 해상도</h3><span class="en">Base Resolution</span></div>
   <dl class="facts"><div><dt>증상</dt><dd class="sym">"캐릭터를 몇 픽셀로 할지, 화면을 몇으로 할지 못 정하겠어요"</dd></div></dl>
   <div class="stage">
-   <figure><figcaption><span class="ab">A</span>240x135 화면</figcaption><div class="frame"><canvas data-side="a" role="img" aria-label="A: 240x135 화면"></canvas></div></figure>
-   <figure><figcaption><span class="ab b">B</span>160x90 화면</figcaption><div class="frame"><canvas data-side="b" role="img" aria-label="B: 160x90 화면"></canvas></div></figure>
+   <figure><figcaption><span class="ab">A</span>192x108 화면</figcaption><div class="frame"><canvas data-side="a" role="img" aria-label="A: 192x108 화면"></canvas></div></figure>
+   <figure><figcaption><span class="ab b">B</span>128x72 화면</figcaption><div class="frame"><canvas data-side="b" role="img" aria-label="B: 128x72 화면"></canvas></div></figure>
   </div>
   
   <dl class="facts"><div><dt>원인</dt><dd>화면 크기와 캐릭터 크기를 따로 정하고 있습니다. 같은 20칸 기사도 화면이 크면 작아 보이고 화면이 작으면 커 보입니다. 둘은 비율로 묶여 있습니다.</dd></div><div><dt>해결법</dt><dd><ul><li>캐릭터가 화면 높이의 몇 분의 1을 차지할지 먼저 정합니다.</li><li>1080p에 정수배로 맞는 크기(320x180, 480x270, 640x360) 중에서 고릅니다.</li><li>참고할 게임을 캡처해 캐릭터의 칸 수를 직접 세어 봅니다.</li></ul></dd></div></dl>
@@ -624,10 +624,10 @@ DEMO.density={w:58,h:34,even:1,
    o.tagPx('칸 반',30*s,(ty-5)*s,PAL.W,PAL.o,'c','b');o.tagPx('칸 2배',31*s,(G+3)*s,PAL.W,PAL.o,'c','t')}
   else{o.tagPx('모두 1칸',o.W/2,(G+3)*s,PAL.W,PAL.o,'c','t')}}};
 // 12 기준 해상도
-DEMO.baseres={size:side=>side==='a'?{w:240,h:135}:{w:160,h:90},anim:1,fps:2,
+DEMO.baseres={size:side=>side==='a'?{w:192,h:108}:{w:128,h:72},anim:1,fps:2,
  draw(n,side,st){const z=this.size(side),G=Math.round(z.h*.78),clip={w:z.w,h:z.h,g:G};bg(n,clip,null,st.t);const kx=Math.round(z.w*.4);putK(n,kGrid('idle',K_LEGS.idle,st.f%2),kx,G);drawSlime(n,kx+26,G,16,11,false)},
  over(o,side){const z=this.size(side),G=Math.round(z.h*.78),kx=Math.round(z.w*.4),s=o.s,c=o.ctx,x=(kx-12)*s,y0=(G-20)*s,y1=G*s;c.strokeStyle=PAL.Y;c.lineWidth=2.5*o.u;c.beginPath();c.moveTo(x+6*o.u,y0);c.lineTo(x,y0);c.lineTo(x,y1);c.lineTo(x+6*o.u,y1);c.stroke();
-  o.tagPx(`${z.w}x${z.h}: 기사 20칸은 화면 높이의 약 1/${Math.round(z.h/20)}`,8*o.u,8*o.u,PAL.o,PAL.W)}};
+  o.tagPx(`기사 = 화면 높이의 1/${Math.round(z.h/20)}`,8*o.u,8*o.u,PAL.o,PAL.W)}};
 // 13 광원 방향 통일
 function slimeLit(w,h,dir){const g=new Grid(w+2,h+2);for(let y=0;y<h;y++)for(let x=0;x<w;x++){const nx=(x+.5-w/2)/(w/2),ny=(h-(y+.5))/h;if(Math.pow(Math.abs(nx),2.6)+ny*ny>1)continue;const lx=nx*dir;
   let c='g';if(-lx*.6+ny*.9>.62)c='G';if(lx>.58||ny<.13)c='t';const hx=lx+.42,hy=ny-.64;if(hx*hx*3+hy*hy*7<.07)c='W';g.set(x+1,y+1,c)}
@@ -678,8 +678,9 @@ DEMO.hero={w:288,h:84,anim:1,dur:7.2,draw(n,side,st){heroScene(n,st.t,{w:288,h:8
 // ===== 정수배 렌더러와 조작 =====
 const NATS={};function natOf(w,h){const k=w+'x'+h;if(!NATS[k]){const c=document.createElement('canvas');c.width=w;c.height=h;NATS[k]=c}return NATS[k]}
 function mkO(ctx,s,cv){const dpr=cv._dpr||1,u=dpr*clamp(cv.width/dpr/480,.85,1.25),W=cv.width,H=cv.height;
- const tagPx=(text,X,Y,bg,fg,ax='l',ay='t')=>{ctx.font=`700 ${Math.round(13*u)}px ${FONT}`;const tw=ctx.measureText(text).width,pw=tw+14*u,ph=24*u;let x0=ax==='c'?X-pw/2:ax==='r'?X-pw:X,y0=ay==='b'?Y-ph:Y;x0=clamp(x0,4*u,W-pw-4*u);y0=clamp(y0,4*u,H-ph-4*u);
-  ctx.fillStyle=bg;ctx.beginPath();ctx.roundRect(x0,y0,pw,ph,6*u);ctx.fill();ctx.fillStyle=fg;ctx.textBaseline='middle';ctx.textAlign='left';ctx.fillText(text,x0+7*u,y0+ph/2+.5*u);return{x:x0,y:y0,w:pw,h:ph}};
+ const tu=u*(window.__ts||1); // 글자 배율: 페이지는 1, gif를 뜰 때만 키운다
+ const tagPx=(text,X,Y,bg,fg,ax='l',ay='t')=>{ctx.font=`700 ${Math.round(13*tu)}px ${FONT}`;const tw=ctx.measureText(text).width,pw=tw+14*tu,ph=24*tu;let x0=ax==='c'?X-pw/2:ax==='r'?X-pw:X,y0=ay==='b'?Y-ph:Y;x0=clamp(x0,4*u,W-pw-4*u);y0=clamp(y0,4*u,H-ph-4*u);
+  ctx.fillStyle=bg;ctx.beginPath();ctx.roundRect(x0,y0,pw,ph,6*tu);ctx.fill();ctx.fillStyle=fg;ctx.textBaseline='middle';ctx.textAlign='left';ctx.fillText(text,x0+7*tu,y0+ph/2+.5*tu);return{x:x0,y:y0,w:pw,h:ph}};
  return{ctx,s,u,W,H,tagPx,cell(x,y,col){ctx.strokeStyle=col;ctx.lineWidth=Math.max(1.5,s*.14);ctx.strokeRect(x*s+ctx.lineWidth/2,y*s+ctx.lineWidth/2,s-ctx.lineWidth,s-ctx.lineWidth)}}}
 function sizeOf(spec,side){return spec.size?spec.size(side):{w:spec.w,h:spec.h}}
 function renderDemo(it,cv){const spec=it.spec,side=cv.dataset.side||'a',z=sizeOf(spec,side),N=natOf(z.w,z.h),n=N.getContext('2d');n.imageSmoothingEnabled=false;n.globalAlpha=1;n.clearRect(0,0,z.w,z.h);
