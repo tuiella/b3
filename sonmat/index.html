@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>손맛의 이름</title>
+<meta name="description" content="타격감, 조작감이 밋밋할 때 어디가 밋밋한지 정확한 이름으로 말하는 법. 같은 기사와 같은 발판 하나로, 이름 하나가 만드는 차이를 비교합니다.">
+<link rel="preload" href="../fonts/HSHyosung-Bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/HSHyosung-Medium.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Hallmark · shape: Long Document · genre: editorial · theme: custom · job: try · idea: "one pixel world, two takes that differ in one thing" · vibe: "crisp pixel replay, calm paper page" · hero: title over a running pixel strip · nav: two-column contents · footer: credits · imagery: the product (code-drawn scenes) · signature: synced A and B replays that slow and zoom at the moment that matters
+ * axes: light paper, one red signal, one family · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · waive 26b · no disabled attribute or aria-disabled anywhere in the markup · play, scrub and slow toggles are always live */
+/* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V4 · weakest: P, a long article runs past the screen budget; kept text to two short paragraphs per term */
+@font-face{font-family:"HS Hyosung";src:url(../fonts/HSHyosung-Light.woff2) format("woff2");font-weight:300;font-display:swap}
+@font-face{font-family:"HS Hyosung";src:url(../fonts/HSHyosung-Medium.woff2) format("woff2");font-weight:400 500;font-display:swap}
+@font-face{font-family:"HS Hyosung";src:url(../fonts/HSHyosung-Bold.woff2) format("woff2");font-weight:600 800;font-display:swap}
+:root{
+ --font:"HS Hyosung","Noto Sans KR",sans-serif;
+ --bg:#f4f4f2;--surface:#ffffff;--ink:#1a1c2c;--muted:#566c86;--line:#dde1e7;
+ --accent:#b13e53;--accent-ink:#ffffff;--accent-soft:#b13e5314;--sky:#73eff7;
+ --hit:#ff3b5c;--hurt:#3d6bff;
+ --shadow:0 1px 0 #1a1c2c0f,0 10px 30px -18px #1a1c2c55;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --bg:#14151f;--surface:#1d1f2d;--ink:#eef0f4;--muted:#94a3b8;--line:#2c3042;
+ --accent:#ef6f86;--accent-ink:#14151f;--accent-soft:#ef6f8618;--shadow:0 1px 0 #0000,0 10px 30px -18px #000c}}
+:root[data-theme="dark"]{--bg:#14151f;--surface:#1d1f2d;--ink:#eef0f4;--muted:#94a3b8;--line:#2c3042;--accent:#ef6f86;--accent-ink:#14151f;--accent-soft:#ef6f8618;--shadow:0 1px 0 #0000,0 10px 30px -18px #000c}
+*{box-sizing:border-box}
+html,body{overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 17px/1.8 var(--font);word-break:keep-all;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.wrap{max-width:1040px;margin:0 auto;padding:64px 16px 96px}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* 머리 */
+.top h1{text-wrap:balance;font-weight:700;font-size:clamp(38px,6.4vw,68px);line-height:1.08;letter-spacing:-.025em;margin:0;overflow-wrap:break-word;min-width:0}
+.lede{margin:16px 0 0;max-width:40ch;font-size:clamp(18px,2vw,21px);line-height:1.65;color:var(--muted);font-weight:500}
+.hero{display:block;width:100%;aspect-ratio:288/84;margin-top:36px;border-radius:14px;background:var(--sky);box-shadow:var(--shadow)}
+.how{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin:20px 0 0;padding:0;list-style:none}
+.how li{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;font-size:15px;line-height:1.6}
+.how b{display:block;font-weight:700;margin-bottom:2px}
+@media (max-width:720px){.how{grid-template-columns:minmax(0,1fr)}}
+
+/* 목차 */
+.toc{margin-top:56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.toc h2{font-size:15px;font-weight:700;margin:0 0 8px;color:var(--muted)}
+.toc ol{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.toc a{display:flex;gap:16px;align-items:baseline;padding:12px 4px;border-bottom:1px solid var(--line);text-decoration:none;font-weight:700;font-size:17px}
+.toc a span{color:var(--accent);font-size:14px;min-width:22px}
+.toc a:hover{color:var(--accent)}
+@media (max-width:720px){.toc{grid-template-columns:minmax(0,1fr)}}
+
+/* 장 */
+.part{margin-top:88px}
+.part>h2{text-wrap:balance;font-size:clamp(26px,3.4vw,34px);font-weight:700;letter-spacing:-.015em;line-height:1.25;margin:0}
+.part>p{margin:8px 0 0;color:var(--muted);max-width:56ch}
+
+/* 용어 한 개 */
+.term{margin-top:36px;padding-top:36px;border-top:1px solid var(--line)}
+.term-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px}
+.term-head .no{color:var(--accent);font-weight:700;font-size:16px}
+.term-head h3{text-wrap:balance;margin:0;font-size:clamp(26px,3.2vw,34px);font-weight:700;letter-spacing:-.015em;line-height:1.25;overflow-wrap:break-word;min-width:0}
+.term-head .en{color:var(--muted);font-weight:300;font-size:16px}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:20px}
+@media (max-width:680px){.stage{grid-template-columns:minmax(0,1fr)}}
+.stage figure{margin:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+.stage figcaption{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;line-height:1.4}
+.ab{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;background:var(--ink);color:var(--bg);font-size:13px;font-weight:700}
+.ab.b{background:var(--accent);color:var(--accent-ink)}
+.stage canvas{display:block;width:100%;aspect-ratio:16/9;border-radius:10px;background:var(--sky);box-shadow:var(--shadow)}
+
+/* 재생 막대 */
+.player{display:flex;align-items:center;gap:12px;margin-top:16px}
+.btn{font:inherit;font-size:14px;font-weight:700;line-height:1;min-width:76px;min-height:36px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;transition:background-color .15s ease,border-color .15s ease,transform .1s ease}
+.btn:hover{border-color:var(--ink)}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.player input[type=range]{-webkit-appearance:none;appearance:none;flex:1;min-width:0;height:36px;margin:0;background:transparent;cursor:pointer}
+.player input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:4px;background:linear-gradient(90deg,var(--line) 0 var(--z0),var(--accent) var(--z0) var(--z1),var(--line) var(--z1))}
+.player input[type=range]::-moz-range-track{height:8px;border-radius:4px;background:linear-gradient(90deg,var(--line) 0 var(--z0),var(--accent) var(--z0) var(--z1),var(--line) var(--z1))}
+.player input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;margin-top:-4px;border-radius:50%;background:var(--ink);border:3px solid var(--surface);box-shadow:0 0 0 1px var(--ink)}
+.player input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:var(--ink);border:3px solid var(--surface);box-shadow:0 0 0 1px var(--ink)}
+.player input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+/* 글 */
+.copy{max-width:64ch;margin-top:24px}
+.copy p{margin:0}
+.copy p+p{margin-top:12px}
+.copy b{font-weight:700}
+.one{margin-top:16px!important;padding:12px 16px;border:1px solid var(--line);background:var(--accent-soft);border-radius:8px;font-weight:700}
+
+.say{max-width:64ch;margin-top:16px;padding:16px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.say>b{display:block;font-size:14px;font-weight:700;color:var(--muted)}
+.say ul{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.say li{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.say .ko{font-weight:700;font-size:18px;line-height:1.6}
+.when{margin:12px 0 0;font-size:17px;color:var(--muted)}
+.when b{margin-right:8px;color:var(--accent);font-weight:700}
+.say-foot{display:flex;justify-content:flex-end;margin-top:12px}
+.say-en{padding:4px 8px;border-radius:6px;background:var(--accent-soft);font-size:14px;font-weight:500}
+.copy-say{min-width:64px;min-height:32px}
+.wrap{position:relative}
+.hub-link{position:absolute;top:20px;right:16px;display:inline-flex;align-items:center;min-height:36px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:14px;font-weight:700;line-height:1;text-decoration:none;transition:border-color .15s ease,background-color .15s ease}
+.hub-link:hover{border-color:var(--ink)}
+.hub-link:active{transform:translateY(1px)}
+.hub-link:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.hub-link{transition:none}}
+footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;font-weight:300;line-height:1.7}
+footer p{margin:0}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+</style></head><body><div class="wrap">
+<a class="hub-link" href="../">B3 아티클 모음</a>
+
+<header class="top">
+ <h1>손맛의 이름</h1>
+ <p class="lede">"타격감 좀 살려 주세요", "쥬시하게 해 주세요"로는 누구에게 부탁해도 잘 안 고쳐집니다. 어디가 밋밋한지 이름으로 말해야 고쳐집니다.</p>
+ <canvas class="hero" data-clip="hero" data-scene="hero" role="img" aria-label="기사가 달려와 슬라임을 베고 지나가는 장면"></canvas>
+</header>
+
+<nav class="toc" aria-label="목차">
+ <div><h2>숫자와 화면이 밋밋할 때</h2><ol><li><a href="#dmgnum"><span>01</span>데미지 숫자 튀기기</a></li><li><a href="#countup"><span>02</span>숫자 굴려 올리기</a></li><li><a href="#collect"><span>03</span>획득 연출</a></li><li><a href="#ease"><span>04</span>이징</a></li><li><a href="#hover"><span>05</span>마우스 반응</a></li><li><a href="#tiers"><span>06</span>연출 단계 나누기</a></li></ol></div>
+ <div><h2>때렸는데 안 때린 것 같을 때</h2><ol><li><a href="#hitbox"><span>07</span>히트박스와 허트박스</a></li><li><a href="#antic"><span>08</span>예비 동작</a></li><li><a href="#hitstop"><span>09</span>히트스톱</a></li><li><a href="#flash"><span>10</span>피격 번쩍임</a></li><li><a href="#knock"><span>11</span>넉백과 경직</a></li><li><a href="#shake"><span>12</span>화면 흔들림</a></li></ol></div>
+ <div><h2>점프가 억울할 때</h2><ol><li><a href="#coyote"><span>13</span>점프 손맛 세트</a></li></ol></div>
+</nav>
+
+<section class="part" aria-labelledby="p1">
+ <h2 id="p1">숫자와 화면이 밋밋할 때</h2>
+ <p>경영, RPG, 카드, 방치형처럼 클릭과 숫자로 손맛을 내는 게임에서 자주 듣는 말입니다.</p>
+
+ <article class="term" id="dmgnum" data-clip="dmgnum">
+  <div class="term-head"><span class="no">01</span><h3>데미지 숫자 튀기기</h3><span class="en">Damage Number Pop</span></div>
+  <p class="when"><b>이럴 때</b>"때리는데 숫자만 바뀌고 아무 느낌이 없어요"</p>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>숫자가 그냥 나타남</figcaption><canvas data-scene="dmg0" role="img" aria-label="슬라임 위에 데미지 12가 그대로 나타났다가 사라진다"></canvas></figure>
+   <figure><figcaption><span class="ab b">B</span>숫자가 튀었다가 떠오름</figcaption><canvas data-scene="dmg1" role="img" aria-label="데미지 12가 크게 튀었다가 제 크기로 돌아오며 위로 떠오른다"></canvas></figure>
+  </div>
+  <div class="player"><button class="btn play" type="button">멈춤</button><input type="range" min="0" max="1000" value="0" aria-label="장면 위치"><button class="btn slow" type="button" aria-pressed="true">느리게 보기</button></div>
+  <div class="copy">
+   <p>두 장면 모두 데미지는 12입니다. B는 처음 0.1초 동안 숫자가 크게 튀었다가 제 크기로 돌아오고, 위로 떠오르며 사라집니다. 튀는 움직임을 <b>팝</b>, 떠오르는 숫자를 <b>플로팅 텍스트</b>라고 부릅니다.</p>
+   <p class="one">같은 12라도 숫자가 튀면 세게 때린 것처럼 느낍니다.</p>
+  </div>
+  <div class="say"><b>이렇게 말하기</b><ul><li><span class="ko">데미지 숫자는 맞은 자리에서 0.1초 동안 1.6배로 튀었다가 제 크기로 돌아오고, 0.8초 동안 위로 떠오르며 사라지게 해 주세요.</span><span class="say-en">damage number pop, floating text</span></li></ul><div class="say-foot"><button class="btn copy-say" type="button">복사</button></div></div>
+ </article>
+
+ <article class="term" id="countup" data-clip="countup">
+  <div class="term-head"><span class="no">02</span><h3>숫자 굴려 올리기</h3><span class="en">Count-up</span></div>
+  <p class="when"><b>이럴 때</b>"돈이 들어왔는지 모르겠어요"</p>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>120에서 170으로 바로 바뀜</figcaption><canvas data-scene="cnt0" role="img" aria-label="공격이 맞자 왼쪽 위 코인 숫자가 120에서 170으로 한 번에 바뀐다"></canvas></figure>
+   <figure><figcaption><span class="ab b">B</span>0.5초 동안 세어 올라감</figcaption><canvas data-scene="cnt1" role="img" aria-label="코인 숫자가 0.5초 동안 120부터 170까지 세어 올라가며 살짝 커진다"></canvas></figure>
+  </div>
+  <div class="player"><button class="btn play" type="button">멈춤</button><input type="range" min="0" max="1000" value="0" aria-label="장면 위치"><button class="btn slow" type="button" aria-pressed="true">느리게 보기</button></div>
+  <div class="copy">
+   <p>숫자가 한 번에 바뀌면 눈이 놓칩니다. 0.5초 동안 세어 올라가면 늘어나는 게 보입니다. 올라가는 동안 숫자를 살짝 키우면 다른 곳을 보고 있어도 눈에 걸립니다.</p>
+  </div>
+  <div class="say"><b>이렇게 말하기</b><ul><li><span class="ko">코인 숫자는 한 번에 바꾸지 말고 0.5초 동안 세어 올라가게 해 주세요. 올라가는 동안 숫자를 1.2배로 키웠다가 돌려 주세요.</span><span class="say-en">count-up, number tween</span></li></ul><div class="say-foot"><button class="btn copy-say" type="button">복사</button></div></div>
+ </article>
+
+ <article class="term" id="collect" data-clip="collect">
+  <div class="term-head"><span class="no">03</span><h3>획득 연출</h3><span class="en">Collect to HUD</span></div>
+  <p class="when"><b>이럴 때</b>"보상이 어디로 들어갔는지 모르겠어요"</p>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>숫자만 올라감</figcaption><canvas data-scene="col0" role="img" aria-label="공격이 맞자 왼쪽 위 코인 숫자만 올라간다"></canvas></figure>
+   <figure><figcaption><span class="ab b">B</span>코인이 숫자 칸으로 날아감</figcaption><canvas data-scene="col1" role="img" aria-label="슬라임에서 코인 다섯 개가 튀어나와 땅에 떨어졌다가 왼쪽 위 코인 칸으로 하나씩 날아가고, 닿을 때마다 숫자가 10씩 오른다"></canvas></figure>
+  </div>
+  <div class="player"><button class="btn play" type="button">멈춤</button><input type="range" min="0" max="1000" value="0" aria-label="장면 위치"><button class="btn slow" type="button" aria-pressed="true">느리게 보기</button></div>
+  <div class="copy">
+   <p>B는 코인이 튀어나와 땅에 떨어졌다가 화면 위 코인 칸으로 하나씩 날아갑니다. 하나가 닿을 때마다 숫자가 10씩 오릅니다. 무엇이 어디로 들어갔는지 눈으로 따라갈 수 있습니다.</p>
+   <p class="one">A도 숫자는 굴러 올라갑니다. 다른 건 코인이 어디서 왔는지 보이느냐 하나입니다.</p>
+  </div>
+  <div class="say"><b>이렇게 말하기</b><ul><li><span class="ko">적이 떨어뜨린 코인은 0.6초 뒤에 화면 위 코인 칸으로 하나씩 날아가게 하고, 하나 닿을 때마다 숫자를 올려 주세요.</span><span class="say-en">collect animation, fly to HUD</span></li></ul><div class="say-foot"><button class="btn copy-say" type="button">복사</button></div></div>
+ </article>
+
+ <article class="term" id="ease" data-clip="ease">
+  <div class="term-head"><span class="no">04</span><h3>이징</h3><span class="en">Easing</span></div>
+  <p class="when"><b>이럴 때</b>"창이 뜰 때 딱딱하고 싸 보여요"</p>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>일정한 속도로 내려옴</figcaption><canvas data-scene="ease0" role="img" aria-label="승리 창이 처음부터 끝까지 같은 속도로 내려온다. 오른쪽 아래 곡선은 곧은 직선이다"></canvas></figure>
+   <figure><figcaption><span class="ab b">B</span>빨리 왔다가 살짝 지나쳐 돌아옴</figcaption><canvas data-scene="ease1" role="img" aria-label="승리 창이 빠르게 내려와 제자리를 살짝 지나쳤다가 돌아온다. 오른쪽 아래 곡선이 위로 볼록하다"></canvas></figure>
+  </div>
+  <div class="player"><button class="btn play" type="button">멈춤</button><input type="range" min="0" max="1000" value="0" aria-label="장면 위치"><button class="btn slow" type="button" aria-pressed="true">느리게 보기</button></div>
+  <div class="copy">
+   <p>두 창 모두 0.35초 동안 같은 거리를 내려옵니다. 다른 건 속도의 모양입니다. 오른쪽 아래 곡선이 시간에 따른 위치입니다. 일정한 속도는 기계처럼 보이고, 처음에 빠르고 끝에 느려지면 손으로 던진 것처럼 보입니다. 이 곡선을 <b>이징</b>이라고 합니다.</p>
+   <p class="one">B처럼 살짝 지나쳤다가 돌아오는 곡선은 ease-out back이라고 부릅니다.</p>
+  </div>
+  <div class="say"><b>이렇게 말하기</b><ul><li><span class="ko">창은 0.35초 동안 ease-out back으로, 제자리를 살짝 지나쳤다가 돌아오게 해 주세요.</span><span class="say-en">easing, easeOutBack</span></li></ul><div class="say-foot"><button class="btn copy-say" type="button">복사</button></div></div>
+ </article>
+
+ <article class="term" id="hover" data-clip="hover">
+  <div class="term-head"><span class="no">05</span><h3>마우스 반응</h3><span class="en">Hover, Press Feedback</span></div>
+  <p class="when"><b>이럴 때</b>"눌러도 되는 건지 모르겠어요"</p>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>올려도 눌러도 그대로</figcaption><canvas data-scene="card0" role="img" aria-label="마우스를 카드 위에 올리고 눌러도 카드가 그대로 있다가 사라진다"></canvas></figure>
+   <figure><figcaption><span class="ab b">B</span>올리면 들리고, 누르면 눌림</figcaption><canvas data-scene="card1" role="img" aria-label="마우스를 올린 카드가 살짝 올라와 커지고, 누르는 순간 작아졌다가 사용된다"></canvas></figure>
+  </div>
+  <div class="player"><button class="btn play" type="button">멈춤</button><input type="range" min="0" max="1000" value="0" aria-label="장면 위치"><button class="btn slow" type="button" aria-pressed="true">느리게 보기</button></div>
+  <div class="copy">
+   <p>B는 마우스를 올린 카드가 살짝 올라오고, 누르는 순간 작아집니다. 무엇을 고르고 있는지, 눌렸는지를 손을 떼기 전에 압니다.</p>
+  </div>
+  <div class="say"><b>이렇게 말하기</b><ul><li><span class="ko">카드에 마우스를 올리면 0.1초 동안 12픽셀 올라오고 1.05배 커지게 해 주세요. 누르는 동안에는 0.95배로 줄여 주세요.</span><span class="say-en">hover feedback, press feedback</span></li></ul><div class="say-foot"><button class="btn copy-say" type="button">복사</button></div></div>
+ </article>
+
+ <article class="term" id="tiers" data-clip="tiers">
+  <div class="term-head"><span class="no">06</span><h3>연출 단계 나누기</h3><span class="en">Feedback Tiers</span></div>
+  <p class="when"><b>이럴 때</b>"큰 데미지가 나와도 별 감흥이 없어요"</p>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>8, 120, 1500 모두 같은 연출</figcaption><canvas data-scene="tier0" role="img" aria-label="세 번 때려 데미지 8, 120, 1500이 나오는데 슬라임의 반응이 모두 같다"></canvas></figure>
+   <figure><figcaption><span class="ab b">B</span>크기마다 다른 연출</figcaption><canvas data-scene="tier1" role="img" aria-label="8에는 번쩍임만, 120에는 밀려나기, 1500에는 멈춤과 흔들림과 함께 슬라임이 날아간다"></canvas></figure>
+  </div>
+  <div class="player"><button class="btn play" type="button">멈춤</button><input type="range" min="0" max="1000" value="0" aria-label="장면 위치"><button class="btn slow" type="button" aria-pressed="true">느리게 보기</button></div>
+  <div class="copy">
+   <p>B는 작은 데미지에는 번쩍임만, 중간에는 밀려나기, 큰 데미지에는 멈춤과 화면 흔들림과 날아가기를 줍니다. 큰 연출을 아껴 두어야 큰 숫자가 큰일로 느껴집니다.</p>
+   <p class="one">처음부터 다 터뜨리면 1500도 8과 똑같아 보입니다.</p>
+  </div>
+  <div class="say"><b>이렇게 말하기</b><ul><li><span class="ko">데미지 크기를 세 단계로 나눠 연출을 다르게 해 주세요. 100 미만은 번쩍임만, 100 이상은 넉백, 1000 이상은 히트스톱과 화면 흔들림과 날아가기.</span><span class="say-en">feedback tiers</span></li></ul><div class="say-foot"><button class="btn copy-say" type="button">복사</button></div></div>
+ </article>
+
+</section>
+
+<section class="part" aria-labelledby="p2">
+ <h2 id="p2">때렸는데 안 때린 것 같을 때</h2>
+ <p>실시간이든 턴제든 공격 한 번에 들어가는 부품입니다. 하나씩 빼 보면 무엇이 빠졌는지 보입니다.</p>
+
+ <article class="term" id="hitbox" data-clip="attack">
+  <div class="term-head"><span class="no">07</span><h3>히트박스와 허트박스</h3><span class="en">Hitbox, Hurtbox</span></div>
+  <p class="when"><b>이럴 때</b>"분명 맞았는데 안 맞았어요"</p>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>히트박스만 켬: 때리는 칸</figcaption><canvas data-scene="hitbox" role="img" aria-label="기사가 칼을 휘두르는 순간에만 빨간 칸이 생기고, 그 칸이 슬라임에 닿아 맞는다"></canvas></figure>
+   <figure><figcaption><span class="ab b">B</span>허트박스만 켬: 맞는 칸</figcaption><canvas data-scene="hurtbox" role="img" aria-label="기사와 슬라임의 몸에 파란 칸이 늘 붙어 있고, 칼이 슬라임의 파란 칸에 닿아 맞는다"></canvas></figure>
+  </div>
+  <div class="player"><button class="btn play" type="button">멈춤</button><input type="range" min="0" max="1000" value="0" aria-label="장면 위치"><button class="btn slow" type="button" aria-pressed="true">느리게 보기</button></div>
+  <div class="copy">
+   <p>칼을 휘두르는 순간에만 생기는 빨간 칸이 <b>히트박스</b>, 몸에 늘 붙어 있는 파란 칸이 <b>허트박스</b>입니다. 빨간 칸이 상대의 파란 칸에 겹치면 맞습니다.</p>
+   <p class="one">판정이 이상하면 두 칸을 켜서 보세요. 대부분 칸의 크기나 켜져 있는 시간이 원인입니다.</p>
+  </div>
+  <div class="say"><b>이렇게 말하기</b><ul><li><span class="ko">공격 판정(히트박스)은 칼을 휘두르는 0.15초 동안만 켜 주세요. 플레이어가 맞는 칸(허트박스)은 몸보다 조금 작게 잡아 주세요.</span><span class="say-en">hitbox active frames 0.15s, hurtbox</span></li></ul><div class="say-foot"><button class="btn copy-say" type="button">복사</button></div></div>
+ </article>
+
+ <article class="term" id="antic" data-clip="antic">
+  <div class="term-head"><span class="no">08</span><h3>예비 동작</h3><span class="en">Anticipation</span></div>
+  <p class="when"><b>이럴 때</b>"공격이 가볍고 휙 지나가요"</p>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>바로 휘두름</figcaption><canvas data-scene="antic0" role="img" aria-label="기사가 준비 없이 바로 칼을 휘두른다"></canvas></figure>
+   <figure><figcaption><span class="ab b">B</span>들어 올렸다가 휘두름</figcaption><canvas data-scene="antic1" role="img" aria-label="기사가 칼을 머리 위로 들어 올렸다가 휘두른다"></canvas></figure>
+  </div>
+  <div class="player"><button class="btn play" type="button">멈춤</button><input type="range" min="0" max="1000" value="0" aria-label="장면 위치"><button class="btn slow" type="button" aria-pressed="true">느리게 보기</button></div>
+  <div class="copy">
+   <p>휘두르기 전에 칼을 뒤로 빼는 동작입니다. B는 0.3초 동안 칼을 들어 올립니다. 잠깐 모았다가 튀어 나가면 같은 공격도 무겁게 보입니다. 너무 길면 굼떠지니 플레이어 공격은 0.1초에서 0.2초로 짧게, 적의 큰 공격은 길게 줘서 피할 시간을 줍니다.</p>
+  </div>
+  <div class="say"><b>이렇게 말하기</b><ul><li><span class="ko">공격 전에 칼을 뒤로 빼는 준비 동작을 0.15초 넣고, 휘두르는 동작은 그보다 빠르게 해 주세요.</span><span class="say-en">anticipation, wind-up</span></li></ul><div class="say-foot"><button class="btn copy-say" type="button">복사</button></div></div>
+ </article>
+
+ <article class="term" id="hitstop" data-clip="hitstop">
+  <div class="term-head"><span class="no">09</span><h3>히트스톱</h3><span class="en">Hitstop</span></div>
+  <p class="when"><b>이럴 때</b>"타격감이 찰지지 않아요"</p>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>멈춤 없음</figcaption><canvas data-scene="stop0" role="img" aria-label="칼이 슬라임에 맞고 그대로 지나간다"></canvas></figure>
+   <figure><figcaption><span class="ab b">B</span>맞는 순간 둘 다 0.06초 멈춤</figcaption><canvas data-scene="stop1" role="img" aria-label="칼이 맞는 순간 기사와 슬라임이 0.06초 동안 멈췄다가 움직인다"></canvas></figure>
+  </div>
+  <div class="player"><button class="btn play" type="button">멈춤</button><input type="range" min="0" max="1000" value="0" aria-label="장면 위치"><button class="btn slow" type="button" aria-pressed="true">느리게 보기</button></div>
+  <div class="copy">
+   <p>맞는 순간 때린 쪽과 맞은 쪽이 아주 잠깐 멈춥니다. 실제 속도로는 거의 보이지 않을 만큼 짧지만 칼이 박히는 느낌을 만듭니다. 느리게 보기를 켜 두면 멈추는 순간이 보입니다. 한국 액션 게임에서는 <b>역경직</b>이라고도 부릅니다.</p>
+  </div>
+  <div class="say"><b>이렇게 말하기</b><ul><li><span class="ko">맞는 순간 때린 쪽과 맞은 쪽을 0.06초 멈춰 주세요. 센 공격일수록 조금 더 길게 해 주세요.</span><span class="say-en">hitstop, hit pause</span></li></ul><div class="say-foot"><button class="btn copy-say" type="button">복사</button></div></div>
+ </article>
+
+ <article class="term" id="flash" data-clip="flash">
+  <div class="term-head"><span class="no">10</span><h3>피격 번쩍임</h3><span class="en">Hit Flash</span></div>
+  <p class="when"><b>이럴 때</b>"맞았는지 모르겠어요"</p>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>체력만 줄어듦</figcaption><canvas data-scene="flash0" role="img" aria-label="칼에 맞은 슬라임의 체력 막대만 줄어든다"></canvas></figure>
+   <figure><figcaption><span class="ab b">B</span>맞는 순간 하얗게 번쩍임</figcaption><canvas data-scene="flash1" role="img" aria-label="칼에 맞은 슬라임이 잠깐 하얗게 번쩍인다"></canvas></figure>
+  </div>
+  <div class="player"><button class="btn play" type="button">멈춤</button><input type="range" min="0" max="1000" value="0" aria-label="장면 위치"><button class="btn slow" type="button" aria-pressed="true">느리게 보기</button></div>
+  <div class="copy">
+   <p>맞은 쪽을 0.07초 동안 하얗게 칠합니다. 화면 어디를 보고 있었든 맞은 걸 알아챕니다. 플레이어가 맞을 때는 빨간색으로 칠하기도 합니다.</p>
+  </div>
+  <div class="say"><b>이렇게 말하기</b><ul><li><span class="ko">맞은 적을 0.07초 동안 하얗게 칠해 주세요.</span><span class="say-en">hit flash</span></li></ul><div class="say-foot"><button class="btn copy-say" type="button">복사</button></div></div>
+ </article>
+
+ <article class="term" id="knock" data-clip="knock">
+  <div class="term-head"><span class="no">11</span><h3>넉백과 경직</h3><span class="en">Knockback, Hitstun</span></div>
+  <p class="when"><b>이럴 때</b>"때려도 적이 꿈쩍도 안 해요"</p>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>그 자리에 그대로</figcaption><canvas data-scene="knock0" role="img" aria-label="칼에 맞은 슬라임이 제자리에서 움직이지 않는다"></canvas></figure>
+   <figure><figcaption><span class="ab b">B</span>밀려나고 잠깐 못 움직임</figcaption><canvas data-scene="knock1" role="img" aria-label="칼에 맞은 슬라임이 뒤로 밀려나 찌그러졌다가 천천히 돌아온다"></canvas></figure>
+  </div>
+  <div class="player"><button class="btn play" type="button">멈춤</button><input type="range" min="0" max="1000" value="0" aria-label="장면 위치"><button class="btn slow" type="button" aria-pressed="true">느리게 보기</button></div>
+  <div class="copy">
+   <p>맞은 쪽이 맞은 방향으로 밀려나는 것이 <b>넉백</b>, 그동안 아무것도 못 하는 시간이 <b>경직</b>입니다. 경직이 없으면 맞으면서 바로 반격해서 때린 맛이 사라집니다.</p>
+  </div>
+  <div class="say"><b>이렇게 말하기</b><ul><li><span class="ko">맞은 적을 맞은 방향으로 8픽셀 밀고, 0.4초 동안 움직이거나 공격하지 못하게 해 주세요.</span><span class="say-en">knockback, hitstun</span></li></ul><div class="say-foot"><button class="btn copy-say" type="button">복사</button></div></div>
+ </article>
+
+ <article class="term" id="shake" data-clip="shake">
+  <div class="term-head"><span class="no">12</span><h3>화면 흔들림</h3><span class="en">Screen Shake</span></div>
+  <p class="when"><b>이럴 때</b>"이펙트가 눈 아파요, 정신없어요"</p>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>크게 오래 흔듦</figcaption><canvas data-scene="shake0" role="img" aria-label="칼이 맞는 순간 화면이 크고 오래 흔들린다"></canvas></figure>
+   <figure><figcaption><span class="ab b">B</span>작게 짧게 흔듦</figcaption><canvas data-scene="shake1" role="img" aria-label="칼이 맞는 순간 화면이 아주 작게 짧게 흔들린다"></canvas></figure>
+  </div>
+  <div class="player"><button class="btn play" type="button">멈춤</button><input type="range" min="0" max="1000" value="0" aria-label="장면 위치"><button class="btn slow" type="button" aria-pressed="true">느리게 보기</button></div>
+  <div class="copy">
+   <p>흔들림은 넣는 것보다 줄이는 쪽이 어렵습니다. A는 6픽셀을 0.5초, B는 1.5픽셀을 0.12초 흔듭니다. 약한 공격에는 빼고 큰 사건에만 쓰는 편이 좋습니다. 멀미하는 사람을 위해 설정에서 끌 수 있게 하세요.</p>
+   <p class="one">타격감을 살려 달라고 하면 가장 먼저 과해지는 부품입니다.</p>
+  </div>
+  <div class="say"><b>이렇게 말하기</b><ul><li><span class="ko">화면 흔들림은 강한 공격에만 1.5픽셀, 0.12초로 넣어 주세요. 약한 공격에는 넣지 말고, 설정에서 끌 수 있게 해 주세요.</span><span class="say-en">screen shake</span></li></ul><div class="say-foot"><button class="btn copy-say" type="button">복사</button></div></div>
+ </article>
+
+</section>
+
+<section class="part" aria-labelledby="p3">
+ <h2 id="p3">점프가 억울할 때</h2>
+ <p>점프가 있는 게임이라면 한 번에 같이 말할 이름들입니다.</p>
+
+ <article class="term" id="coyote" data-clip="coyote">
+  <div class="term-head"><span class="no">13</span><h3>점프 손맛 세트</h3><span class="en">Coyote Time, Jump Buffer, Variable Jump, Fall Gravity</span></div>
+  <p class="when"><b>이럴 때</b>"분명 눌렀는데 떨어졌어요"</p>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>코요테 타임 없음</figcaption><canvas data-scene="coyote0" role="img" aria-label="발판을 벗어나고 0.07초 뒤에 점프를 눌렀지만 받아 주지 않아 구덩이로 떨어진다"></canvas></figure>
+   <figure><figcaption><span class="ab b">B</span>코요테 타임 0.1초</figcaption><canvas data-scene="coyote1" role="img" aria-label="발판을 벗어나고 0.07초 뒤에 점프를 눌렀고, 받아 줘서 구덩이를 건넌다"></canvas></figure>
+  </div>
+  <div class="player"><button class="btn play" type="button">멈춤</button><input type="range" min="0" max="1000" value="0" aria-label="장면 위치"><button class="btn slow" type="button" aria-pressed="true">느리게 보기</button></div>
+  <div class="copy">
+   <p>발판 끝에서 점프를 눌렀는데 떨어진 적 있나요? 사람 눈에는 아직 발판 위인데, 게임은 이미 공중이라고 판단해서 그렇습니다. 발판을 벗어난 뒤에도 0.1초쯤은 점프를 받아 주는 것을 <b>코요테 타임</b>이라고 합니다.</p>
+   <p>같이 말하면 좋은 셋이 있습니다. 착지 직전에 누른 점프를 기억해 두는 <b>점프 버퍼</b>, 키를 짧게 누르면 낮게 뛰는 <b>가변 점프</b>, 내려올 때만 빨리 떨어지게 하는 <b>낙하 중력</b>입니다.</p>
+   <p class="one">두 장면 모두 발판을 벗어나고 0.07초 뒤에 눌렀습니다. 다른 건 받아 주느냐 하나입니다.</p>
+  </div>
+  <div class="say"><b>이렇게 말하기</b><ul><li><span class="ko">발판을 벗어난 뒤 0.1초까지는 점프 입력을 받아 주세요.</span><span class="say-en">coyote time 0.1s</span></li><li><span class="ko">착지 0.1초 전에 누른 점프는 기억했다가 땅에 닿는 순간 뛰게 해 주세요.</span><span class="say-en">jump buffer 0.1s</span></li><li><span class="ko">점프 키를 일찍 떼면 그때 올라가는 속도를 절반으로 줄여 주세요.</span><span class="say-en">variable jump height</span></li><li><span class="ko">내려올 때만 중력을 2배로 해 주세요.</span><span class="say-en">fall gravity multiplier 2</span></li></ul><div class="say-foot"><button class="btn copy-say" type="button">복사</button></div></div>
+ </article>
+
+</section>
+
+<footer>
+ <p>모든 장면은 이 페이지 안의 코드로 그립니다. 색은 GrafxKid의 Sweetie 16 팔레트입니다.</p>
+ <p>본 콘텐츠에는 (주)HS효성의 HS HYOSUNG 서체가 사용되었습니다.</p>
+</footer>
+<noscript><p>시연 장면은 자바스크립트를 켜야 보입니다. 글은 그대로 읽을 수 있습니다.</p></noscript>
+</div>
+<script>
+// ===== 팔레트: Sweetie 16 =====
+const PAL={o:'#1a1c2c',r:'#5d275d',R:'#b13e53',O:'#ef7d57',Y:'#ffcd75',G:'#a7f070',g:'#38b764',t:'#257179',N:'#29366f',B:'#3b5dc9',b:'#41a6f6',c:'#73eff7',W:'#f4f4f4',L:'#94b0c2',M:'#566c86',D:'#333c57'};
+const RGB=Object.fromEntries(Object.entries(PAL).map(([k,h])=>[k,[1,3,5].map(i=>parseInt(h.slice(i,i+2),16))]));
+const rootCss=getComputedStyle(document.documentElement);
+const FONT=rootCss.getPropertyValue('--font').trim();
+const OV={hit:rootCss.getPropertyValue('--hit').trim(),hurt:rootCss.getPropertyValue('--hurt').trim()};
+const BAY=[0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5].map(v=>(v+.5)/16);
+const bay=(x,y)=>BAY[(y&3)*4+(x&3)];
+const hash=(x,y=0)=>{let h=Math.imul(x|0,73856093)^Math.imul(y|0,19349663);h=Math.imul(h^(h>>>13),1274126177);return((h^(h>>>16))>>>0)/4294967296};
+const ss=t=>t<=0?0:t>=1?1:t*t*(3-2*t);
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+
+// ===== 도트 격자: 채운 뒤 바깥선을 자동으로 두른다 =====
+class Grid{
+ constructor(w,h){this.w=w;this.h=h;this.a=new Array(w*h).fill('')}
+ set(x,y,c){x=Math.round(x);y=Math.round(y);if(x>=0&&y>=0&&x<this.w&&y<this.h)this.a[y*this.w+x]=c}
+ get(x,y){return(x<0||y<0||x>=this.w||y>=this.h)?'':this.a[y*this.w+x]}
+ rows(rs,ox,oy){rs.forEach((r,j)=>{for(let i=0;i<r.length;i++)if(r[i]!=='.')this.set(ox+i,oy+j,r[i])})}
+ line(x0,y0,x1,y1,c){x0=Math.round(x0);y0=Math.round(y0);x1=Math.round(x1);y1=Math.round(y1);const dx=Math.abs(x1-x0),dy=-Math.abs(y1-y0),sx=x0<x1?1:-1,sy=y0<y1?1:-1;let e=dx+dy;for(let n=0;n<200;n++){this.set(x0,y0,c);if(x0===x1&&y0===y1)break;const e2=2*e;if(e2>=dy){e+=dy;x0+=sx}if(e2<=dx){e+=dx;y0+=sy}}}
+ outline(){const b=this.a.slice(),w=this.w,h=this.h,on=(x,y)=>x>=0&&y>=0&&x<w&&y<h&&b[y*w+x]!=='';for(let y=0;y<h;y++)for(let x=0;x<w;x++)if(b[y*w+x]===''&&(on(x-1,y)||on(x+1,y)||on(x,y-1)||on(x,y+1)))this.a[y*w+x]='o'}
+ canvas(){return pix(this.w,this.h,put=>{for(let y=0;y<this.h;y++)for(let x=0;x<this.w;x++){const c=this.a[y*this.w+x];if(c)put(x,y,c)}})}
+}
+function pix(w,h,fn){const c=document.createElement('canvas');c.width=w;c.height=h;const g=c.getContext('2d');const im=g.createImageData(w,h),d=im.data;fn((x,y,k)=>{if(x<0||y<0||x>=w||y>=h)return;const v=RGB[k],i=(y*w+x)*4;d[i]=v[0];d[i+1]=v[1];d[i+2]=v[2];d[i+3]=255});g.putImageData(im,0,0);return c}
+
+// ===== 기사 =====
+const K_HEAD=[
+'..RO............',
+'.RROO...........',
+'.RRRO.LLLL......',
+'..rRRWWLLLLM....',
+'...rWWLLLLLMM...',
+'....WLLLLLLMM...',
+'....LLLLoooooo..',
+'....LLLMMoMoMD..',
+'....MMMMMMMMDD..'];
+const K_BODY=[
+'....LLRRRRRMD...',
+'...LLMRRYRRMDD..',
+'...LMMRYYYRDDD..',
+'.....RRRYRRr....',
+'.....YYYYYYY....',
+'.....RRrRRrr....'];
+const K_LEGS={
+ idle:['......MD.LM.....','......MD.LM.....','......ND.NN.....','.....NNN.NNN....'],
+ runA:['.....MD..LM.....','....MD....LM....','...ND......NN...','..NNN.......NNN.'],
+ runB:['......MDLM......','.....MD.LM......','....NN..LM......','........NNN.....'],
+ runC:['.....LM..MD.....','....LM....MD....','...NN......ND...','..NNN.......NNN.'],
+ runD:['......LMMD......','.....LM.MD......','....NN..MD......','........NNN.....'],
+ jump:['.....MDLM.......','....ND...LM.....','....NN....NN....','................'],
+ fall:['......MD.LM.....','.....MD...LM....','.....ND...NN....','....NN.....NN...'],
+};
+const RUN=['runA','runB','runC','runD'];
+const K_POSE={
+ idle:{hand:[12,13],ang:.55,len:8},
+ run:{hand:[12,12],ang:.35,len:8},
+ windup:{hand:[13,4],ang:-1.95,len:9,lean:-1},
+ swing:{hand:[16,10],ang:.05,len:9,lean:1,smear:{a0:-2.0,a1:.15,r:14}},
+ follow:{hand:[15,13],ang:.6,len:8,lean:1,smear:{a0:-.1,a1:.62,r:13,fade:1}},
+ jump:{hand:[13,9],ang:-.7,len:8},
+ fall:{hand:[14,7],ang:-.45,len:8},
+};
+const KX=6,KY=6,KW=36,KH=28,KC=new Map();
+function sword(g,hx,hy,a,len){const dx=Math.cos(a),dy=Math.sin(a);g.set(hx-dx*1.6,hy-dy*1.6,'r');const gx=hx+dx*1.4,gy=hy+dy*1.4;g.set(gx,gy,'Y');g.set(gx-dy,gy+dx,'O');g.set(gx+dy,gy-dx,'Y');g.line(hx+dx*2.4,hy+dy*2.4,hx+dx*len,hy+dy*len,'W')}
+function smear(g,cx,cy,{a0,a1,r,fade}){for(let y=0;y<g.h;y++)for(let x=0;x<g.w;x++){if(g.get(x,y))continue;const dx=x-cx,dy=y-cy,d=Math.hypot(dx,dy),a=Math.atan2(dy,dx);if(a<a0||a>a1)continue;const p=(a-a0)/(a1-a0),th=fade?1.6:1.4+p*4.6;if(d>r||d<r-th)continue;if(fade&&((x+y)&1))continue;g.set(x,y,'W')}}
+function knightCanvas(pose,legs,bob){const key=pose+'|'+legs+'|'+bob;if(KC.has(key))return KC.get(key);
+ const P=K_POSE[pose],g=new Grid(KW,KH),lx=KX+(P.lean||0),ly=KY+bob;
+ g.rows(K_LEGS[legs],KX,KY+15);g.rows(K_BODY,lx,ly+9);g.rows(K_HEAD,lx,ly);
+ const sx=lx+11,sy=ly+10,hx=lx+P.hand[0],hy=ly+P.hand[1];
+ sword(g,hx,hy,P.ang,P.len);g.line(sx,sy+1,hx,hy+1,'M');g.line(sx,sy,hx,hy,'L');g.set(hx,hy,'W');
+ g.outline();if(P.smear)smear(g,sx,sy,P.smear);
+ const c=g.canvas();KC.set(key,c);return c}
+// x: 발 가운데, y: 땅 높이
+function drawKnight(n,x,y,pose='idle',legs='idle',bob=0){n.drawImage(knightCanvas(pose,legs,bob),Math.round(x)-(KX+8),Math.round(y)-(KY+19))}
+
+// ===== 슬라임: 크기만 주면 모양과 명암을 계산한다 =====
+const SC=new Map();
+function slimeCanvas(w,h,flash){const key=w+'|'+h+'|'+(flash?1:0);if(SC.has(key))return SC.get(key);
+ const g=new Grid(w+2,h+2);
+ for(let y=0;y<h;y++)for(let x=0;x<w;x++){const nx=(x+.5-w/2)/(w/2),ny=(h-(y+.5))/h;if(Math.pow(Math.abs(nx),2.6)+ny*ny>1)continue;
+  let c='g';if(-nx*.6+ny*.9>.62)c='G';if(nx>.58||ny<.13)c='t';const hx=nx+.42,hy=ny-.64;if(hx*hx*3+hy*hy*7<.07)c='W';if(flash)c='W';g.set(x+1,y+1,c)}
+ if(!flash){const ex=Math.round(w*.26)+1,ey=Math.round(h*.4)+1;[[ex,ey],[ex,ey+1],[ex+3,ey],[ex+3,ey+1]].forEach(([x,y])=>g.set(x,y,'o'))}
+ g.outline();const c=g.canvas();SC.set(key,c);return c}
+function drawSlime(n,x,y,w,h,flash){const c=slimeCanvas(w,h,flash);n.drawImage(c,Math.round(x-c.width/2),Math.round(y-c.height+1))}
+
+// ===== 배경: 하늘, 구름, 산, 언덕, 숲, 땅 =====
+const ROWB=[0,.5,.25,.75];
+function skyCanvas(w,h,G){return pix(w,h,put=>{for(let y=0;y<h;y++){const t=y/G,p=(t-.34)/.38;const k=p>=1?'c':p<=0?'b':(ROWB[y&3]+.125<p?'c':'b');for(let x=0;x<w;x++)put(x,y,k)}})}
+function landCanvas(w,h,G,gap){const inGap=x=>gap&&x>=gap[0]&&x<gap[1];
+ return pix(w,h,put=>{
+  const peaks=[[.08,24,32],[.3,16,28],[.52,28,38],[.78,20,32],[1.02,26,34]].map(([p,ph,pw])=>[p*w,ph,pw]);
+  for(let x=0;x<w;x++){let m=0,side=0;for(const [px,ph,pw] of peaks){const v=ph-Math.abs(x-px)*ph/pw;if(v>m){m=v;side=x>px?1:0}}
+   const top=Math.round(G-9-m);for(let y=Math.max(0,top);y<G;y++){let k=side?'M':'L';if(m>17&&y<top+3&&!(y===top+2&&(x&1)))k=side?'L':'W';put(x,y,k)}
+   const ht=Math.round(G-12+2.5*Math.sin(x*.05+1)+1.5*Math.sin(x*.13));for(let y=ht;y<G;y++)put(x,y,y===ht?'G':'g')}
+  for(let i=-6;i<w+6;i+=9){const r=3+Math.floor(hash(i+50,7)*4),cx=i+Math.floor(hash(i+50,3)*5),cy=G-r-1-Math.floor(hash(i+50,5)*3);
+   for(let y=cy-r;y<G;y++)for(let x=cx-r;x<=cx+r;x++){const dx=x-cx,dy=y-cy;if(dy<0&&dx*dx+dy*dy>r*r)continue;const hx=dx+r*.35,hy=dy+r*.4;let k=(dy<0&&hx*hx+hy*hy<r*r*.3)?'g':'t';put(x,y,k)}}
+  for(let x=0;x<w;x++){
+   if(inGap(x)){for(let y=G;y<h;y++)put(x,y,(y-G<4&&bay(x,y)<(4-(y-G))/5)?'D':'o');continue}
+   put(x,G,'G');put(x,G+1,'g');put(x,G+2,'g');if(hash(x,1)<.2)put(x,G-1,'G');put(x,G+3,hash(x,2)<.35?'g':'t');
+   for(let y=G+4;y<h;y++){const d=y-G;let k='r';if(d>11&&bay(x,y)<(d-11)/16)k='o';else if(hash(x,y)<.012)k='o';put(x,y,k)}}
+  for(let i=6;i<w;i+=31){const sx=i+Math.floor(hash(i,9)*10),sy=G+7+Math.floor(hash(i,11)*8);if(inGap(sx-1)||inGap(sx+3))continue;
+   [['M',0,0],['L',1,0],['M',2,0],['D',0,1],['M',1,1],['D',2,1],['o',-1,0],['o',3,0],['o',-1,1],['o',3,1],['o',0,-1],['o',1,-1],['o',2,-1],['o',0,2],['o',1,2],['o',2,2]].forEach(([k,dx,dy])=>put(sx+dx,sy+dy,k))}
+  if(gap){for(let y=G+3;y<h;y++){put(gap[0]-1,y,'o');put(gap[1],y,'o')}for(const x of [gap[0],gap[1]-1]){put(x,G,'G');put(x,G+1,'g');put(x,G+2,'t')}}
+ })}
+const CL=[[[0,0,5],[6,-3,7],[13,0,5],[6,1,6]],[[0,0,4],[5,-2,5],[10,0,4]],[[0,0,3],[4,-1,4],[8,0,3]]];
+const CLC=CL.map(cs=>{let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;cs.forEach(([x,y,r])=>{x0=Math.min(x0,x-r);x1=Math.max(x1,x+r);y0=Math.min(y0,y-r);y1=Math.max(y1,y+r)});const flat=Math.round(y1-2),w=x1-x0+1,h=flat-y0+1;
+ return pix(w,h,put=>{for(let y=0;y<h;y++)for(let x=0;x<w;x++){const X=x+x0,Y=y+y0;if(cs.some(([cx,cy,r])=>(X-cx)**2+(Y-cy)**2<=r*r))put(x,y,Y>=flat-1?'L':(Y>=flat-3&&bay(x,y)<.5)?'L':'W')}})});
+function clouds(n,w,s){[[0,.08,12,3],[1,.42,5,2],[2,.7,19,4],[0,.93,8,3]].forEach(([i,p,y,sp])=>{const c=CLC[i],span=w+c.width+8;n.drawImage(c,Math.round(((p*span+s*sp)%span)-c.width),y)})}
+const BG={};
+function bg(n,clip,gap,s){const key=clip.w+'x'+clip.h+':'+(gap?gap.join('-'):'');if(!BG[key])BG[key]={sky:skyCanvas(clip.w,clip.h,clip.g),land:landCanvas(clip.w,clip.h,clip.g,gap)};n.drawImage(BG[key].sky,0,0);clouds(n,clip.w,s);n.drawImage(BG[key].land,0,0)}
+
+// ===== 효과: 먼지, 타격 불꽃 =====
+function puff(n,x,y,age){const life=.34;if(age<0||age>=life)return;const k=age/life,r=1+k*3.2,R=Math.ceil(r);n.fillStyle=k<.45?PAL.W:PAL.L;
+ for(let dy=-R;dy<=0;dy++)for(let dx=-R;dx<=R;dx++){if(dx*dx+dy*dy*2.2>r*r)continue;if(k>.55&&((dx+dy+Math.round(x))&1))continue;n.fillRect(Math.round(x+dx),Math.round(y+dy),1,1)}}
+function spark(n,x,y,age){const life=.22;if(age<0||age>=life)return;const k=age/life;x=Math.round(x);y=Math.round(y);const len=Math.round(2+k*7),inner=Math.round(k*5);
+ [[1,0],[-1,0],[0,1],[0,-1],[1,1],[-1,-1],[1,-1],[-1,1]].forEach(([dx,dy],i)=>{const L2=i<4?len:Math.round(len*.6);for(let j=Math.max(1,inner);j<=L2;j++){n.fillStyle=j>L2-2?PAL.O:PAL.Y;n.fillRect(x+dx*j,y+dy*j,1,1)}});
+ if(k<.4){n.fillStyle=PAL.W;n.fillRect(x-1,y-2,3,5);n.fillRect(x-2,y-1,5,3)}}
+
+// ===== 장면 =====
+// 공격: 0.5초 칼 들기, 0.8초 휘두름(0.15초만 판정), 0.95초 마무리
+function attackScene(n,s,clip,mode){const G=clip.g,kx=62,sx0=88,hitT=.8;bg(n,clip,null,s);
+ let pose='idle',bob=Math.floor(s/.45)%2;if(s>=.5&&s<.8){pose='windup';bob=0}else if(s>=.8&&s<.95){pose='swing';bob=0}else if(s>=.95&&s<1.25){pose='follow';bob=0}
+ drawKnight(n,kx,G,pose,'idle',bob);
+ let sx=sx0,sy=G,w=16,h=11,flash=false;const d=s-hitT;
+ if(d>=0&&d<.36){const p=d/.36;sx=sx0+12*(1-(1-p)*(1-p));sy=G-Math.round(16*p*(1-p));flash=d<.07;if(d<.08){w=18;h=9}else{w=14;h=13}}
+ else if(d>=.36&&d<.5){sx=sx0+12;w=19;h=8}
+ else if(d>=.5&&d<1.3){const p=(d-.5)/.8;sx=sx0+12*(1-ss(p));const b=Math.floor(p*6)%2;w=16+b;h=11-b}
+ else{const b=Math.floor(s/.3)%3===2?1:0;w=16+b;h=11-b}
+ drawSlime(n,sx,sy,w,h,flash);spark(n,sx0-8,G-8,d);
+ return o=>{
+  if(mode==='hit'&&s>=.8&&s<.95)o.box(kx+6,G-22,15,18,OV.hit,'히트박스',PAL.W);
+  if(mode==='hurt'){o.box(kx-5,G-20,11,20,OV.hurt,'허트박스',PAL.W);o.box(sx-w/2-1,sy-h-1,w+2,h+1,OV.hurt,null)}
+  if(d>=0&&d<.45)o.tag('맞음!',sx+3,sy-h-5,OV.hit,PAL.W,'c','b');
+ }}
+// 떨어질 때 머리 위 느낌표
+const BANG=(()=>{const g=new Grid(5,9);[[2,1],[2,2],[2,3],[2,4],[2,6]].forEach(([x,y])=>g.set(x,y,'W'));g.outline();return g.canvas()})();
+// 코요테 타임: 같은 달리기, 같은 순간에 누른 점프. 받아 주느냐만 다르다
+function coyoteScene(n,s,clip,on){const G=clip.g,edge=78,far=104,END=140;bg(n,clip,[edge,far],s);
+ const x0=14,run=48,leave=(edge-x0)/run,press=leave+.07,grav=320,jv=-118;
+ let x=Math.min(x0+run*s,END),y=G,pose='run',legs=RUN[Math.floor(s/.08)%4],bob=(Math.floor(s/.08)%2)?0:1,landT=null;
+ if(s>leave){
+  if(on&&s>=press){const y0=G+.5*grav*.0049,tj=s-press,tl=(-jv+Math.sqrt(jv*jv-2*grav*(y0-G)))/grav;landT=press+tl;
+   if(tj<tl){y=y0+jv*tj+.5*grav*tj*tj;pose='jump';legs='jump';bob=0}}
+  else if(!on||s<press){const dt=s-leave;y=G+.5*grav*dt*dt;pose='fall';legs='fall';bob=0}
+ }
+ if(x>=END&&y===G){pose='idle';legs='idle';bob=Math.floor(s/.45)%2}
+ // 디딜 때마다 먼지
+ for(let k=0;k*.16<=s;k++){const tc=k*.16,age=s-tc;if(age>.34)continue;const xc=x0+run*tc;if(tc>leave&&!(on&&landT&&tc>landT))continue;if(xc>=END)continue;puff(n,xc-5,G-1,age)}
+ if(on&&landT){puff(n,x0+run*landT-5,G-1,s-landT);puff(n,x0+run*landT+5,G-1,s-landT-.03)}
+ if(y<clip.h+30){drawKnight(n,x,y,pose,legs,bob);if(pose==='fall'&&s>press)n.drawImage(BANG,Math.round(x)-2,Math.round(y)-30)}
+ return o=>{
+  o.vline(edge,G-26,G+2,PAL.o);o.tag('발판 끝',edge,G+2.5,PAL.W,PAL.o,'c','t');
+  const k=o.key('점프 키',s>=press&&s<press+.3);
+  if(s>leave){const el=Math.min(s,press)-leave;const t=o.tagPx(`발판을 벗어난 지 ${el.toFixed(2)}초`,k.x+k.w+8*o.u,k.y+(k.h-24*o.u)/2,PAL.W,PAL.o);
+   if(s>=press)o.tagPx(on?'받아 줌: 점프':'안 받아 줌: 떨어짐',t.x,t.y+t.h+5*o.u,on?OV.hurt:OV.hit,PAL.W)}
+ }}
+// 첫 화면: 기사가 달려와 슬라임을 베고 지나간다. 7.2초마다 같은 자리로 돌아온다
+function heroScene(n,s,clip,ct){const G=clip.g;bg(n,clip,null,ct??s); // 구름은 장면 시각이 아니라 계속 흐르는 시각으로 움직여 7.2초 이음새에서 튀지 않는다
+ let kx,pose='run',legs=RUN[Math.floor(s/.08)%4],bob=(Math.floor(s/.08)%2)?0:1;
+ if(s<3){kx=-14+50*s}else if(s<4.6){kx=136;legs='idle';bob=Math.floor(s/.45)%2;pose=s<3.3?'idle':s<3.6?'windup':s<3.75?'swing':s<4.05?'follow':'idle';if(pose!=='idle')bob=0}else{kx=136+70*(s-4.6)}
+ const sx0=160,d=s-3.6;let sx=sx0,sy=G,w=16,h=11,flash=false,show=true;
+ if(d>=0&&d<1.05){sx=sx0+140*(d/1.05);sy=G-Math.round(Math.abs(Math.sin(d/1.05*Math.PI*3))*12*(1-d*.5));flash=d<.07;w=sy<G-2?14:18;h=sy<G-2?13:9}
+ else if(s>=4.65&&s<6.4)show=false;
+ else if(s>=6.4&&s<6.75){const p=(s-6.4)/.35;sy=Math.round(-14+(G+14)*p*p);w=14;h=13}
+ else if(s>=6.75&&s<6.9){w=19;h=8}
+ else{const b=Math.floor(s/.3)%3===2?1:0;w=16+b;h=11-b}
+ if(show)drawSlime(n,sx,sy,w,h,flash);spark(n,kx+18,G-9,d);
+ if(s<3||s>=4.6)for(let k=0;k<64;k++){const tc=k*.16;if(tc>s)break;const age=s-tc;if(age>.34||(tc>=3&&tc<4.6))continue;const xc=tc<3?-14+50*tc:136+70*(tc-4.6);puff(n,xc-5,G-1,age)}
+ drawKnight(n,kx,G,pose,legs,bob);return null}
+
+// ===== 손맛 부품: 같은 공격 장면에서 부품을 하나씩 켜고 끈다 =====
+const COIN=[['.YYYY.','YWYYYO','YWYYYO','YYYYYO','YYYYOO','.OOOO.'],['.YY.','WYYO','WYYO','YYYO','YYOO','.OO.'],['YO','YO','YO','YO','YO','YO']].map(rs=>{const g=new Grid(rs[0].length+2,8);g.rows(rs,1,1);g.outline();return g.canvas()});
+const coinAt=t=>COIN[[0,1,2,1][((Math.floor(t*12)%4)+4)%4]];
+const CURSOR=(()=>{const g=new Grid(9,13);g.rows(['W......','WW.....','WWW....','WWWW...','WWWWW..','WWWWWW.','WWWWWWW','WWWW...','WW.WW..','W...WW.','....WW.'],1,1);g.outline();return g.canvas()})();
+const ICON=Object.fromEntries(Object.entries({
+ cut:['......W','.....WL','....WL.','.Y.WL..','..YL...','.rYY...','r......'],
+ guard:['LLLLLLL','LBBBBBL','LBBYBBL','LBYYYBL','LBBYBBL','.LBBBL.','..LLL..'],
+ heal:['.RR.RR.','RWRRRRR','RWRRRRR','RRRRRRR','.RRRRR.','..RRR..','...R...']}).map(([k,rs])=>{const g=new Grid(9,9);g.rows(rs,1,1);g.outline();return[k,g.canvas()]}));
+const SHAKE={over:{a:6,d:.5},good:{a:1.5,d:.12},big:{a:3,d:.22}};
+const easeOut=t=>1-(1-t)*(1-t),easeIn=t=>t*t;
+const easeBack=t=>{t=clamp(t,0,1)-1;return 1+2.70158*t*t*t+1.70158*t*t};
+const lerp=(a,b,t)=>a+(b-a)*t;
+function hitList(o){
+ if(!o.tiers)return[{t:o.hitT||.8,dmg:o.dmg||12,flash:o.flash,knock:o.knock?8:0,stop:o.stop||0,shake:o.shake||'',spark:o.spark,size:1,launch:0}];
+ const T=[.8,1.8,2.8],D=[8,120,1500];
+ if(o.tiers==='flat')return T.map((t,i)=>({t,dmg:D[i],flash:1,knock:5,stop:0,shake:'',spark:1,size:1,launch:0}));
+ return[{t:T[0],dmg:D[0],flash:1,knock:0,stop:0,shake:'',spark:0,size:.8,launch:0},{t:T[1],dmg:D[1],flash:1,knock:9,stop:0,shake:'',spark:1,size:1.25,launch:0},{t:T[2],dmg:D[2],flash:1,knock:0,stop:.08,shake:'big',spark:1,size:1.8,launch:1}];
+}
+// 히트스톱: 멈춘 시간만큼 장면 시각을 늦춘다
+function effTime(s,hits){let e=s;for(const h of hits)if(s>h.t)e-=Math.min(s-h.t,h.stop);return e}
+function knightPoseAt(e,hits,antic){for(const h of hits){const d=e-h.t;if(antic&&d>=-.3&&d<0)return'windup';if(d>=0&&d<.15)return'swing';if(d>=.15&&d<.45)return'follow'}return'idle'}
+// 슬라임 반응: 맞은 시각들로 위치, 모양, 번쩍임을 계산한다
+function slimeAt(e,hits,sx0,G,defeat){
+ let sx=sx0,sy=G,w=16,h=11,flash=false,gone=false,react=false;
+ for(const ht of hits){const d=e-ht.t;if(d<0)continue;
+  if(ht.flash&&d<.07)flash=true;
+  if(ht.launch){react=true;if(d<1.3){const p=d/1.3;sx=sx0+150*p;sy=G-Math.round(Math.abs(Math.sin(p*Math.PI*2.5))*18*(1-p*.6));const air=sy<G-2;w=air?14:18;h=air?13:9}else gone=true}
+  else if(ht.knock){const kd=ht.knock;if(d<.3){react=true;const p=d/.3;sx=sx0+kd*easeOut(p);sy=G-Math.round(12*p*(1-p)*kd/8);if(d<.08){w=18;h=9}else{w=14;h=13}}else if(d<.42){react=true;sx=sx0+kd;w=18;h=9}else if(d<1.1){react=true;sx=sx0+kd*(1-ss((d-.42)/.68))}}
+  if(defeat&&d>=.3)gone=true;
+ }
+ if(!react){const b=Math.floor(e/.3)%3===2?1:0;w=16+b;h=11-b}
+ return{sx,sy,w,h,flash,gone}
+}
+function hpBar(n,x,y,f){const w=16,x0=Math.round(x-w/2),y0=Math.round(y);n.fillStyle=PAL.o;n.fillRect(x0-1,y0-1,w+2,4);n.fillStyle=PAL.D;n.fillRect(x0,y0,w,2);n.fillStyle=f>.34?PAL.G:PAL.R;n.fillRect(x0,y0,Math.round(w*clamp(f,0,1)),2)}
+function shakeAt(s,hits){let dx=0,dy=0;for(const h of hits){if(!h.shake)continue;const S=SHAKE[h.shake],d=s-h.t;if(d<0||d>=S.d)continue;const k=S.a*(1-d/S.d);dx+=k*Math.sin(d*97+1.3);dy+=k*Math.cos(d*83+.7)}return[dx,dy]}
+function fight(n,s,clip,opt){
+ const o={antic:1,flash:1,knock:1,spark:1,...opt},G=clip.g,kx=62,sx0=88,hits=hitList(o),e=effTime(s,hits);
+ bg(n,clip,null,e);
+ const pose=knightPoseAt(e,hits,o.antic);drawKnight(n,kx,G,pose,'idle',pose==='idle'?Math.floor(e/.45)%2:0);
+ const sl=slimeAt(e,hits,sx0,G,o.defeat),maxHp=o.tiers?2000:o.defeat?12:60;let hp=maxHp;hits.forEach(h=>{if(e>=h.t)hp-=h.dmg});
+ if(!sl.gone){drawSlime(n,sl.sx,sl.sy,sl.w,sl.h,sl.flash);hpBar(n,sl.sx,sl.sy-sl.h-6,hp/maxHp)}
+ if(o.defeat){const d=e-hits[0].t-.3;for(let i=0;i<5;i++)puff(n,sx0-6+i*3,G-1-(i%2)*4,d-i*.03)}
+ hits.forEach(h=>{if(h.spark)spark(n,sx0-8,G-8,e-h.t)});
+ const frozen=hits.find(h=>h.stop&&s>=h.t&&s<h.t+h.stop);
+ return{shake:shakeAt(s,hits),ov:ov=>{
+  if(o.num)hits.forEach((h,i)=>{const d=e-h.t;if(d>=0&&d<.8)ov.num(String(h.dmg),sx0+(hits.length>1?(i-1)*4:0),G-25,d,o.num,h.size,h.size>1.5)});
+  if(o.coins)coinsOv(ov,o.coins,e,hits[0].t,sx0,G);
+  if(o.panel)panelOv(ov,o.panel,s,1.3);
+  if(o.showStop&&frozen)ov.tag(`멈춤 ${frozen.stop}초`,sx0-8,G-26,PAL.o,PAL.W,'c','b');
+ }};
+}
+// 코인: 바로 바뀜, 굴러 올라감, 날아가 꽂힘
+function coinsOv(ov,mode,e,ht,sx0,G){
+ const u=ov.u,hx=18*u,hy=ov.top+18*u,d=e-ht;let val=120,bump=0;
+ if(mode==='instant'){if(d>=0)val=170}
+ else if(mode==='roll'){if(d>=0){const p=clamp(d/.5,0,1);val=120+Math.round(50*easeOut(p));bump=p<1?.18:Math.max(0,.18*(1-(d-.5)/.12))}}
+ else if(mode==='fly'&&d>=0){
+  for(let i=0;i<5;i++){const vx=-26+i*13,vy=-70-(i%3)*12,tl=Math.min(d,.5);let wx=sx0+vx*tl,wy=G-4+vy*tl+200*tl*tl;if(tl>.2&&wy>G-4)wy=G-4;
+   const fd=d-(.65+i*.09),[X,Y]=ov.P(wx,wy);
+   if(fd<0)ov.sprite(coinAt(e+i*.13),X,Y,ov.k*.75);
+   else if(fd<.38){const p=easeIn(fd/.38);ov.sprite(coinAt(e+i*.13),lerp(X,hx,p),lerp(Y,hy,p)-Math.sin(p*Math.PI)*46*u,lerp(ov.k*.75,3*u,p))}
+   else{val+=10;if(fd<.52)bump=Math.max(bump,.28*(1-(fd-.38)/.14))}}
+ }
+ ov.hud(val,bump,hx,hy);
+}
+// 보상 창: 선형 또는 지나쳤다 돌아오기. 오른쪽 아래에 움직임 곡선
+function panelOv(ov,mode,s,t0){if(s<t0)return;const c=ov.ctx,W=c.canvas.width,H=c.canvas.height,u=ov.u,p=clamp((s-t0)/.35,0,1),f=mode==='back'?easeBack:(t=>clamp(t,0,1)),v=f(p);
+ const pw=W*.44,ph=H*.34,x=(W-pw)/2,ty=H*.16,y=-ph+(ty+ph)*v;
+ c.fillStyle=PAL.o;c.beginPath();c.roundRect(x,y,pw,ph,10*u);c.fill();c.lineWidth=3*u;c.strokeStyle=PAL.Y;c.stroke();
+ c.textAlign='center';c.textBaseline='middle';c.fillStyle=PAL.Y;c.font=`700 ${Math.round(28*u)}px ${FONT}`;c.fillText('승리!',W/2,y+ph*.4);
+ c.fillStyle=PAL.W;c.font=`700 ${Math.round(15*u)}px ${FONT}`;c.fillText('코인 +50',W/2,y+ph*.74);c.textAlign='left';
+ const gw=104*u,gh=70*u,gx=W-gw-12*u,gy=H-gh-12*u-ov.top;
+ c.fillStyle='rgba(244,244,244,.94)';c.beginPath();c.roundRect(gx,gy,gw,gh,8*u);c.fill();
+ const px0=gx+12*u,px1=gx+gw-10*u,py0=gy+gh-12*u,py1=gy+24*u,X=t=>lerp(px0,px1,t),Y=q=>lerp(py0,py1,q);
+ c.strokeStyle=PAL.L;c.lineWidth=1.5*u;c.beginPath();c.moveTo(px0,py1-4*u);c.lineTo(px0,py0);c.lineTo(px1,py0);c.stroke();
+ c.setLineDash([3*u,3*u]);c.beginPath();c.moveTo(px0,Y(1));c.lineTo(px1,Y(1));c.stroke();c.setLineDash([]);
+ c.strokeStyle=PAL.o;c.lineWidth=2.5*u;c.beginPath();for(let i=0;i<=40;i++){const t=i/40;i?c.lineTo(X(t),Y(f(t))):c.moveTo(X(t),Y(f(t)))}c.stroke();
+ c.fillStyle=OV.hit;c.beginPath();c.arc(X(p),Y(v),4.5*u,0,Math.PI*2);c.fill();
+ c.fillStyle=PAL.o;c.font=`700 ${Math.round(11*u)}px ${FONT}`;c.textBaseline='middle';c.fillText('움직임 곡선',gx+10*u,gy+12*u);
+}
+// 카드: 마우스를 올리면 들리고, 누르면 눌린다
+function cardsScene(n,s,clip,on){const G=clip.g,kx=62,sx0=88,rel=1.63,hits=[{t:rel+.3,dmg:12,flash:1,knock:8,stop:0,shake:'',spark:1,size:1,launch:0}];bg(n,clip,null,s);
+ const pose=knightPoseAt(s,hits,1);drawKnight(n,kx,G,pose,'idle',pose==='idle'?Math.floor(s/.45)%2:0);
+ const sl=slimeAt(s,hits,sx0,G,0);drawSlime(n,sl.sx,sl.sy,sl.w,sl.h,sl.flash);hpBar(n,sl.sx,sl.sy-sl.h-6,s>=hits[0].t?.8:1);spark(n,sx0-8,G-8,s-hits[0].t);
+ return ov=>{const c=ov.ctx,W=c.canvas.width,H=c.canvas.height,u=ov.u;
+  const path=[[0,.14,.4],[.5,.38,.88],[.95,.38,.88],[1.25,.5,.88],[1.63,.5,.88],[2.3,.68,.45],[9,.68,.45]];
+  let cx=path[0][1],cy=path[0][2];for(let i=0;i<path.length-1;i++){const[a,x0,y0]=path[i],[b,x1,y1]=path[i+1];if(s>=b){cx=x1;cy=y1;continue}if(s>=a){const p=ss((s-a)/(b-a));cx=lerp(x0,x1,p);cy=lerp(y0,y1,p)}break}
+  const cards=[['cut','베기',PAL.R,.38,.42,.97],['guard','막기',PAL.B,.5,1.18,rel],['heal','회복',PAL.g,.62,9,9]];
+  for(const i of [0,2,1]){const[ic,name,col,xc,h0,h1]=cards[i];if(i===1&&s>=rel)continue;
+   let hv=0;if(on){hv=s<h0?0:s<h1?ss((s-h0)/.1):1-ss((s-h1)/.1);hv=clamp(hv,0,1)}
+   const pr=on&&i===1&&s>=1.55&&s<rel?1:0,sc=1+.06*hv-.07*pr,cw=W*.115*sc,ch=H*.32*sc,x=W*xc-cw/2,y=H*.78-H*.08*hv+(H*.32-ch);
+   c.fillStyle=PAL.o;c.beginPath();c.roundRect(x+2*u,y+4*u,cw,ch,8*u);c.fill();
+   c.fillStyle=PAL.W;c.beginPath();c.roundRect(x,y,cw,ch,8*u);c.fill();c.lineWidth=2.5*u;c.strokeStyle=PAL.o;c.stroke();
+   c.fillStyle=col;c.beginPath();c.roundRect(x+5*u,y+5*u,cw-10*u,ch*.42,5*u);c.fill();
+   const icn=ICON[ic],isz=Math.min(cw*.55,ch*.36);c.imageSmoothingEnabled=false;c.drawImage(icn,x+cw/2-isz/2,y+5*u+ch*.21-isz/2,isz,isz);
+   c.fillStyle=PAL.o;c.font=`700 ${Math.round(14*u*sc)}px ${FONT}`;c.textAlign='center';c.textBaseline='middle';c.fillText(name,x+cw/2,y+ch*.6);c.textAlign='left'}
+  const press=s>=1.55&&s<rel;ov.sprite(CURSOR,cx*W+10*u,cy*H+16*u+(press?2*u:0),3*u*(press?.9:1));
+ }}
+
+// ===== 재생: 장면 시각 s를 느린 구간에서만 천천히 흘리고, 그동안 가까이 본다 =====
+const CLIPS={
+ hero:{w:288,h:84,g:68,dur:7.2,hold:0,scenes:{hero:heroScene}},
+ attack:{w:160,h:90,g:70,base:{zoom:1.2,fx:78,fy:43},dur:2.6,hold:.8,slow:{a:.72,b:1.02,rate:.2,zoom:1.8,fx:76,fy:56},scenes:{hitbox:(n,s,c)=>attackScene(n,s,c,'hit'),hurtbox:(n,s,c)=>attackScene(n,s,c,'hurt')}},
+ dmgnum:{w:160,h:90,g:70,base:{zoom:1.2,fx:78,fy:43},dur:2.4,hold:.8,slow:{a:.74,b:1.3,rate:.25,zoom:1.7,fx:88,fy:50},scenes:{dmg0:(n,s,c)=>fight(n,s,c,{num:'static'}),dmg1:(n,s,c)=>fight(n,s,c,{num:'pop'})}},
+ countup:{w:160,h:90,g:70,base:{zoom:1.2,fx:78,fy:43},dur:2.4,hold:.8,slow:{a:.78,b:1.4,rate:.3,zoom:1.2,fx:78,fy:43},scenes:{cnt0:(n,s,c)=>fight(n,s,c,{coins:'instant'}),cnt1:(n,s,c)=>fight(n,s,c,{coins:'roll'})}},
+ collect:{w:160,h:90,g:70,base:{zoom:1.2,fx:78,fy:43},dur:3.0,hold:.8,slow:{a:1.4,b:2.15,rate:.35,zoom:1.2,fx:78,fy:43},scenes:{col0:(n,s,c)=>fight(n,s,c,{coins:'roll'}),col1:(n,s,c)=>fight(n,s,c,{coins:'fly'})}},
+ ease:{w:160,h:90,g:70,base:{zoom:1.2,fx:78,fy:43},dur:2.6,hold:.8,slow:{a:1.28,b:1.72,rate:.25,zoom:1.2,fx:78,fy:43},scenes:{ease0:(n,s,c)=>fight(n,s,c,{defeat:1,panel:'linear'}),ease1:(n,s,c)=>fight(n,s,c,{defeat:1,panel:'back'})}},
+ hover:{w:160,h:90,g:70,base:{zoom:1.2,fx:78,fy:56},dur:3.0,hold:.8,slow:{a:1.4,b:1.75,rate:.3,zoom:1.2,fx:78,fy:56},scenes:{card0:(n,s,c)=>cardsScene(n,s,c,false),card1:(n,s,c)=>cardsScene(n,s,c,true)}},
+ tiers:{w:160,h:90,g:70,base:{zoom:1.2,fx:78,fy:43},dur:4.2,hold:.8,slow:{a:2.7,b:3.2,rate:.25,zoom:1.5,fx:92,fy:48},scenes:{tier0:(n,s,c)=>fight(n,s,c,{tiers:'flat',num:'pop'}),tier1:(n,s,c)=>fight(n,s,c,{tiers:'tiered',num:'pop'})}},
+ antic:{w:160,h:90,g:70,base:{zoom:1.2,fx:78,fy:43},dur:2.4,hold:.8,slow:{a:.42,b:1.0,rate:.3,zoom:1.8,fx:72,fy:54},scenes:{antic0:(n,s,c)=>fight(n,s,c,{antic:0}),antic1:(n,s,c)=>fight(n,s,c,{antic:1})}},
+ hitstop:{w:160,h:90,g:70,base:{zoom:1.2,fx:78,fy:43},dur:2.4,hold:.8,slow:{a:.72,b:1.1,rate:.15,zoom:1.8,fx:78,fy:56},scenes:{stop0:(n,s,c)=>fight(n,s,c,{}),stop1:(n,s,c)=>fight(n,s,c,{stop:.06,showStop:1})}},
+ flash:{w:160,h:90,g:70,base:{zoom:1.2,fx:78,fy:43},dur:2.4,hold:.8,slow:{a:.74,b:.98,rate:.15,zoom:1.8,fx:82,fy:56},scenes:{flash0:(n,s,c)=>fight(n,s,c,{flash:0}),flash1:(n,s,c)=>fight(n,s,c,{flash:1})}},
+ knock:{w:160,h:90,g:70,base:{zoom:1.2,fx:78,fy:43},dur:2.6,hold:.8,slow:{a:.74,b:1.35,rate:.3,zoom:1.6,fx:88,fy:54},scenes:{knock0:(n,s,c)=>fight(n,s,c,{knock:0}),knock1:(n,s,c)=>fight(n,s,c,{knock:1})}},
+ shake:{w:160,h:90,g:70,base:{zoom:1.2,fx:78,fy:43},dur:2.4,hold:.8,slow:{a:.74,b:1.35,rate:.4,zoom:1.2,fx:78,fy:43},scenes:{shake0:(n,s,c)=>fight(n,s,c,{shake:'over'}),shake1:(n,s,c)=>fight(n,s,c,{shake:'good'})}},
+ coyote:{w:160,h:90,g:70,base:{zoom:1.2,fx:80,fy:43},dur:3.1,hold:.8,slow:{a:1.2,b:1.55,rate:.15,zoom:1.8,fx:86,fy:54},scenes:{coyote0:(n,s,c)=>coyoteScene(n,s,c,false),coyote1:(n,s,c)=>coyoteScene(n,s,c,true)}},
+};
+function win(s,a,b,rin,rout){if(s<a-rin||s>b+rout)return 0;if(s<a)return ss((s-(a-rin))/rin);if(s<=b)return 1;return 1-ss((s-b)/rout)}
+const rateAt=(c,s)=>1-(1-c.slow.rate)*win(s,c.slow.a,c.slow.b,.1,.12);
+const zoomAt=(c,s)=>win(s,c.slow.a,c.slow.b,.22,.3);
+const NAT={};
+function nat(c){const k=c.w+'x'+c.h;if(!NAT[k]){const e=document.createElement('canvas');e.width=c.w;e.height=c.h;NAT[k]=e}return NAT[k]}
+function overlay(ctx,cam,k,u,lb=0){
+ const P=(x,y)=>[(x-cam.x)*k,(y-cam.y)*k];
+ const tagPx=(text,X,Y,bg,fg,ax='l',ay='t')=>{ctx.font=`700 ${Math.round(13*u)}px ${FONT}`;const tw=ctx.measureText(text).width,pw=tw+14*u,ph=24*u;let x0=ax==='c'?X-pw/2:ax==='r'?X-pw:X,y0=ay==='b'?Y-ph:Y;x0=clamp(x0,6*u,ctx.canvas.width-pw-6*u);y0=clamp(y0,lb+6*u,ctx.canvas.height-lb-ph-6*u);
+  ctx.fillStyle=bg;ctx.beginPath();ctx.roundRect(x0,y0,pw,ph,6*u);ctx.fill();ctx.fillStyle=fg;ctx.textBaseline='middle';ctx.textAlign='left';ctx.fillText(text,x0+7*u,y0+ph/2+.5*u);return{x:x0,y:y0,w:pw,h:ph}};
+ return{u,tagPx,P,ctx,k,top:lb,
+  num(text,x,y,d,mode,size=1,crit=false){const[X,Y]=P(x,y);let sc=1,rise=0,a=1;if(mode==='pop'){sc=d<.1?lerp(.5,1.6,easeOut(d/.1)):d<.22?lerp(1.6,1,easeOut((d-.1)/.12)):1;rise=14*easeOut(Math.min(1,d/.8));a=d>.55?clamp(1-(d-.55)/.25,0,1):1}else if(d>=.6)return;
+   const fs=Math.round(17*u*size*sc);ctx.save();ctx.globalAlpha=a;ctx.font=`700 ${fs}px ${FONT}`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.lineJoin='round';ctx.lineWidth=Math.max(2,fs*.24);ctx.strokeStyle=PAL.o;ctx.strokeText(text,X,Y-rise*k);ctx.fillStyle=crit?PAL.Y:PAL.W;ctx.fillText(text,X,Y-rise*k);ctx.restore()},
+  sprite(img,X,Y,sc){ctx.imageSmoothingEnabled=false;ctx.drawImage(img,Math.round(X-img.width*sc/2),Math.round(Y-img.height*sc/2),Math.round(img.width*sc),Math.round(img.height*sc))},
+  hud(val,bump,hx,hy){const sc=3*u,C=COIN[0];ctx.imageSmoothingEnabled=false;ctx.drawImage(C,Math.round(hx-C.width*sc/2),Math.round(hy-C.height*sc/2),C.width*sc,C.height*sc);const fs=Math.round(20*u*(1+bump));ctx.font=`700 ${fs}px ${FONT}`;ctx.textAlign='left';ctx.textBaseline='middle';ctx.lineJoin='round';ctx.lineWidth=fs*.24;ctx.strokeStyle=PAL.o;ctx.strokeText(String(val),hx+16*u,hy+u);ctx.fillStyle=PAL.W;ctx.fillText(String(val),hx+16*u,hy+u)},
+  tag(text,x,y,bg,fg,ax,ay){const[X,Y]=P(x,y);return tagPx(text,X,Y-(ay==='b'?2*u:0),bg,fg,ax,ay)},
+  box(x,y,w,h,col,label,fg){const[X,Y]=P(x,y),Wd=w*k,Hd=h*k;ctx.save();ctx.globalAlpha=.2;ctx.fillStyle=col;ctx.fillRect(X,Y,Wd,Hd);ctx.restore();ctx.lineWidth=2.5*u;ctx.strokeStyle=col;ctx.strokeRect(X,Y,Wd,Hd);if(label)tagPx(label,X-1.25*u,Y-1.25*u,col,fg,'l','b')},
+  vline(x,y0,y1,col){const[X,A]=P(x,y0),[,B]=P(x,y1);ctx.save();ctx.strokeStyle=col;ctx.globalAlpha=.75;ctx.lineWidth=2*u;ctx.setLineDash([5*u,4*u]);ctx.beginPath();ctx.moveTo(X,A);ctx.lineTo(X,B);ctx.stroke();ctx.restore()},
+  key(text,down){ctx.font=`700 ${Math.round(14*u)}px ${FONT}`;const tw=ctx.measureText(text).width,w=tw+24*u,h=32*u,x=12*u,y=ctx.canvas.height*.085+12*u,dy=down?3*u:0;
+   ctx.fillStyle=PAL.o;ctx.beginPath();ctx.roundRect(x,y+3*u,w,h,7*u);ctx.fill();ctx.fillStyle=down?OV.hit:PAL.W;ctx.beginPath();ctx.roundRect(x,y+dy,w,h,7*u);ctx.fill();ctx.lineWidth=2*u;ctx.strokeStyle=PAL.o;ctx.stroke();
+   ctx.fillStyle=down?PAL.W:PAL.o;ctx.textBaseline='middle';ctx.textAlign='left';ctx.fillText(text,x+12*u,y+dy+h/2+.5*u);return{x,y,w,h}},
+ }}
+function render(p,cv,scene){const c=p.clip,N=nat(c),n=N.getContext('2d');n.imageSmoothingEnabled=false;n.clearRect(0,0,c.w,c.h);
+ const r=c.scenes[scene](n,p.s,c,p.clock),ov=typeof r==='function'?r:r&&r.ov,sh=(r&&r.shake)||[0,0];const ctx=cv.getContext('2d');ctx.imageSmoothingEnabled=false;
+ // 평소에는 살짝 당겨 보고(base), 느린 구간에서 더 당긴다
+ const B=c.base||{zoom:1,fx:c.w/2,fy:c.h/2},S=c.slow||B,wz=c.slow&&p.slowOn?zoomAt(c,p.s):0;
+ const z=B.zoom+(S.zoom-B.zoom)*wz,fx=B.fx+(S.fx-B.fx)*wz,fy=B.fy+(S.fy-B.fy)*wz,vw=c.w/z,vh=c.h/z;
+ const cam={x:clamp(fx-vw/2,0,c.w-vw),y:clamp(fy-vh/2,0,c.h-vh)};cam.x=clamp(cam.x+sh[0],0,c.w-vw);cam.y=clamp(cam.y+sh[1],0,c.h-vh);
+ ctx.drawImage(N,cam.x,cam.y,vw,vh,0,0,cv.width,cv.height);
+ const u=(cv._dpr||1)*clamp(cv.width/(cv._dpr||1)/480,.85,1.25),zoomed=!!(c.slow&&c.slow.zoom!==B.zoom),lb=zoomed?Math.round(cv.height*.085*wz):0;
+ if(ov)ov(overlay(ctx,cam,cv.width/vw,u,lb));
+ // 느린 구간 표시: 확대하는 장면은 위아래 검은 띠, 화면만 느려지는 장면은 오른쪽 위 알약
+ if(wz>0){if(zoomed){ctx.fillStyle=PAL.o;ctx.fillRect(0,0,cv.width,lb);ctx.fillRect(0,cv.height-lb,cv.width,lb)}
+  if(wz>.5){ctx.globalAlpha=ss((wz-.5)/.5);ctx.font=`700 ${Math.round(12*u)}px ${FONT}`;const t=`느리게 ${c.slow.rate}배속`,tw=ctx.measureText(t).width;
+   if(!zoomed){ctx.fillStyle=PAL.o;ctx.beginPath();ctx.roundRect(cv.width-tw-30*u,10*u,tw+20*u,24*u,12*u);ctx.fill()}
+   ctx.fillStyle=PAL.W;ctx.textAlign='right';ctx.textBaseline='middle';ctx.fillText(t,cv.width-(zoomed?12:20)*u,zoomed?lb/2+.5*u:22*u);ctx.textAlign='left';ctx.globalAlpha=1}}
+}
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const players=[...document.querySelectorAll('[data-clip]')].map(root=>{
+ const clip=CLIPS[root.dataset.clip],cvs=root.matches('canvas')?[root]:[...root.querySelectorAll('canvas[data-scene]')];
+ const p={root,clip,cvs,s:0,hold:0,playing:!reduce,slowOn:true,visible:true,dirty:true,
+  range:root.querySelector('input[type=range]'),play:root.querySelector('.play'),slow:root.querySelector('.slow')};
+ if(reduce)p.s=clip.slow?(clip.slow.a+clip.slow.b)/2:3.7;
+ const sync=()=>{if(p.play)p.play.textContent=p.playing?'멈춤':'재생';if(p.range)p.range.value=Math.round(p.s/clip.dur*1000)};
+ if(p.range){p.range.style.setProperty('--z0',(clip.slow.a/clip.dur*100)+'%');p.range.style.setProperty('--z1',(clip.slow.b/clip.dur*100)+'%');
+  p.range.addEventListener('input',()=>{p.s=p.range.value/1000*clip.dur;p.playing=false;p.hold=0;p.dirty=true;sync()})}
+ if(p.play)p.play.addEventListener('click',()=>{p.playing=!p.playing;if(p.playing&&p.s>=clip.dur)p.s=0;p.hold=0;sync()});
+ if(p.slow)p.slow.addEventListener('click',()=>{p.slowOn=!p.slowOn;p.slow.setAttribute('aria-pressed',p.slowOn);p.dirty=true});
+ p.sync=sync;sync();return p});
+const fit=()=>players.forEach(p=>p.cvs.forEach(cv=>{const dpr=Math.min(window.devicePixelRatio||1,2),r=cv.getBoundingClientRect(),w=Math.max(1,Math.round(r.width*dpr)),h=Math.round(w*p.clip.h/p.clip.w);if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;p.dirty=true}cv._dpr=dpr}));
+new ResizeObserver(fit).observe(document.body);
+const io=new IntersectionObserver(es=>es.forEach(e=>{const p=players.find(q=>q.root===e.target);if(p){p.visible=e.isIntersecting;if(p.visible)p.dirty=true}}),{rootMargin:'120px'});
+players.forEach(p=>io.observe(p.root));
+let last=0;
+function frame(now){const dt=last?Math.min(.05,(now-last)/1000):0;last=now;
+ for(const p of players){if(!p.visible)continue;
+  if(p.playing){p.clock=(p.clock??p.s)+dt;if(p.hold>0){p.hold-=dt;if(p.hold<=0)p.s=0}else{p.s+=dt*(p.slowOn&&p.clip.slow?rateAt(p.clip,p.s):1);if(p.s>=p.clip.dur){if(p.clip.hold){p.s=p.clip.dur-1e-4;p.hold=p.clip.hold}else p.s-=p.clip.dur}}p.sync();p.dirty=true}
+  if(p.dirty){p.cvs.forEach(cv=>render(p,cv,cv.dataset.scene));p.dirty=false}}
+ requestAnimationFrame(frame)}
+document.querySelectorAll('.say').forEach(el=>{const b=el.querySelector('.copy-say');b.addEventListener('click',async()=>{const t=[...el.querySelectorAll('li')].map(li=>li.querySelector('.ko').textContent+' ('+li.querySelector('.say-en').textContent+')').join('\n');try{await navigator.clipboard.writeText(t);b.textContent='복사됨'}catch(e){b.textContent='복사 안 됨'}setTimeout(()=>b.textContent='복사',1500)})});
+// 시험용: 특정 장면 시각으로 멈춰 그린다
+window.__seek=(id,s,slow=true)=>{const p=players.find(q=>q.root.id===id||q.root.dataset.clip===id);p.playing=false;p.s=s;p.clock=s;p.slowOn=slow;p.dirty=true;p.cvs.forEach(cv=>render(p,cv,cv.dataset.scene))};
+Promise.all([document.fonts.load(`700 16px ${FONT}`),document.fonts.load(`500 16px ${FONT}`)]).catch(()=>{}).then(()=>{fit();requestAnimationFrame(frame)});
+</script></body></html>

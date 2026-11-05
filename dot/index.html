@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>도트의 이름</title>
+<meta name="description" content="자글자글, 부글부글, 흐릿함. 도트가 이상할 때 그 현상의 이름과 원인, 고치는 법을 같은 기사와 슬라임으로 비교합니다.">
+<link rel="preload" href="../fonts/HSHyosung-Bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/HSHyosung-Medium.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Hallmark · shape: Long Document · genre: editorial · theme: custom · job: try · idea: "one pixel world, symptom first, every demo at integer scale" · vibe: "crisp pixel replay, calm paper page" · hero: title over a running pixel strip · nav: two-column contents · footer: credits · imagery: the product (code-drawn scenes) · signature: integer-scaled A and B pixel views with toggles that expose the cause
+ * axes: light paper, one red signal, one family · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · waive 26b · no disabled attribute or aria-disabled anywhere in the markup · play, scrub and slow toggles are always live */
+/* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V4 · weakest: P, fifteen terms run long; each term is four short labeled rows */
+@font-face{font-family:"HS Hyosung";src:url(../fonts/HSHyosung-Light.woff2) format("woff2");font-weight:300;font-display:swap}
+@font-face{font-family:"HS Hyosung";src:url(../fonts/HSHyosung-Medium.woff2) format("woff2");font-weight:400 500;font-display:swap}
+@font-face{font-family:"HS Hyosung";src:url(../fonts/HSHyosung-Bold.woff2) format("woff2");font-weight:600 800;font-display:swap}
+:root{
+ --font:"HS Hyosung","Noto Sans KR",sans-serif;
+ --bg:#f4f4f2;--surface:#ffffff;--ink:#1a1c2c;--muted:#566c86;--line:#dde1e7;
+ --accent:#b13e53;--accent-ink:#ffffff;--accent-soft:#b13e5314;--sky:#73eff7;
+ --hit:#ff3b5c;--hurt:#3d6bff;--frame:#262b40;
+ --shadow:0 1px 0 #1a1c2c0f,0 10px 30px -18px #1a1c2c55;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --bg:#14151f;--surface:#1d1f2d;--ink:#eef0f4;--muted:#94a3b8;--line:#2c3042;
+ --accent:#ef6f86;--accent-ink:#14151f;--accent-soft:#ef6f8618;--shadow:0 1px 0 #0000,0 10px 30px -18px #000c}}
+:root[data-theme="dark"]{--bg:#14151f;--surface:#1d1f2d;--ink:#eef0f4;--muted:#94a3b8;--line:#2c3042;--accent:#ef6f86;--accent-ink:#14151f;--accent-soft:#ef6f8618;--shadow:0 1px 0 #0000,0 10px 30px -18px #000c}
+*{box-sizing:border-box}
+html,body{overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 17px/1.8 var(--font);word-break:keep-all;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.wrap{max-width:1040px;margin:0 auto;padding:64px 16px 96px}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* 머리 */
+.top h1{text-wrap:balance;font-weight:700;font-size:clamp(38px,6.4vw,68px);line-height:1.08;letter-spacing:-.025em;margin:0;overflow-wrap:break-word;min-width:0}
+.lede{margin:16px 0 0;max-width:40ch;font-size:clamp(18px,2vw,21px);line-height:1.65;color:var(--muted);font-weight:500}
+.hero-frame{margin-top:36px;border-radius:14px;background:var(--sky)}
+.how{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin:20px 0 0;padding:0;list-style:none}
+.how li{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;font-size:15px;line-height:1.6}
+.how b{display:block;font-weight:700;margin-bottom:2px}
+@media (max-width:720px){.how{grid-template-columns:minmax(0,1fr)}}
+
+/* 목차 */
+.toc{margin-top:56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.toc h2{font-size:15px;font-weight:700;margin:0 0 8px;color:var(--muted)}
+.toc ol{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.toc a{display:flex;gap:16px;align-items:baseline;padding:12px 4px;border-bottom:1px solid var(--line);text-decoration:none;font-weight:700;font-size:17px}
+.toc a span{color:var(--accent);font-size:14px;min-width:22px}
+.toc a:hover{color:var(--accent)}
+@media (max-width:720px){.toc{grid-template-columns:minmax(0,1fr)}}
+
+/* 장 */
+.part{margin-top:88px}
+.part>h2{text-wrap:balance;font-size:clamp(26px,3.4vw,34px);font-weight:700;letter-spacing:-.015em;line-height:1.25;margin:0}
+.part>p{margin:8px 0 0;color:var(--muted);max-width:56ch}
+
+/* 용어 한 개 */
+.term{margin-top:36px;padding-top:36px;border-top:1px solid var(--line)}
+.term-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px}
+.term-head .no{color:var(--accent);font-weight:700;font-size:16px}
+.term-head h3{text-wrap:balance;margin:0;font-size:clamp(26px,3.2vw,34px);font-weight:700;letter-spacing:-.015em;line-height:1.25;overflow-wrap:break-word;min-width:0}
+.term-head .en{color:var(--muted);font-weight:300;font-size:16px}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:20px}
+@media (max-width:680px){.stage{grid-template-columns:minmax(0,1fr)}}
+.stage figure{margin:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+.stage figcaption{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;line-height:1.4}
+.ab{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;background:var(--ink);color:var(--bg);font-size:13px;font-weight:700}
+.ab.b{background:var(--accent);color:var(--accent-ink)}
+.stage canvas{display:block;width:100%;aspect-ratio:16/9;border-radius:10px;background:var(--sky);box-shadow:var(--shadow)}
+
+/* 재생 막대 */
+.player{display:flex;align-items:center;gap:12px;margin-top:16px}
+.btn{font:inherit;font-size:14px;font-weight:700;line-height:1;min-width:76px;min-height:36px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;transition:background-color .15s ease,border-color .15s ease,transform .1s ease}
+.btn:hover{border-color:var(--ink)}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.player input[type=range]{-webkit-appearance:none;appearance:none;flex:1;min-width:0;height:36px;margin:0;background:transparent;cursor:pointer}
+.player input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:4px;background:linear-gradient(90deg,var(--line) 0 var(--z0),var(--accent) var(--z0) var(--z1),var(--line) var(--z1))}
+.player input[type=range]::-moz-range-track{height:8px;border-radius:4px;background:linear-gradient(90deg,var(--line) 0 var(--z0),var(--accent) var(--z0) var(--z1),var(--line) var(--z1))}
+.player input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;margin-top:-4px;border-radius:50%;background:var(--ink);border:3px solid var(--surface);box-shadow:0 0 0 1px var(--ink)}
+.player input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:var(--ink);border:3px solid var(--surface);box-shadow:0 0 0 1px var(--ink)}
+.player input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+/* 글 */
+.copy{max-width:64ch;margin-top:24px}
+.copy p{margin:0}
+.copy p+p{margin-top:12px}
+.copy b{font-weight:700}
+.one{margin-top:16px!important;padding:12px 16px;border:1px solid var(--line);background:var(--accent-soft);border-radius:8px;font-weight:700}
+
+.say{max-width:64ch;margin-top:16px;padding:16px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.say>b{display:block;font-size:14px;font-weight:700;color:var(--muted)}
+.say ul{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.say li{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.say .ko{font-weight:700;font-size:18px;line-height:1.6}
+.when{margin:12px 0 0;font-size:17px;color:var(--muted)}
+.when b{margin-right:8px;color:var(--accent);font-weight:700}
+.say-foot{display:flex;justify-content:flex-end;margin-top:12px}
+.say-en{padding:4px 8px;border-radius:6px;background:var(--accent-soft);font-size:14px;font-weight:500}
+.copy-say{min-width:64px;min-height:32px}
+.wrap{position:relative}
+.hub-link{position:absolute;top:20px;right:16px;display:inline-flex;align-items:center;min-height:36px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:14px;font-weight:700;line-height:1;text-decoration:none;transition:border-color .15s ease,background-color .15s ease}
+.hub-link:hover{border-color:var(--ink)}
+.hub-link:active{transform:translateY(1px)}
+.hub-link:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.hub-link{transition:none}}
+footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;font-weight:300;line-height:1.7}
+footer p{margin:0}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+
+/* 도트 칼럼: 정수배 캔버스 틀, 이름 증상 원인 해결법 줄, 조작 막대 */
+.frame{display:flex;justify-content:center;align-items:center;min-height:120px;padding:0;border-radius:10px;background:var(--frame);overflow:hidden;box-shadow:var(--shadow)}
+.frame canvas{display:block;image-rendering:pixelated;image-rendering:crisp-edges;max-width:100%}
+.stage canvas{aspect-ratio:auto;box-shadow:none;border-radius:0;background:none}
+.facts{margin:16px 0 0;display:grid;gap:12px;max-width:72ch}
+.facts>div{display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px;align-items:baseline}
+.facts dt{font-size:14px;font-weight:700;color:var(--accent)}
+.facts dd{margin:0}
+.facts dd.sym{font-size:19px;font-weight:700;line-height:1.55}
+.facts ul{margin:0;padding-left:20px}
+.facts li+li{margin-top:8px}
+@media (max-width:560px){.facts>div{grid-template-columns:minmax(0,1fr);gap:2px}}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:12px}
+.controls label{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;padding:0 8px}
+.controls input[type=range]{width:160px;accent-color:var(--accent)}
+.controls output{min-width:44px;font-weight:700}
+.controls input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.frame.hero-frame{background:none;box-shadow:none;overflow:visible}
+.hero-frame canvas{border-radius:14px;box-shadow:var(--shadow)}
+</style></head><body><div class="wrap">
+<a class="hub-link" href="../">B3 아티클 모음</a>
+
+<header class="top">
+ <h1>도트의 이름</h1>
+ <p class="lede">"자글자글해요", "부글거려요", "흐릿해요"로는 고칠 곳을 찾기 어렵습니다. 도트가 이상할 때 그 현상의 이름과 원인, 고치는 법을 모았습니다.</p>
+ <div class="frame hero-frame"><canvas class="hero-cv" data-demo="hero" role="img" aria-label="기사가 달려와 슬라임을 베고 지나가는 장면"></canvas></div>
+</header>
+
+<nav class="toc" aria-label="목차">
+ <div><h2>움직이면 이상할 때</h2><ol><li><a href="#boiling"><span>01</span>보일링</a></li><li><a href="#walk"><span>02</span>걷기 키 포즈</a></li><li><a href="#pivot"><span>03</span>피벗 흔들림</a></li><li><a href="#rig"><span>04</span>좌우 반전과 2D 리깅</a></li></ol></div>
+ <div><h2>지저분하고 흐릿할 때</h2><ol><li><a href="#offgrid"><span>05</span>격자가 어긋난 픽셀</a></li><li><a href="#orphan"><span>06</span>고아 픽셀과 클러스터</a></li><li><a href="#halo"><span>07</span>알파 테두리</a></li><li><a href="#mixel"><span>08</span>믹셀</a></li><li><a href="#scale"><span>09</span>정수 배율</a></li><li><a href="#rotate"><span>10</span>회전 깨짐</a></li></ol></div>
+ <div><h2>따로 노는 것 같을 때</h2><ol><li><a href="#density"><span>11</span>픽셀 밀도</a></li><li><a href="#baseres"><span>12</span>기준 해상도</a></li><li><a href="#light"><span>13</span>광원 방향 통일</a></li><li><a href="#palette"><span>14</span>팔레트 고정</a></li><li><a href="#voxel"><span>15</span>3D 픽셀화</a></li></ol></div>
+</nav>
+
+<section class="part" aria-labelledby="p1">
+ <h2 id="p1">움직이면 이상할 때</h2>
+ <p>숨쉬기, 걷기, 공격처럼 프레임이 이어지는 곳에서 생기는 문제입니다.</p>
+ <article class="term" id="boiling" data-demo="boiling">
+  <div class="term-head"><span class="no">01</span><h3>보일링</h3><span class="en">Boiling</span></div>
+  <dl class="facts"><div><dt>증상</dt><dd class="sym">"숨만 쉬는 대기 동작인데 그림이 부글거려요"</dd></div></dl>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>프레임마다 다시 그린 숨쉬기</figcaption><div class="frame"><canvas data-side="a" role="img" aria-label="A: 프레임마다 다시 그린 숨쉬기"></canvas></div></figure>
+   <figure><figcaption><span class="ab b">B</span>한 장을 1픽셀 움직인 숨쉬기</figcaption><div class="frame"><canvas data-side="b" role="img" aria-label="B: 한 장을 1픽셀 움직인 숨쉬기"></canvas></div></figure>
+  </div>
+  <div class="controls"><button class="btn play" type="button">멈춤</button><button class="btn step" type="button">한 프레임</button><button class="btn tog" type="button" data-tog="diff" aria-pressed="false">바뀐 픽셀 표시</button></div>
+  <dl class="facts"><div><dt>원인</dt><dd>프레임을 한 장씩 따로 그리면, 누가 그리든 같은 자리의 픽셀이 매번 조금씩 다르게 찍힙니다. 움직이지 않아야 할 곳까지 바뀌니 눈에는 떨림으로 보입니다. 빨간 칸이 앞 프레임과 달라진 픽셀입니다.</dd></div><div><dt>해결법</dt><dd><ul><li>움직이지 않는 부분은 첫 프레임에서 복사해 고정하고, 움직이는 부분만 고칩니다.</li><li>대기 동작은 다시 그리지 말고 한 장을 1픽셀 위아래로 옮기거나 살짝 늘이고 줄여서 만듭니다.</li><li>앞뒤 프레임을 겹쳐 보는 어니언 스킨으로 바뀐 픽셀을 찾습니다.</li></ul></dd></div></dl>
+ </article>
+ <article class="term" id="walk" data-demo="walk">
+  <div class="term-head"><span class="no">02</span><h3>걷기 키 포즈</h3><span class="en">Walk Cycle Key Poses</span></div>
+  <dl class="facts"><div><dt>증상</dt><dd class="sym">"걷는데 발이 땅에 안 닿고 다리가 이상해요"</dd></div></dl>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>순서 없이 섞인 다리</figcaption><div class="frame"><canvas data-side="a" role="img" aria-label="A: 순서 없이 섞인 다리"></canvas></div></figure>
+   <figure><figcaption><span class="ab b">B</span>네 자세를 지킨 걷기</figcaption><div class="frame"><canvas data-side="b" role="img" aria-label="B: 네 자세를 지킨 걷기"></canvas></div></figure>
+  </div>
+  <div class="controls"><button class="btn play" type="button">멈춤</button><button class="btn step" type="button">한 프레임</button><button class="btn tog" type="button" data-tog="onion" aria-pressed="false">앞 프레임 겹쳐 보기</button></div>
+  <dl class="facts"><div><dt>원인</dt><dd>걷기의 뼈대가 되는 자세 없이 프레임을 채웠습니다. 걷기는 발이 땅에 닿는 자세(콘택트)와 두 다리가 엇갈리는 자세(패싱)가 번갈아 와야 합니다. A는 다리를 쩍 벌리거나 한쪽 다리만 움직이고, 팔도 흔들지 않고, 가끔 발이 땅에서 뜹니다. 자세가 잘 보이도록 이 항목만 다리가 긴 사람으로 보여 드립니다.</dd></div><div><dt>해결법</dt><dd><ul><li>콘택트, 다운, 패싱, 업 네 자세를 먼저 정하고 그 사이를 채웁니다.</li><li>오른발이 앞인 반 주기를 만든 뒤, 다리의 앞뒤 색만 바꿔 나머지 반을 만듭니다.</li><li>몸은 업에서 가장 높고 다운에서 가장 낮습니다. 팔은 같은 쪽 다리와 반대로 흔듭니다.</li></ul></dd></div></dl>
+ </article>
+ <article class="term" id="pivot" data-demo="pivot">
+  <div class="term-head"><span class="no">03</span><h3>피벗 흔들림</h3><span class="en">Pivot Jitter</span></div>
+  <dl class="facts"><div><dt>증상</dt><dd class="sym">"제자리에서 휘두르는데 몸이 좌우로 떨려요"</dd></div></dl>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>그림 가운데가 기준점</figcaption><div class="frame"><canvas data-side="a" role="img" aria-label="A: 그림 가운데가 기준점"></canvas></div></figure>
+   <figure><figcaption><span class="ab b">B</span>발밑 가운데가 기준점</figcaption><div class="frame"><canvas data-side="b" role="img" aria-label="B: 발밑 가운데가 기준점"></canvas></div></figure>
+  </div>
+  <div class="controls"><button class="btn play" type="button">멈춤</button><button class="btn step" type="button">한 프레임</button><button class="btn tog" type="button" data-tog="mark" aria-pressed="false">기준점 표시</button></div>
+  <dl class="facts"><div><dt>원인</dt><dd>프레임마다 그림 크기가 다른데 그림 한가운데를 기준점(피벗)으로 잡았습니다. 칼을 들어 그림이 커지면 가운데가 옮겨 가고 몸도 따라 밀립니다. 점선은 프레임마다 잘라 낸 그림의 크기, 빨간 점은 기준점, 노란 선은 발 위치입니다.</dd></div><div><dt>해결법</dt><dd><ul><li>모든 프레임을 같은 크기의 칸(예: 48x48)에 그립니다.</li><li>기준점은 발밑 가운데에 둡니다.</li><li>여백을 자동으로 잘라 내는 옵션(트림)을 끄거나, 잘라도 원래 위치를 기억하게 합니다.</li></ul></dd></div></dl>
+ </article>
+ <article class="term" id="rig" data-demo="rig">
+  <div class="term-head"><span class="no">04</span><h3>좌우 반전과 2D 리깅</h3><span class="en">Flip, Cutout Rigging</span></div>
+  <dl class="facts"><div><dt>증상</dt><dd class="sym">"방향마다, 동작마다 다 그리기가 벅차요"</dd></div></dl>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>통째로 그린 네 장 걷기</figcaption><div class="frame"><canvas data-side="a" role="img" aria-label="A: 통째로 그린 네 장 걷기"></canvas></div></figure>
+   <figure><figcaption><span class="ab b">B</span>조각을 뼈대로 움직인 걷기</figcaption><div class="frame"><canvas data-side="b" role="img" aria-label="B: 조각을 뼈대로 움직인 걷기"></canvas></div></figure>
+  </div>
+  <div class="controls"><button class="btn play" type="button">멈춤</button><button class="btn tog" type="button" data-tog="bones" aria-pressed="false">뼈대 표시</button><button class="btn tog" type="button" data-tog="flip" aria-pressed="false">좌우 반전</button></div>
+  <dl class="facts"><div><dt>원인</dt><dd>모든 방향과 모든 프레임을 통째로 새로 그리고 있습니다. 네 장을 그려도 화면에는 네 가지 동작밖에 안 나오고, 장마다 조금씩 달라 부글거립니다. B는 다리 조각을 뼈대에 붙여 움직여서 같은 조각으로 동작을 끝없이 만듭니다. 발은 땅에 붙도록 자동으로 맞춥니다(IK).</dd></div><div><dt>해결법</dt><dd><ul><li>오른쪽만 그리고 왼쪽은 좌우 반전으로 만듭니다. 8방향이면 5방향만 그리면 됩니다.</li><li>몸을 머리, 몸통, 팔, 다리 조각으로 나눠 뼈대(본)에 붙이고 조각을 돌립니다(컷아웃 애니메이션).</li><li>망토나 머리카락처럼 휘는 부분은 그림을 그물처럼 나눠 휘게 합니다(메시 변형).</li><li>발이 땅에서 뜨거나 파고들면 발끝 위치를 정하고 무릎을 자동으로 맞추는 IK를 씁니다.</li></ul></dd></div></dl>
+ </article>
+</section>
+<section class="part" aria-labelledby="p2">
+ <h2 id="p2">지저분하고 흐릿할 때</h2>
+ <p>멈춰 있어도 보이는 문제입니다. 확대해서 칸을 보면 원인이 드러납니다.</p>
+ <article class="term" id="offgrid" data-demo="offgrid">
+  <div class="term-head"><span class="no">05</span><h3>격자가 어긋난 픽셀</h3><span class="en">Off-grid Pixels</span></div>
+  <dl class="facts"><div><dt>증상</dt><dd class="sym">"멀리서는 도트 같은데 가까이 보면 자글자글해요"</dd></div></dl>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>어긋난 격자</figcaption><div class="frame"><canvas data-side="a" role="img" aria-label="A: 어긋난 격자"></canvas></div></figure>
+   <figure><figcaption><span class="ab b">B</span>칸에 맞춰 다시 줄인 그림</figcaption><div class="frame"><canvas data-side="b" role="img" aria-label="B: 칸에 맞춰 다시 줄인 그림"></canvas></div></figure>
+  </div>
+  <div class="controls"><button class="btn tog" type="button" data-tog="grid" aria-pressed="false">격자 씌우기</button></div>
+  <dl class="facts"><div><dt>원인</dt><dd>큰 그림을 도트처럼 보이게 그린 것이라 진짜 픽셀 격자가 없습니다. 1254픽셀짜리 그림 위에 124칸쯤의 가짜 칸이 비뚤게 그려져 있는 식입니다. 한 칸 안에 색이 섞이고 칸 크기가 제각각입니다. 흔히 가짜 픽셀아트라고 부릅니다.</dd></div><div><dt>해결법</dt><dd><ul><li>격자를 씌워 한 칸의 실제 크기를 찾습니다.</li><li>그 크기로 나눈 해상도까지 최근접 이웃(Nearest Neighbor) 방식으로 줄여 진짜 픽셀로 만듭니다. 1254픽셀이면 124픽셀로 줄입니다.</li><li>다시 키울 때도 최근접 이웃으로 정수배만 키웁니다.</li></ul></dd></div></dl>
+ </article>
+ <article class="term" id="orphan" data-demo="orphan">
+  <div class="term-head"><span class="no">06</span><h3>고아 픽셀과 클러스터</h3><span class="en">Orphan Pixels, Clusters</span></div>
+  <dl class="facts"><div><dt>증상</dt><dd class="sym">"점을 흩뿌린 것처럼 지저분해요"</dd></div></dl>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>흩어진 점</figcaption><div class="frame"><canvas data-side="a" role="img" aria-label="A: 흩어진 점"></canvas></div></figure>
+   <figure><figcaption><span class="ab b">B</span>덩어리로 정리한 그림</figcaption><div class="frame"><canvas data-side="b" role="img" aria-label="B: 덩어리로 정리한 그림"></canvas></div></figure>
+  </div>
+  <div class="controls"><button class="btn tog" type="button" data-tog="mark" aria-pressed="false">외톨이 픽셀 표시</button></div>
+  <dl class="facts"><div><dt>원인</dt><dd>주변과 이어지지 않은 외톨이 픽셀(고아 픽셀)이 많습니다. 같은 색이 덩어리(클러스터)를 이루지 못하고 흩어져 있어서 색을 줄여도 깔끔해지지 않습니다. 빨간 칸이 대각선까지 봐도 같은 색 이웃이 없는 픽셀입니다.</dd></div><div><dt>해결법</dt><dd><ul><li>한 칸짜리 외톨이 색은 옆 덩어리의 색으로 합칩니다.</li><li>같은 색은 2칸 이상의 덩어리로 묶습니다.</li><li>명암 경계는 1칸, 2칸, 3칸처럼 계단으로 규칙 있게 내려가게 합니다.</li></ul></dd></div></dl>
+ </article>
+ <article class="term" id="halo" data-demo="halo">
+  <div class="term-head"><span class="no">07</span><h3>알파 테두리</h3><span class="en">Alpha Fringe, Halo</span></div>
+  <dl class="facts"><div><dt>증상</dt><dd class="sym">"배경을 지웠더니 테두리에 하얀 띠가 남아요"</dd></div></dl>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>반투명 테두리가 남은 외곽</figcaption><div class="frame"><canvas data-side="a" role="img" aria-label="A: 반투명 테두리가 남은 외곽"></canvas></div></figure>
+   <figure><figcaption><span class="ab b">B</span>깔끔한 외곽</figcaption><div class="frame"><canvas data-side="b" role="img" aria-label="B: 깔끔한 외곽"></canvas></div></figure>
+  </div>
+  <div class="controls"><button class="btn tog" type="button" data-tog="dark" aria-pressed="false">어두운 배경</button></div>
+  <dl class="facts"><div><dt>원인</dt><dd>배경을 지울 때 가장자리 픽셀이 배경색과 섞인 반투명으로 남았습니다. 밝은 배경에서는 잘 안 보이다가 어두운 배경에 올리면 드러납니다.</dd></div><div><dt>해결법</dt><dd><ul><li>투명도를 0 아니면 255 둘 중 하나로 정리해 반투명을 없앱니다.</li><li>처음부터 그림에 없는 색(초록 같은 크로마키) 배경으로 받아서 지웁니다.</li><li>엔진에서는 투명한 가장자리의 색을 안쪽 색으로 채우는 옵션을 켭니다(Alpha Is Transparency, 알파 블리드).</li></ul></dd></div></dl>
+ </article>
+ <article class="term" id="mixel" data-demo="mixel">
+  <div class="term-head"><span class="no">08</span><h3>믹셀</h3><span class="en">Mixel</span></div>
+  <dl class="facts"><div><dt>증상</dt><dd class="sym">"이펙트와 아이콘만 혼자 매끈하거나 흐릿해요"</dd></div></dl>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>칸 크기가 다른 칼 궤적과 코인</figcaption><div class="frame"><canvas data-side="a" role="img" aria-label="A: 칸 크기가 다른 칼 궤적과 코인"></canvas></div></figure>
+   <figure><figcaption><span class="ab b">B</span>같은 칸 크기</figcaption><div class="frame"><canvas data-side="b" role="img" aria-label="B: 같은 칸 크기"></canvas></div></figure>
+  </div>
+  <div class="controls"><button class="btn play" type="button">멈춤</button></div>
+  <dl class="facts"><div><dt>원인</dt><dd>한 화면에 칸 크기가 다른 그림이 섞였습니다. 고해상도로 만든 이펙트를 그대로 얹거나, 스프라이트를 키우고 줄여 쓰면 칸 크기가 달라집니다. A의 칼 궤적은 매끈한 선이고, 코인은 칸이 기사의 절반입니다.</dd></div><div><dt>해결법</dt><dd><ul><li>화면의 모든 그림을 같은 칸 크기로 맞춥니다.</li><li>이펙트는 게임 해상도로 그린 뒤 화면과 같이 키웁니다. 픽셀화 셰이더를 쓸 때도 칸 크기를 같게 둡니다.</li><li>스프라이트 크기를 바꿀 때는 키워 쓰지 말고 그 크기로 다시 그립니다.</li></ul></dd></div></dl>
+ </article>
+ <article class="term" id="scale" data-demo="scale">
+  <div class="term-head"><span class="no">09</span><h3>정수 배율</h3><span class="en">Integer Scaling</span></div>
+  <dl class="facts"><div><dt>증상</dt><dd class="sym">"확대하면 픽셀 굵기가 들쭉날쭉해요"</dd></div></dl>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>배율을 바꿔 보는 화면</figcaption><div class="frame"><canvas data-side="a" role="img" aria-label="A: 배율을 바꿔 보는 화면"></canvas></div></figure>
+   <figure><figcaption><span class="ab b">B</span>3배로 키운 화면</figcaption><div class="frame"><canvas data-side="b" role="img" aria-label="B: 3배로 키운 화면"></canvas></div></figure>
+  </div>
+  <div class="controls"><label>A 배율 <input type="range" data-sl="k" min="1.5" max="4" step="0.25" data-fmt="{v}배"><output></output></label><button class="btn tog" type="button" data-tog="filter" aria-pressed="false">필터 켜기</button><button class="btn tog" type="button" data-tog="edges" aria-pressed="false">칸 경계 표시</button></div>
+  <dl class="facts"><div><dt>원인</dt><dd>2.5배처럼 정수가 아닌 배율로 키우면 한 칸이 화면 픽셀 2개였다가 3개였다가 합니다. 그래서 같은 굵기여야 할 선이 굵었다 가늘었다 합니다. 텍스처 필터가 켜져 있으면 흐려집니다.</dd></div><div><dt>해결법</dt><dd><ul><li>2배, 3배, 4배처럼 정수로만 키우고 남는 화면은 검은 띠나 배경으로 채웁니다. 이것을 픽셀 퍼펙트라고 부릅니다.</li><li>텍스처 필터는 Point(필터 없음)로, 압축은 끔으로 둡니다.</li></ul></dd></div></dl>
+ </article>
+ <article class="term" id="rotate" data-demo="rotate">
+  <div class="term-head"><span class="no">10</span><h3>회전 깨짐</h3><span class="en">Rotation Artifacts</span></div>
+  <dl class="facts"><div><dt>증상</dt><dd class="sym">"날아가며 도는 캐릭터의 외곽선이 끊기고 얼굴이 뭉개져요"</dd></div></dl>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>그냥 돌린 기사</figcaption><div class="frame"><canvas data-side="a" role="img" aria-label="A: 그냥 돌린 기사"></canvas></div></figure>
+   <figure><figcaption><span class="ab b">B</span>RotSprite로 돌린 기사</figcaption><div class="frame"><canvas data-side="b" role="img" aria-label="B: RotSprite로 돌린 기사"></canvas></div></figure>
+  </div>
+  <div class="controls"><button class="btn play" type="button">멈춤</button><label>각도 <input type="range" data-sl="deg" min="0" max="359" step="1" data-fmt="{v}도" data-pause="1"><output></output></label><button class="btn tog" type="button" data-tog="brk" aria-pressed="false">끊긴 외곽선 표시</button></div>
+  <dl class="facts"><div><dt>원인</dt><dd>픽셀 격자는 돌아가지 않습니다. 비스듬히 돌리면 칸 위에 놓여야 할 픽셀이 칸 사이에 걸리고, 가까운 칸으로 반올림되면서 1칸짜리 외곽선이 끊기거나 두 칸으로 겹칩니다. 투구의 눈 구멍이나 가슴의 십자처럼 작은 무늬는 사라지거나 번집니다.</dd></div><div><dt>해결법</dt><dd><ul><li>자유롭게 돌려야 하면 회전용 알고리즘 RotSprite를 씁니다. 그림을 8배로 키우며 계단을 다듬은 뒤 돌리고 다시 원래 크기로 뽑아서, B처럼 외곽선이 이어지고 무늬가 덜 뭉개집니다. Aseprite의 회전에도 들어 있습니다.</li><li>넘어지기, 날아가기처럼 자주 나오는 회전은 45도나 90도 단위 그림을 미리 그려 둡니다.</li><li>그래도 거슬리면 그 부분만 매끈하게 보이는 걸 받아들이고, 한 화면 안에서는 같은 방식으로 통일합니다.</li></ul></dd></div></dl>
+ </article>
+</section>
+<section class="part" aria-labelledby="p3">
+ <h2 id="p3">따로 노는 것 같을 때</h2>
+ <p>하나씩 보면 괜찮은데 한 화면에 모으면 어색한 문제입니다.</p>
+ <article class="term" id="density" data-demo="density">
+  <div class="term-head"><span class="no">11</span><h3>픽셀 밀도</h3><span class="en">Pixel Density, PPU</span></div>
+  <dl class="facts"><div><dt>증상</dt><dd class="sym">"물건끼리 크기와 선 굵기가 안 맞아요"</dd></div></dl>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>칸 크기가 다른 책상과 컵</figcaption><div class="frame"><canvas data-side="a" role="img" aria-label="A: 칸 크기가 다른 책상과 컵"></canvas></div></figure>
+   <figure><figcaption><span class="ab b">B</span>같은 기준으로 그린 물건</figcaption><div class="frame"><canvas data-side="b" role="img" aria-label="B: 같은 기준으로 그린 물건"></canvas></div></figure>
+  </div>
+  
+  <dl class="facts"><div><dt>원인</dt><dd>그림마다 한 칸이 나타내는 실제 크기가 다릅니다. 크게 그린 컵을 줄이면 선이 가늘고 정교해지고, 작게 그린 책상을 키우면 뭉툭해집니다.</dd></div><div><dt>해결법</dt><dd><ul><li>"기사 키 20칸은 1.7미터"처럼 한 칸이 얼마인지 정하고 모든 물건을 그 기준으로 그립니다.</li><li>엔진의 PPU(1유닛당 픽셀 수)를 모든 스프라이트에 같게 둡니다.</li><li>외곽선은 모두 1칸으로 합니다.</li></ul></dd></div></dl>
+ </article>
+ <article class="term" id="baseres" data-demo="baseres">
+  <div class="term-head"><span class="no">12</span><h3>기준 해상도</h3><span class="en">Base Resolution</span></div>
+  <dl class="facts"><div><dt>증상</dt><dd class="sym">"캐릭터를 몇 픽셀로 할지, 화면을 몇으로 할지 못 정하겠어요"</dd></div></dl>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>240x135 화면</figcaption><div class="frame"><canvas data-side="a" role="img" aria-label="A: 240x135 화면"></canvas></div></figure>
+   <figure><figcaption><span class="ab b">B</span>160x90 화면</figcaption><div class="frame"><canvas data-side="b" role="img" aria-label="B: 160x90 화면"></canvas></div></figure>
+  </div>
+  
+  <dl class="facts"><div><dt>원인</dt><dd>화면 크기와 캐릭터 크기를 따로 정하고 있습니다. 같은 20칸 기사도 화면이 크면 작아 보이고 화면이 작으면 커 보입니다. 둘은 비율로 묶여 있습니다.</dd></div><div><dt>해결법</dt><dd><ul><li>캐릭터가 화면 높이의 몇 분의 1을 차지할지 먼저 정합니다.</li><li>1080p에 정수배로 맞는 크기(320x180, 480x270, 640x360) 중에서 고릅니다.</li><li>참고할 게임을 캡처해 캐릭터의 칸 수를 직접 세어 봅니다.</li></ul></dd></div></dl>
+ </article>
+ <article class="term" id="light" data-demo="light">
+  <div class="term-head"><span class="no">13</span><h3>광원 방향 통일</h3><span class="en">Consistent Light Direction</span></div>
+  <dl class="facts"><div><dt>증상</dt><dd class="sym">"따로 만든 그림을 모아 놓으면 어색해요"</dd></div></dl>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>기사는 왼쪽 위, 슬라임은 오른쪽 위에서 빛</figcaption><div class="frame"><canvas data-side="a" role="img" aria-label="A: 기사는 왼쪽 위, 슬라임은 오른쪽 위에서 빛"></canvas></div></figure>
+   <figure><figcaption><span class="ab b">B</span>둘 다 왼쪽 위에서 빛</figcaption><div class="frame"><canvas data-side="b" role="img" aria-label="B: 둘 다 왼쪽 위에서 빛"></canvas></div></figure>
+  </div>
+  <div class="controls"><button class="btn tog" type="button" data-tog="arrow" aria-pressed="false">빛 방향 표시</button></div>
+  <dl class="facts"><div><dt>원인</dt><dd>그림마다 빛이 오는 방향이 다릅니다. A의 슬라임은 오른쪽이 밝고 그림자가 왼쪽에 떨어져서, 기사와 다른 하늘 아래 있는 것처럼 보입니다.</dd></div><div><dt>해결법</dt><dd><ul><li>빛 방향을 하나로 정합니다. 보통 왼쪽 위입니다.</li><li>모든 그림의 밝은 면과 그림자 면을 그 방향에 맞춥니다. 발밑 그림자도 같은 방향, 같은 길이로 둡니다.</li><li>다시 칠하기 어렵다면 셰이더로 맞춥니다. 윤곽 한쪽에 같은 방향의 밝은 테두리를 넣는 림 라이트(Rim Light)를 모든 그림에 걸면 빛이 같은 쪽에서 오는 것처럼 보입니다.</li><li>그림마다 노멀 맵을 그려 2D 다이나믹 라이팅(2D Lights)을 켜면, 엔진의 광원 하나가 모든 그림의 밝은 면을 정합니다.</li><li>마지막으로 화면 전체에 같은 색 보정(포스트 프로세싱, 컬러 그레이딩)을 걸어 따로 만든 그림의 색감을 한데 묶습니다.</li></ul></dd></div></dl>
+ </article>
+ <article class="term" id="palette" data-demo="palette">
+  <div class="term-head"><span class="no">14</span><h3>팔레트 고정</h3><span class="en">Fixed Palette</span></div>
+  <dl class="facts"><div><dt>증상</dt><dd class="sym">"고칠수록 색이 탁해지고 얼룩덜룩해요"</dd></div></dl>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>색이 수백 개인 슬라임</figcaption><div class="frame"><canvas data-side="a" role="img" aria-label="A: 색이 수백 개인 슬라임"></canvas></div></figure>
+   <figure><figcaption><span class="ab b">B</span>팔레트 다섯 색 슬라임</figcaption><div class="frame"><canvas data-side="b" role="img" aria-label="B: 팔레트 다섯 색 슬라임"></canvas></div></figure>
+  </div>
+  
+  <dl class="facts"><div><dt>원인</dt><dd>쓸 색을 정해 두지 않아서 비슷한 색이 수십, 수백 개 섞였습니다. 다시 그리거나 고칠 때마다 색이 조금씩 밀려 탁해집니다. 아래 줄이 그림에 쓰인 색입니다.</dd></div><div><dt>해결법</dt><dd><ul><li>게임 전체에 쓸 색을 16색에서 32색쯤으로 정합니다.</li><li>모든 그림을 그 팔레트로 다시 칠합니다(색 줄이기, 양자화).</li><li>한 색의 명암은 3단계 안팎으로만 둡니다.</li><li>몬스터를 늘릴 때는 같은 그림의 색만 바꾸는 팔레트 스왑도 씁니다.</li></ul></dd></div></dl>
+ </article>
+ <article class="term" id="voxel" data-demo="voxel">
+  <div class="term-head"><span class="no">15</span><h3>3D 픽셀화</h3><span class="en">Pixelated 3D</span></div>
+  <dl class="facts"><div><dt>증상</dt><dd class="sym">"3D로 만들어 도트처럼 했더니 돌릴 때 자글거리고 얼룩덜룩해요"</dd></div></dl>
+  <div class="stage">
+   <figure><figcaption><span class="ab">A</span>부드럽게 돌리고 줄이기만 한 상자</figcaption><div class="frame"><canvas data-side="a" role="img" aria-label="A: 부드럽게 돌리고 줄이기만 한 상자"></canvas></div></figure>
+   <figure><figcaption><span class="ab b">B</span>각도, 색, 외곽선을 맞춘 상자</figcaption><div class="frame"><canvas data-side="b" role="img" aria-label="B: 각도, 색, 외곽선을 맞춘 상자"></canvas></div></figure>
+  </div>
+  <div class="controls"><button class="btn play" type="button">멈춤</button></div>
+  <dl class="facts"><div><dt>원인</dt><dd>3D를 그냥 작게 렌더하면 조명과 질감의 미세한 색이 그대로 남아 얼룩이 됩니다. 각도가 조금씩 바뀔 때마다 격자에 걸리는 픽셀이 달라져 가장자리가 기어다닙니다. 머리가 큰 로우폴리 캐릭터는 줄이면 더 뭉툭해집니다.</dd></div><div><dt>해결법</dt><dd><ul><li>원하는 비율의 모델을 씁니다.</li><li>낮은 해상도로 렌더하고 최근접 이웃으로 키웁니다.</li><li>팔레트로 색을 줄이고 외곽선을 1칸으로 그립니다.</li><li>회전은 8방향이나 16방향처럼 정해 두고, 카메라는 칸 단위로 움직입니다.</li></ul></dd></div></dl>
+ </article>
+</section>
+
+<footer>
+ <p>모든 장면은 이 페이지 안의 코드로 그립니다. 색은 GrafxKid의 Sweetie 16 팔레트입니다.</p>
+ <p>본 콘텐츠에는 (주)HS효성의 HS HYOSUNG 서체가 사용되었습니다.</p>
+</footer>
+<noscript><p>시연 장면은 자바스크립트를 켜야 보입니다. 글은 그대로 읽을 수 있습니다.</p></noscript>
+</div>
+<script>
+// ===== 팔레트: Sweetie 16 =====
+const PAL={o:'#1a1c2c',r:'#5d275d',R:'#b13e53',O:'#ef7d57',Y:'#ffcd75',G:'#a7f070',g:'#38b764',t:'#257179',N:'#29366f',B:'#3b5dc9',b:'#41a6f6',c:'#73eff7',W:'#f4f4f4',L:'#94b0c2',M:'#566c86',D:'#333c57'};
+const RGB=Object.fromEntries(Object.entries(PAL).map(([k,h])=>[k,[1,3,5].map(i=>parseInt(h.slice(i,i+2),16))]));
+const rootCss=getComputedStyle(document.documentElement);
+const FONT=rootCss.getPropertyValue('--font').trim();
+const OV={hit:rootCss.getPropertyValue('--hit').trim(),hurt:rootCss.getPropertyValue('--hurt').trim()};
+const BAY=[0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5].map(v=>(v+.5)/16);
+const bay=(x,y)=>BAY[(y&3)*4+(x&3)];
+const hash=(x,y=0)=>{let h=Math.imul(x|0,73856093)^Math.imul(y|0,19349663);h=Math.imul(h^(h>>>13),1274126177);return((h^(h>>>16))>>>0)/4294967296};
+const ss=t=>t<=0?0:t>=1?1:t*t*(3-2*t);
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+
+// ===== 도트 격자: 채운 뒤 바깥선을 자동으로 두른다 =====
+class Grid{
+ constructor(w,h){this.w=w;this.h=h;this.a=new Array(w*h).fill('')}
+ set(x,y,c){x=Math.round(x);y=Math.round(y);if(x>=0&&y>=0&&x<this.w&&y<this.h)this.a[y*this.w+x]=c}
+ get(x,y){return(x<0||y<0||x>=this.w||y>=this.h)?'':this.a[y*this.w+x]}
+ rows(rs,ox,oy){rs.forEach((r,j)=>{for(let i=0;i<r.length;i++)if(r[i]!=='.')this.set(ox+i,oy+j,r[i])})}
+ line(x0,y0,x1,y1,c){x0=Math.round(x0);y0=Math.round(y0);x1=Math.round(x1);y1=Math.round(y1);const dx=Math.abs(x1-x0),dy=-Math.abs(y1-y0),sx=x0<x1?1:-1,sy=y0<y1?1:-1;let e=dx+dy;for(let n=0;n<200;n++){this.set(x0,y0,c);if(x0===x1&&y0===y1)break;const e2=2*e;if(e2>=dy){e+=dy;x0+=sx}if(e2<=dx){e+=dx;y0+=sy}}}
+ outline(){const b=this.a.slice(),w=this.w,h=this.h,on=(x,y)=>x>=0&&y>=0&&x<w&&y<h&&b[y*w+x]!=='';for(let y=0;y<h;y++)for(let x=0;x<w;x++)if(b[y*w+x]===''&&(on(x-1,y)||on(x+1,y)||on(x,y-1)||on(x,y+1)))this.a[y*w+x]='o'}
+ canvas(){return pix(this.w,this.h,put=>{for(let y=0;y<this.h;y++)for(let x=0;x<this.w;x++){const c=this.a[y*this.w+x];if(c)put(x,y,c)}})}
+}
+function pix(w,h,fn){const c=document.createElement('canvas');c.width=w;c.height=h;const g=c.getContext('2d');const im=g.createImageData(w,h),d=im.data;fn((x,y,k)=>{if(x<0||y<0||x>=w||y>=h)return;const v=RGB[k],i=(y*w+x)*4;d[i]=v[0];d[i+1]=v[1];d[i+2]=v[2];d[i+3]=255});g.putImageData(im,0,0);return c}
+
+// ===== 기사 =====
+const K_HEAD=[
+'..RO............',
+'.RROO...........',
+'.RRRO.LLLL......',
+'..rRRWWLLLLM....',
+'...rWWLLLLLMM...',
+'....WLLLLLLMM...',
+'....LLLLoooooo..',
+'....LLLMMoMoMD..',
+'....MMMMMMMMDD..'];
+const K_BODY=[
+'....LLRRRRRMD...',
+'...LLMRRYRRMDD..',
+'...LMMRYYYRDDD..',
+'.....RRRYRRr....',
+'.....YYYYYYY....',
+'.....RRrRRrr....'];
+const K_LEGS={
+ idle:['......MD.LM.....','......MD.LM.....','......ND.NN.....','.....NNN.NNN....'],
+ runA:['.....MD..LM.....','....MD....LM....','...ND......NN...','..NNN.......NNN.'],
+ runB:['......MDLM......','.....MD.LM......','....NN..LM......','........NNN.....'],
+ runC:['.....LM..MD.....','....LM....MD....','...NN......ND...','..NNN.......NNN.'],
+ runD:['......LMMD......','.....LM.MD......','....NN..MD......','........NNN.....'],
+ jump:['.....MDLM.......','....ND...LM.....','....NN....NN....','................'],
+ fall:['......MD.LM.....','.....MD...LM....','.....ND...NN....','....NN.....NN...'],
+};
+const RUN=['runA','runB','runC','runD'];
+const K_POSE={
+ idle:{hand:[12,13],ang:.55,len:8},
+ run:{hand:[12,12],ang:.35,len:8},
+ windup:{hand:[13,4],ang:-1.95,len:9,lean:-1},
+ swing:{hand:[16,10],ang:.05,len:9,lean:1,smear:{a0:-2.0,a1:.15,r:14}},
+ follow:{hand:[15,13],ang:.6,len:8,lean:1,smear:{a0:-.1,a1:.62,r:13,fade:1}},
+ jump:{hand:[13,9],ang:-.7,len:8},
+ fall:{hand:[14,7],ang:-.45,len:8},
+};
+const KX=6,KY=6,KW=36,KH=28,KC=new Map();
+function sword(g,hx,hy,a,len){const dx=Math.cos(a),dy=Math.sin(a);g.set(hx-dx*1.6,hy-dy*1.6,'r');const gx=hx+dx*1.4,gy=hy+dy*1.4;g.set(gx,gy,'Y');g.set(gx-dy,gy+dx,'O');g.set(gx+dy,gy-dx,'Y');g.line(hx+dx*2.4,hy+dy*2.4,hx+dx*len,hy+dy*len,'W')}
+function smear(g,cx,cy,{a0,a1,r,fade}){for(let y=0;y<g.h;y++)for(let x=0;x<g.w;x++){if(g.get(x,y))continue;const dx=x-cx,dy=y-cy,d=Math.hypot(dx,dy),a=Math.atan2(dy,dx);if(a<a0||a>a1)continue;const p=(a-a0)/(a1-a0),th=fade?1.6:1.4+p*4.6;if(d>r||d<r-th)continue;if(fade&&((x+y)&1))continue;g.set(x,y,'W')}}
+function knightCanvas(pose,legs,bob){const key=pose+'|'+legs+'|'+bob;if(KC.has(key))return KC.get(key);
+ const P=K_POSE[pose],g=new Grid(KW,KH),lx=KX+(P.lean||0),ly=KY+bob;
+ g.rows(K_LEGS[legs],KX,KY+15);g.rows(K_BODY,lx,ly+9);g.rows(K_HEAD,lx,ly);
+ const sx=lx+11,sy=ly+10,hx=lx+P.hand[0],hy=ly+P.hand[1];
+ sword(g,hx,hy,P.ang,P.len);g.line(sx,sy+1,hx,hy+1,'M');g.line(sx,sy,hx,hy,'L');g.set(hx,hy,'W');
+ g.outline();if(P.smear)smear(g,sx,sy,P.smear);
+ const c=g.canvas();KC.set(key,c);return c}
+// x: 발 가운데, y: 땅 높이
+function drawKnight(n,x,y,pose='idle',legs='idle',bob=0){n.drawImage(knightCanvas(pose,legs,bob),Math.round(x)-(KX+8),Math.round(y)-(KY+19))}
+
+// ===== 슬라임: 크기만 주면 모양과 명암을 계산한다 =====
+const SC=new Map();
+function slimeCanvas(w,h,flash){const key=w+'|'+h+'|'+(flash?1:0);if(SC.has(key))return SC.get(key);
+ const g=new Grid(w+2,h+2);
+ for(let y=0;y<h;y++)for(let x=0;x<w;x++){const nx=(x+.5-w/2)/(w/2),ny=(h-(y+.5))/h;if(Math.pow(Math.abs(nx),2.6)+ny*ny>1)continue;
+  let c='g';if(-nx*.6+ny*.9>.62)c='G';if(nx>.58||ny<.13)c='t';const hx=nx+.42,hy=ny-.64;if(hx*hx*3+hy*hy*7<.07)c='W';if(flash)c='W';g.set(x+1,y+1,c)}
+ if(!flash){const ex=Math.round(w*.26)+1,ey=Math.round(h*.4)+1;[[ex,ey],[ex,ey+1],[ex+3,ey],[ex+3,ey+1]].forEach(([x,y])=>g.set(x,y,'o'))}
+ g.outline();const c=g.canvas();SC.set(key,c);return c}
+function drawSlime(n,x,y,w,h,flash){const c=slimeCanvas(w,h,flash);n.drawImage(c,Math.round(x-c.width/2),Math.round(y-c.height+1))}
+
+// ===== 배경: 하늘, 구름, 산, 언덕, 숲, 땅 =====
+const ROWB=[0,.5,.25,.75];
+function skyCanvas(w,h,G){return pix(w,h,put=>{for(let y=0;y<h;y++){const t=y/G,p=(t-.34)/.38;const k=p>=1?'c':p<=0?'b':(ROWB[y&3]+.125<p?'c':'b');for(let x=0;x<w;x++)put(x,y,k)}})}
+function landCanvas(w,h,G,gap){const inGap=x=>gap&&x>=gap[0]&&x<gap[1];
+ return pix(w,h,put=>{
+  const peaks=[[.08,24,32],[.3,16,28],[.52,28,38],[.78,20,32],[1.02,26,34]].map(([p,ph,pw])=>[p*w,ph,pw]);
+  for(let x=0;x<w;x++){let m=0,side=0;for(const [px,ph,pw] of peaks){const v=ph-Math.abs(x-px)*ph/pw;if(v>m){m=v;side=x>px?1:0}}
+   const top=Math.round(G-9-m);for(let y=Math.max(0,top);y<G;y++){let k=side?'M':'L';if(m>17&&y<top+3&&!(y===top+2&&(x&1)))k=side?'L':'W';put(x,y,k)}
+   const ht=Math.round(G-12+2.5*Math.sin(x*.05+1)+1.5*Math.sin(x*.13));for(let y=ht;y<G;y++)put(x,y,y===ht?'G':'g')}
+  for(let i=-6;i<w+6;i+=9){const r=3+Math.floor(hash(i+50,7)*4),cx=i+Math.floor(hash(i+50,3)*5),cy=G-r-1-Math.floor(hash(i+50,5)*3);
+   for(let y=cy-r;y<G;y++)for(let x=cx-r;x<=cx+r;x++){const dx=x-cx,dy=y-cy;if(dy<0&&dx*dx+dy*dy>r*r)continue;const hx=dx+r*.35,hy=dy+r*.4;let k=(dy<0&&hx*hx+hy*hy<r*r*.3)?'g':'t';put(x,y,k)}}
+  for(let x=0;x<w;x++){
+   if(inGap(x)){for(let y=G;y<h;y++)put(x,y,(y-G<4&&bay(x,y)<(4-(y-G))/5)?'D':'o');continue}
+   put(x,G,'G');put(x,G+1,'g');put(x,G+2,'g');if(hash(x,1)<.2)put(x,G-1,'G');put(x,G+3,hash(x,2)<.35?'g':'t');
+   for(let y=G+4;y<h;y++){const d=y-G;let k='r';if(d>11&&bay(x,y)<(d-11)/16)k='o';else if(hash(x,y)<.012)k='o';put(x,y,k)}}
+  for(let i=6;i<w;i+=31){const sx=i+Math.floor(hash(i,9)*10),sy=G+7+Math.floor(hash(i,11)*8);if(inGap(sx-1)||inGap(sx+3))continue;
+   [['M',0,0],['L',1,0],['M',2,0],['D',0,1],['M',1,1],['D',2,1],['o',-1,0],['o',3,0],['o',-1,1],['o',3,1],['o',0,-1],['o',1,-1],['o',2,-1],['o',0,2],['o',1,2],['o',2,2]].forEach(([k,dx,dy])=>put(sx+dx,sy+dy,k))}
+  if(gap){for(let y=G+3;y<h;y++){put(gap[0]-1,y,'o');put(gap[1],y,'o')}for(const x of [gap[0],gap[1]-1]){put(x,G,'G');put(x,G+1,'g');put(x,G+2,'t')}}
+ })}
+const CL=[[[0,0,5],[6,-3,7],[13,0,5],[6,1,6]],[[0,0,4],[5,-2,5],[10,0,4]],[[0,0,3],[4,-1,4],[8,0,3]]];
+const CLC=CL.map(cs=>{let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;cs.forEach(([x,y,r])=>{x0=Math.min(x0,x-r);x1=Math.max(x1,x+r);y0=Math.min(y0,y-r);y1=Math.max(y1,y+r)});const flat=Math.round(y1-2),w=x1-x0+1,h=flat-y0+1;
+ return pix(w,h,put=>{for(let y=0;y<h;y++)for(let x=0;x<w;x++){const X=x+x0,Y=y+y0;if(cs.some(([cx,cy,r])=>(X-cx)**2+(Y-cy)**2<=r*r))put(x,y,Y>=flat-1?'L':(Y>=flat-3&&bay(x,y)<.5)?'L':'W')}})});
+function clouds(n,w,s){[[0,.08,12,3],[1,.42,5,2],[2,.7,19,4],[0,.93,8,3]].forEach(([i,p,y,sp])=>{const c=CLC[i],span=w+c.width+8;n.drawImage(c,Math.round(((p*span+s*sp)%span)-c.width),y)})}
+const BG={};
+function bg(n,clip,gap,s){const key=clip.w+'x'+clip.h+':'+(gap?gap.join('-'):'');if(!BG[key])BG[key]={sky:skyCanvas(clip.w,clip.h,clip.g),land:landCanvas(clip.w,clip.h,clip.g,gap)};n.drawImage(BG[key].sky,0,0);clouds(n,clip.w,s);n.drawImage(BG[key].land,0,0)}
+
+// ===== 효과: 먼지, 타격 불꽃 =====
+function puff(n,x,y,age){const life=.34;if(age<0||age>=life)return;const k=age/life,r=1+k*3.2,R=Math.ceil(r);n.fillStyle=k<.45?PAL.W:PAL.L;
+ for(let dy=-R;dy<=0;dy++)for(let dx=-R;dx<=R;dx++){if(dx*dx+dy*dy*2.2>r*r)continue;if(k>.55&&((dx+dy+Math.round(x))&1))continue;n.fillRect(Math.round(x+dx),Math.round(y+dy),1,1)}}
+function spark(n,x,y,age){const life=.22;if(age<0||age>=life)return;const k=age/life;x=Math.round(x);y=Math.round(y);const len=Math.round(2+k*7),inner=Math.round(k*5);
+ [[1,0],[-1,0],[0,1],[0,-1],[1,1],[-1,-1],[1,-1],[-1,1]].forEach(([dx,dy],i)=>{const L2=i<4?len:Math.round(len*.6);for(let j=Math.max(1,inner);j<=L2;j++){n.fillStyle=j>L2-2?PAL.O:PAL.Y;n.fillRect(x+dx*j,y+dy*j,1,1)}});
+ if(k<.4){n.fillStyle=PAL.W;n.fillRect(x-1,y-2,3,5);n.fillRect(x-2,y-1,5,3)}}
+
+
+// 첫 화면: 기사가 달려와 슬라임을 베고 지나간다. 7.2초마다 같은 자리로 돌아온다
+function heroScene(n,s,clip,ct){const G=clip.g;bg(n,clip,null,ct??s); // 구름은 장면 시각이 아니라 계속 흐르는 시각으로 움직여 7.2초 이음새에서 튀지 않는다
+ let kx,pose='run',legs=RUN[Math.floor(s/.08)%4],bob=(Math.floor(s/.08)%2)?0:1;
+ if(s<3){kx=-14+50*s}else if(s<4.6){kx=136;legs='idle';bob=Math.floor(s/.45)%2;pose=s<3.3?'idle':s<3.6?'windup':s<3.75?'swing':s<4.05?'follow':'idle';if(pose!=='idle')bob=0}else{kx=136+70*(s-4.6)}
+ const sx0=160,d=s-3.6;let sx=sx0,sy=G,w=16,h=11,flash=false,show=true;
+ if(d>=0&&d<1.05){sx=sx0+140*(d/1.05);sy=G-Math.round(Math.abs(Math.sin(d/1.05*Math.PI*3))*12*(1-d*.5));flash=d<.07;w=sy<G-2?14:18;h=sy<G-2?13:9}
+ else if(s>=4.65&&s<6.4)show=false;
+ else if(s>=6.4&&s<6.75){const p=(s-6.4)/.35;sy=Math.round(-14+(G+14)*p*p);w=14;h=13}
+ else if(s>=6.75&&s<6.9){w=19;h=8}
+ else{const b=Math.floor(s/.3)%3===2?1:0;w=16+b;h=11-b}
+ if(show)drawSlime(n,sx,sy,w,h,flash);spark(n,kx+18,G-9,d);
+ if(s<3||s>=4.6)for(let k=0;k<64;k++){const tc=k*.16;if(tc>s)break;const age=s-tc;if(age>.34||(tc>=3&&tc<4.6))continue;const xc=tc<3?-14+50*tc:136+70*(tc-4.6);puff(n,xc-5,G-1,age)}
+ drawKnight(n,kx,G,pose,legs,bob);return null}
+
+
+// ===== 도트 칼럼: 공용 도구 =====
+const lerp=(a,b,t)=>a+(b-a)*t;
+const KA=[KX+8,KY+19]; // 기사 그리드에서 발밑 가운데
+const LEG_EMPTY=['................','................','................','................'];
+// 머리, 몸통, 팔, 칼을 바깥선 없이 찍는다
+function kStamp(g,pose,bob){const P=K_POSE[pose],lx=KX+(P.lean||0),ly=KY+bob;g.rows(K_BODY,lx,ly+9);g.rows(K_HEAD,lx,ly);
+ const sx=lx+11,sy=ly+10,hx=lx+P.hand[0],hy=ly+P.hand[1];sword(g,hx,hy,P.ang,P.len);g.line(sx,sy+1,hx,hy+1,'M');g.line(sx,sy,hx,hy,'L');g.set(hx,hy,'W');return{sx,sy,hx,hy,P}}
+function kGrid(pose='idle',legRows=K_LEGS.idle,bob=0,opt={}){const g=new Grid(KW,KH);
+ if(bob<0)g.rows([legRows[0]],KX,KY+14); // 몸이 올라가면 다리를 한 줄 늘린다
+ g.rows(legRows,KX,KY+15);const k=kStamp(g,pose,bob);g.outline();if(k.P.smear&&!opt.noSmear)smear(g,k.sx,k.sy,k.P.smear);return g}
+const GC=new WeakMap();
+function gcv(g){if(!GC.has(g))GC.set(g,g.canvas());return GC.get(g)}
+function putK(n,g,x,y){n.drawImage(gcv(g),Math.round(x)-KA[0],Math.round(y)-KA[1])}
+function stage(n,w,h,G,col){n.fillStyle=col||PAL.D;n.fillRect(0,0,w,h);if(G!=null){n.fillStyle=PAL.o;n.fillRect(0,G,w,h-G);n.fillStyle=PAL.M;n.fillRect(0,G,w,1)}}
+function gridDiff(a,b){const out=[];for(let y=0;y<a.h;y++)for(let x=0;x<a.w;x++)if(a.get(x,y)!==b.get(x,y))out.push([x,y]);return out}
+function trimBox(g){let x0=1e9,y0=1e9,x1=-1,y1=-1;for(let y=0;y<g.h;y++)for(let x=0;x<g.w;x++)if(g.get(x,y)){x0=Math.min(x0,x);y0=Math.min(y0,y);x1=Math.max(x1,x);y1=Math.max(y1,y)}return{x0,y0,x1,y1,w:x1-x0+1,h:y1-y0+1}}
+const N4=[[1,0],[-1,0],[0,1],[0,-1]];
+// 프레임을 따로 그린 것처럼 바깥선과 색을 조금씩 흔든다
+function perturb(src,seed,amt=1){const g=new Grid(src.w,src.h);g.a=src.a.slice();const b=src.a,w=src.w,h=src.h,get=(x,y)=>x<0||y<0||x>=w||y>=h?'':b[y*w+x];
+ for(let y=0;y<h;y++)for(let x=0;x<w;x++){const c=b[y*w+x];if(!c)continue;const r=hash(x*7+seed*131,y*13+seed*17);
+  if(c==='o'){const ins=N4.find(([dx,dy])=>{const k=get(x+dx,y+dy);return k&&k!=='o'}),out=N4.find(([dx,dy])=>!get(x+dx,y+dy));
+   if(r<.08*amt&&out)g.set(x+out[0],y+out[1],'o');else if(r<.15*amt&&ins&&out){g.set(x,y,'');g.set(x+ins[0],y+ins[1],'o')}}
+  else if(r<.07*amt){const nb=N4.map(([dx,dy])=>get(x+dx,y+dy)).filter(k=>k&&k!=='o'&&k!==c);if(nb.length)g.set(x,y,nb[Math.floor(r*97)%nb.length])}}
+ return g}
+
+// ===== 걷기 프레임 =====
+const WALK_B=[
+ {leg:['.....MD.LM......','....MD...LM.....','...MD.....LM....','..NN.......NNN..'],bob:0,name:'콘택트'},
+ {leg:['.....MD.LM......','.....MD..LM.....','....ND....LM....','...NN.....NNN...'],bob:1,name:'다운'},
+ {leg:['......MDLM......','.....MD.LM......','....NN..LM......','........NNN.....'],bob:0,name:'패싱'},
+ {leg:['......LMMD......','.....LM..MD.....','....LM....ND....','...NN...........'],bob:-1,name:'업'},
+ {leg:['.....LM.MD......','....LM...MD.....','...LM.....MD....','..NN.......NNN..'],bob:0,name:'콘택트'},
+ {leg:['.....LM.MD......','.....LM..MD.....','....LM....ND....','...NN.....NNN...'],bob:1,name:'다운'},
+ {leg:['......LMMD......','.....LM.MD......','....NN..MD......','........NNN.....'],bob:0,name:'패싱'},
+ {leg:['......MDLM......','.....MD..LM.....','....MD....NN....','...NN...........'],bob:-1,name:'업'},
+];
+const BADLEG={wide:['.....MD..LM.....','....MD....LM....','...MD......LM...','..NN........NN..'],lift:['.....MD..LM.....','....MD....LM....','...MD.....LM....','..NN......NN....'],one:['......MD.LM.....','......MD..LM....','......MD...LM...','.....NN.....NN..'],idle:K_LEGS.idle};
+const WALK_A=[['wide',0],['lift',-1],['one',0],['idle',0],['wide',0],['one',-1],['lift',0],['idle',0]];
+const WB=WALK_B.map(f=>kGrid('idle',f.leg,f.bob)),WA=WALK_A.map(([k,dy])=>({g:kGrid('idle',BADLEG[k],0),dy}));
+
+// ===== 데모 정의 =====
+const DEMO={};
+// 01 보일링: 프레임마다 다시 그린 숨쉬기와 한 장을 움직인 숨쉬기
+const IDLE_BOB=[0,0,1,1],BOIL={};
+function boilG(f,side){f=((f%4)+4)%4;const k=side+f;if(!BOIL[k]){const base=kGrid('idle',K_LEGS.idle,IDLE_BOB[f]);BOIL[k]=side==='a'?perturb(base,f+3,1.2):base}return BOIL[k]}
+DEMO.boiling={w:32,h:28,anim:1,fps:5,tog:{diff:1},
+ draw(n,side,st){stage(n,32,28,25);putK(n,boilG(st.f,side),16,25)},
+ over(o,side,st){const f=((st.f%4)+4)%4,cur=boilG(f,side),prev=boilG(f^1,side),d=gridDiff(cur,prev);
+  if(st.tog.diff){d.forEach(([x,y])=>o.cell(16-KA[0]+x,25-KA[1]+y,OV.hit));o.tagPx(`같은 자세 프레임과 다른 픽셀 ${d.length}개`,8*o.u,8*o.u,PAL.o,PAL.W)}}};
+// 02 걷기 키 포즈
+// 걷기는 다리가 긴 사람으로 보여 준다: 관절 각도로 자세를 정하고, 가장 낮은 발을 땅에 맞춘다
+const D2R=Math.PI/180,WL=[6,6];
+function legPts(hx,hy,a1,a2){const k=[hx+Math.sin(a1*D2R)*WL[0],hy+Math.cos(a1*D2R)*WL[0]];return{k,f:[k[0]+Math.sin(a2*D2R)*WL[1],k[1]+Math.cos(a2*D2R)*WL[1]]}}
+function walker(P,G,lift=0){const g=new Grid(40,40),hx=18;const rel=[[P.n,P.tn],[P.f,P.tf]].map(([a,toe])=>{const l=legPts(0,0,a[0],a[1]);return l.f[1]+(toe?1:0)});
+ const hy=Math.round(G-1-Math.max(...rel))-lift,line2=(a,b,c1,c2)=>{g.line(a[0],a[1],b[0],b[1],c1);g.line(a[0]+1,a[1],b[0]+1,b[1],c2)};
+ const leg=(a,toe,c1,c2,boot)=>{const l=legPts(hx,hy,a[0],a[1]);line2([hx,hy],l.k,c1,c2);line2(l.k,l.f,c1,c2);const fx=Math.round(l.f[0]),fy=Math.round(l.f[1]);if(toe){g.set(fx,fy,boot);g.set(fx+1,fy+1,boot);g.set(fx+2,fy+1,boot)}else{g.set(fx,fy,boot);g.set(fx+1,fy,boot);g.set(fx+2,fy,boot)}};
+ const arm=(ang,c1,c2)=>{const sx=hx,sy=hy-8,ex=sx+Math.sin(ang*D2R)*6,ey=sy+Math.cos(ang*D2R)*6;line2([sx,sy],[ex,ey],c1,c2);g.set(ex,ey+1,'O');g.set(ex+1,ey+1,'O')};
+ arm(P.af,'t','t');leg(P.f,P.tf,'D','D','r');
+ for(let y=hy-8;y<=hy;y++)for(let x=hx-2;x<=hx+2;x++)g.set(x,y,x===hx-2?'G':x===hx+2?'t':'g');for(let x=hx-2;x<=hx+2;x++)g.set(x,hy-1,'r');
+ const cy=hy-12.5,cx=hx+.5;for(let y=Math.floor(cy-4);y<=cy+4;y++)for(let x=Math.floor(cx-4);x<=cx+4;x++){const dx=x+.5-cx,dy=y+.5-cy;if(dx*dx+dy*dy>14)continue;g.set(x,y,(dy<-1.2||dx<-1.6)?'r':'Y')}g.set(hx+2,Math.round(cy),'o');g.set(hx+3,Math.round(cy)+1,'O');
+ leg(P.n,P.tn,'L','M','r');arm(P.an,'g','G');g.outline();return g}
+const WK=(n,f,tn,tf)=>({n,f,tn,tf,an:-.8*n[0],af:-.8*f[0]});
+const WALKB=[[WK([28,28],[-24,-38],0,1),'콘택트'],[WK([18,4],[-10,-62],0,0),'다운'],[WK([0,0],[14,-58],0,0),'패싱'],[WK([-16,-16],[30,10],1,0),'업'],
+ [WK([-24,-38],[28,28],1,0),'콘택트'],[WK([-10,-62],[18,4],0,0),'다운'],[WK([14,-58],[0,0],0,0),'패싱'],[WK([30,10],[-16,-16],0,1),'업']].map(([p,name])=>({g:walker(p,36),name}));
+const BADW={wide:{n:[30,30],f:[-30,-30],tn:0,tf:0,an:0,af:0},one1:{n:[25,25],f:[0,0],tn:0,tf:0,an:0,af:0},one2:{n:[-15,-15],f:[0,0],tn:0,tf:0,an:0,af:0},stiff:{n:[6,6],f:[-6,-6],tn:0,tf:0,an:0,af:0}};
+const WALKA=[['wide',0],['one1',0],['wide',2],['one2',0],['stiff',0],['one1',1],['wide',0],['one2',0]].map(([k,l])=>walker(BADW[k],36,l));
+DEMO.walk={w:40,h:40,anim:1,fps:8,tog:{onion:0},
+ draw(n,side,st){stage(n,40,40,36);const i=((st.f%8)+8)%8,L=side==='a'?WALKA:WALKB.map(x=>x.g);if(st.tog.onion){n.globalAlpha=.3;n.drawImage(gcv(L[(i+7)%8]),0,0);n.globalAlpha=1}n.drawImage(gcv(L[i]),0,0)},
+ over(o,side,st){const i=((st.f%8)+8)%8;if(side==='b'){o.tagPx(WALKB[i].name,o.W/2,o.H-8*o.u,PAL.W,PAL.o,'c','b');for(let k=0;k<4;k++){o.ctx.fillStyle=k===i%4?OV.hit:PAL.M;o.ctx.beginPath();o.ctx.arc(o.W/2+(k-1.5)*14*o.u,12*o.u,4*o.u,0,7);o.ctx.fill()}}
+  else o.tagPx('기준 자세 없음',o.W/2,o.H-8*o.u,PAL.o,PAL.W,'c','b')}};
+// 03 피벗 흔들림
+const PIV=['idle','windup','swing','follow'].map(p=>{const g=kGrid(p,K_LEGS.idle,0);return{g,b:trimBox(g)}});
+DEMO.pivot={w:44,h:34,anim:1,fps:3,tog:{mark:1},
+ pos(side,i){const G=29,{g,b}=PIV[i];if(side==='b')return{x:22-KA[0],y:G-KA[1],b};const ib=PIV[0].b,cy=G-(KA[1]-(ib.y0+ib.h/2)),cx=22;return{x:Math.round(cx-(b.x0+b.w/2)),y:Math.round(cy-(b.y0+b.h/2)),b}},
+ draw(n,side,st){stage(n,44,34,29);const i=((st.f%4)+4)%4,p=this.pos(side,i);n.drawImage(gcv(PIV[i].g),p.x,p.y)},
+ over(o,side,st){if(!st.tog.mark)return;const i=((st.f%4)+4)%4,p=this.pos(side,i),b=p.b,c=o.ctx,s=o.s;
+  c.save();c.setLineDash([4*o.u,3*o.u]);c.lineWidth=1.5*o.u;c.strokeStyle=PAL.L;c.strokeRect((p.x+b.x0)*s,(p.y+b.y0)*s,b.w*s,b.h*s);c.restore();
+  const px=side==='b'?22*s:(p.x+b.x0+b.w/2)*s,py=side==='b'?29*s:(p.y+b.y0+b.h/2)*s;c.fillStyle=OV.hit;c.beginPath();c.arc(px,py,5*o.u,0,7);c.fill();
+  const footX=(p.x+KA[0]+.5)*s;c.strokeStyle=PAL.Y;c.lineWidth=2*o.u;c.beginPath();c.moveTo(footX,(p.y+KA[1]-3)*s);c.lineTo(footX,(p.y+KA[1]+1)*s);c.stroke();
+  c.strokeStyle='rgba(244,244,244,.35)';c.setLineDash([2*o.u,4*o.u]);c.beginPath();c.moveTo(22.5*s,0);c.lineTo(22.5*s,o.H);c.stroke();c.setLineDash([]);
+  o.tagPx(side==='b'?'기준점: 발밑':'기준점: 그림 가운데',8*o.u,8*o.u,PAL.o,PAL.W)}};
+// 04 2D 리깅: 통째로 그린 네 장과 조각을 돌린 걷기
+const RIGA=[0,2,4,6].map((i,k)=>perturb(WB[i],k*5+1,1));
+function ik(hx,hy,fx,fy,l1,l2){let dx=fx-hx,dy=fy-hy,d=Math.hypot(dx,dy);d=Math.min(d,l1+l2-.01);const a=Math.atan2(dy,dx),c=Math.acos(clamp((l1*l1+d*d-l2*l2)/(2*l1*d),-1,1)),ka=a-c;return{kx:hx+Math.cos(ka)*l1,ky:hy+Math.sin(ka)*l1}}
+function rigAt(t){const ph=t*Math.PI*2*1.1,bob=Math.round(Math.abs(Math.sin(ph))),g=new Grid(KW,KH),J={};const ground=KY+18;
+ const leg=(phase,hx,c1,c2,key)=>{const s=Math.sin(phase),cs=Math.cos(phase),hy=KY+14+bob,fx=hx+3.2*s,fy=ground-(cs>0?Math.round(2.2*cs):0),k=ik(hx,hy,fx,fy,2.6,2.6);
+  g.line(hx,hy,k.kx,k.ky,c1);g.line(hx+1,hy,k.kx+1,k.ky,c2);g.line(k.kx,k.ky,fx,fy,c1);g.line(k.kx+1,k.ky,fx+1,fy,c2);g.set(fx,fy,'N');g.set(fx+1,fy,'N');g.set(fx+2,fy,'N');J[key]=[[hx+.5,hy+.5],[k.kx+.5,k.ky+.5],[fx+.5,fy+.5]]};
+ leg(ph+Math.PI,KX+7,'M','D','far');leg(ph,KX+8,'L','M','near');const k=kStamp(g,'idle',bob);g.outline();
+ J.spine=[[KX+8.5,KY+14.5+bob],[KX+8.5,KY+9.5+bob],[KX+8.5,KY+4.5+bob]];J.arm=[[k.sx+.5,k.sy+.5],[k.hx+.5,k.hy+.5]];return{g,J}}
+DEMO.rig={w:36,h:28,anim:1,fps:4,smooth:1,tog:{bones:1,flip:0},
+ draw(n,side,st){stage(n,36,28,25);if(side==='a'){putK(n,RIGA[((Math.floor(st.t*4)%4)+4)%4],18,25)}else{const r=rigAt(st.t);putK(n,r.g,18,25)}},
+ over(o,side,st){const c=o.ctx,s=o.s;if(side==='b'&&st.tog.bones){const r=rigAt(st.t),ox=18-KA[0],oy=25-KA[1];c.lineWidth=2*o.u;c.strokeStyle=PAL.c;c.fillStyle=PAL.c;
+   Object.values(r.J).forEach(ch=>{c.beginPath();ch.forEach(([x,y],i)=>{const X=(ox+x)*s,Y=(oy+y)*s;i?c.lineTo(X,Y):c.moveTo(X,Y)});c.stroke();ch.forEach(([x,y])=>{c.beginPath();c.arc((ox+x)*s,(oy+y)*s,3.2*o.u,0,7);c.fill()})})}
+  o.tagPx(side==='a'?'그린 그림 4장':'그린 조각 7개',8*o.u,8*o.u,PAL.o,PAL.W)},
+ flip:st=>st.tog.flip};
+// 05 격자가 어긋난 픽셀
+DEMO.offgrid={w:24,h:26,tog:{grid:1},
+ draw(n){n.fillStyle=PAL.c;n.fillRect(0,0,24,26);n.fillStyle=PAL.b;n.fillRect(0,23,24,3);putK(n,kGrid('idle'),12,23)},
+ blit(ctx,N,s,side){const W=24*s,H=26*s;if(side==='b'){ctx.drawImage(N,0,0,W,H);return}
+  const T=document.createElement('canvas');T.width=W;T.height=H;const t=T.getContext('2d');t.fillStyle=PAL.c;t.fillRect(0,0,W,H);t.imageSmoothingEnabled=true;t.imageSmoothingQuality='low';
+  t.imageSmoothingEnabled=false;t.save();t.translate(W/2,H/2);t.rotate(.022);t.scale(1.083,1.071);t.translate(-W/2-s*.41,-H/2+s*.29);t.drawImage(N,0,0,W,H);t.restore();
+  const M=document.createElement('canvas');M.width=Math.round(W/3.3);M.height=Math.round(H/3.3);const m=M.getContext('2d');m.imageSmoothingEnabled=true;m.drawImage(T,0,0,M.width,M.height);t.globalAlpha=.42;t.imageSmoothingEnabled=true;t.drawImage(M,0,0,W,H);t.globalAlpha=1;
+  const im=t.getImageData(0,0,W,H),d=im.data;for(let i=0;i<d.length;i+=4){const q=Math.floor(i/4),x=q%W,y=Math.floor(q/W),r=(hash(Math.floor(x/(s*.55)),Math.floor(y/(s*.55)))-.5)*26;d[i]=clamp(d[i]+r,0,255);d[i+1]=clamp(d[i+1]+r*.8,0,255);d[i+2]=clamp(d[i+2]+r*1.1,0,255)}t.putImageData(im,0,0);ctx.drawImage(T,0,0)},
+ over(o,side,st){if(st.tog.grid){const c=o.ctx;c.strokeStyle='rgba(26,28,44,.45)';c.lineWidth=1;for(let x=0;x<=24;x++){c.beginPath();c.moveTo(x*o.s+.5,0);c.lineTo(x*o.s+.5,o.H);c.stroke()}for(let y=0;y<=26;y++){c.beginPath();c.moveTo(0,y*o.s+.5);c.lineTo(o.W,y*o.s+.5);c.stroke()}}
+  o.tagPx(side==='a'?'칸 크기가 제각각':'한 칸 = 1픽셀',8*o.u,8*o.u,PAL.o,PAL.W)}};
+// 06 고아 픽셀과 클러스터
+function slimeNoisy(w,h){const g=new Grid(w+2,h+2);for(let y=0;y<h;y++)for(let x=0;x<w;x++){const nx=(x+.5-w/2)/(w/2),ny=(h-(y+.5))/h;if(Math.pow(Math.abs(nx),2.6)+ny*ny>1)continue;
+  const l=-nx*.6+ny*.9+(hash(x*3+1,y*5+2)-.5)*.55;let c=l>.62?'G':l>.12?'g':'t';const hx=nx+.42,hy=ny-.64;if(hx*hx*3+hy*hy*7<.07&&hash(x,y+9)>.3)c='W';if(hash(x+40,y)<.05)c='c';g.set(x+1,y+1,c)}
+ const ex=Math.round(w*.26)+1,ey=Math.round(h*.4)+1;[[ex,ey],[ex,ey+1],[ex+1,ey],[ex+1,ey+1],[ex+5,ey],[ex+5,ey+1],[ex+6,ey],[ex+6,ey+1]].forEach(([x,y])=>g.set(x,y,'o'));g.outline();return g}
+function slimeClean(w,h){const g=new Grid(w+2,h+2);for(let y=0;y<h;y++)for(let x=0;x<w;x++){const nx=(x+.5-w/2)/(w/2),ny=(h-(y+.5))/h;if(Math.pow(Math.abs(nx),2.6)+ny*ny>1)continue;
+  const l=-nx*.6+ny*.9;let c=l>.62?'G':l>.12?'g':'t';if(nx>.62||ny<.1)c='t';const hx=nx+.42,hy=ny-.64;if(hx*hx*3+hy*hy*7<.07)c='W';g.set(x+1,y+1,c)}
+ const ex=Math.round(w*.26)+1,ey=Math.round(h*.4)+1;[[ex,ey],[ex,ey+1],[ex+1,ey],[ex+1,ey+1],[ex+5,ey],[ex+5,ey+1],[ex+6,ey],[ex+6,ey+1]].forEach(([x,y])=>g.set(x,y,'o'));g.outline();return g}
+const ORPH={a:slimeNoisy(36,22),b:slimeClean(36,22)};
+function orphans(g){const out=[];for(let y=0;y<g.h;y++)for(let x=0;x<g.w;x++){const c=g.get(x,y);if(!c)continue;let same=false;for(let dy=-1;dy<=1&&!same;dy++)for(let dx=-1;dx<=1;dx++){if((dx||dy)&&g.get(x+dx,y+dy)===c){same=true;break}}if(!same)out.push([x,y])}return out}
+DEMO.orphan={w:44,h:30,tog:{mark:1},
+ draw(n,side){stage(n,44,30,27);n.drawImage(gcv(ORPH[side]),3,27-ORPH[side].h+1)},
+ over(o,side,st){const g=ORPH[side],list=orphans(g);if(st.tog.mark)list.forEach(([x,y])=>o.cell(3+x,27-g.h+1+y,OV.hit));o.tagPx(`외톨이 픽셀 ${list.length}개`,8*o.u,8*o.u,PAL.o,PAL.W)}};
+// 07 알파 테두리
+const HALO=(()=>{const g=kGrid('idle'),a=[],b=[];for(let y=0;y<g.h;y++)for(let x=0;x<g.w;x++){if(g.get(x,y))continue;if(N4.some(([dx,dy])=>g.get(x+dx,y+dy)))a.push([x,y])}
+ a.forEach(([x,y])=>N4.forEach(([dx,dy])=>{const X=x+dx,Y=y+dy;if(!g.get(X,Y)&&!a.some(p=>p[0]===X&&p[1]===Y)&&hash(X,Y)<.5)b.push([X,Y])}));return{g,a,b}})();
+function night(n,w,h,G){n.fillStyle=PAL.N;n.fillRect(0,0,w,h);n.fillStyle=PAL.o;for(let y=Math.floor(G*.45);y<G;y++)for(let x=0;x<w;x++)if(bay(x,y)<(y-G*.45)/(G*.55))n.fillRect(x,y,1,1);n.fillStyle=PAL.W;[[4,4],[11,2],[19,6],[26,3],[29,9],[7,11]].forEach(([x,y])=>n.fillRect(x,y,1,1));n.fillStyle=PAL.o;n.fillRect(0,G,w,h-G);n.fillStyle=PAL.D;n.fillRect(0,G,w,1)}
+DEMO.halo={w:32,h:28,tog:{dark:1},
+ draw(n,side,st){const G=25;if(st.tog.dark)night(n,32,28,G);else{n.fillStyle=PAL.c;n.fillRect(0,0,32,28);n.fillStyle=PAL.g;n.fillRect(0,G,32,3);n.fillStyle=PAL.G;n.fillRect(0,G,32,1)}
+  const ox=16-KA[0],oy=G-KA[1];if(side==='a'){n.fillStyle='rgba(244,244,244,.62)';HALO.a.forEach(([x,y])=>n.fillRect(ox+x,oy+y,1,1));n.fillStyle='rgba(244,244,244,.24)';HALO.b.forEach(([x,y])=>n.fillRect(ox+x,oy+y,1,1))}
+  n.drawImage(gcv(HALO.g),ox,oy)},
+ over(o,side){o.tagPx(side==='a'?'반투명 테두리가 남음':'투명도 0 아니면 255',8*o.u,8*o.u,PAL.o,PAL.W)}};
+// 08 믹셀: 칼 궤적과 코인만 칸 크기가 다르다
+const MIX={swingNo:kGrid('swing',K_LEGS.idle,0,{noSmear:true}),swing:kGrid('swing'),windup:kGrid('windup'),follow:kGrid('follow'),idle0:kGrid('idle'),idle1:kGrid('idle',K_LEGS.idle,1)};
+const COINS=(()=>{const g=new Grid(8,8);g.rows(['.YYYY.','YWYYYO','YWYYYO','YYYYYO','YYYYOO','.OOOO.'],1,1);g.outline();return g.canvas()})();
+const COINF=(()=>{const g=new Grid(14,14);g.rows(['....YYYY....','..YYWWYYYY..','.YWWYYYYYYO.','.YWYYOOYYYO.','YWYYO..OYYYO','YWYYO..OYYYO','YYYYO..OYYOO','YYYYYOOYYYOO','.YYYYYYYYOO.','.YYYYYYYOOO.','..OOYYYOOO..','....OOOO....'],1,1);g.outline();return g.canvas()})();
+DEMO.mixel={w:120,h:68,anim:1,dur:2.4,slow:{a:.74,b:1.05,rate:.25},
+ draw(n,side,st){const s=st.t,G=54,clip={w:120,h:68,g:G};bg(n,clip,null,s);const kx=46,sx0=72;
+  const pose=s>=.5&&s<.8?'windup':s>=.8&&s<.95?(side==='a'?'swingNo':'swing'):s>=.95&&s<1.25?'follow':(Math.floor(s/.45)%2?'idle1':'idle0');putK(n,MIX[pose],kx,G);
+  const d=s-.8;let sx=sx0,w=16,h=11,fl=false;if(d>=0&&d<.3){const p=d/.3;sx=sx0+6*(1-(1-p)*(1-p));fl=d<.07;w=d<.08?18:15;h=d<.08?9:12}else if(d>=.3&&d<1){sx=sx0+6*(1-ss((d-.3)/.7))}drawSlime(n,sx,G,w,h,fl);spark(n,sx0-8,G-8,d)},
+ over(o,side,st){const c=o.ctx,s=o.s,t=st.t;
+  if(side==='a'){if(t>=.8&&t<.95){const cx=(46+4)*s,cy=(54-9)*s,r=14*s;const a0=-2.0,a1=.15;for(let i=0;i<24;i++){const p=i/24,a=lerp(a0,a1,p),a2=lerp(a0,a1,p+1/24);c.strokeStyle=`rgba(244,244,244,${.15+.85*p})`;c.lineWidth=(1+p*4)*s*.55;c.beginPath();c.arc(cx,cy,r-(1+p*4)*s*.3,a,a2+.01);c.stroke()}}
+   c.imageSmoothingEnabled=false;c.drawImage(COINF,8*o.u,8*o.u,COINF.width*s/2,COINF.height*s/2)}
+  else{c.imageSmoothingEnabled=false;c.drawImage(COINS,8*o.u,8*o.u,COINS.width*s,COINS.height*s)}
+  o.tagPx(side==='a'?'궤적과 코인만 칸이 작음':'모두 같은 칸 크기',o.W-8*o.u,8*o.u,PAL.o,PAL.W,'r')}};
+// 09 정수 배율: 한 칸이 화면 픽셀 몇 개로 그려지는지
+DEMO.scale={w:20,h:22,fixed:1,aspect:.82,tog:{filter:0,edges:1},sl:{k:2.5},
+ draw(n){n.fillStyle=PAL.c;n.fillRect(0,0,20,22);n.fillStyle=PAL.b;n.fillRect(0,20,20,2);putK(n,kGrid('idle'),10,20)},
+ blit(ctx,N,_,side,st){const k=side==='a'?+st.sl.k:3,W=Math.round(20*k),H=Math.round(22*k),I=document.createElement('canvas');I.width=W;I.height=H;const ic=I.getContext('2d');ic.imageSmoothingEnabled=!!st.tog.filter;ic.drawImage(N,0,0,W,H);
+  const s2=Math.max(1,Math.floor(Math.min(ctx.canvas.width/W,ctx.canvas.height/H))),ox=Math.floor((ctx.canvas.width-W*s2)/2),oy=Math.floor((ctx.canvas.height-H*s2)/2);
+  ctx.fillStyle=PAL.D;ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);ctx.imageSmoothingEnabled=false;ctx.drawImage(I,ox,oy,W*s2,H*s2);
+  if(st.tog.edges){ctx.strokeStyle='rgba(26,28,44,.5)';ctx.lineWidth=1;for(let x=0;x<=20;x++){const X=ox+Math.floor(x*k)*s2+.5;ctx.beginPath();ctx.moveTo(X,oy);ctx.lineTo(X,oy+H*s2);ctx.stroke()}for(let y=0;y<=22;y++){const Y=oy+Math.floor(y*k)*s2+.5;ctx.beginPath();ctx.moveTo(ox,Y);ctx.lineTo(ox+W*s2,Y);ctx.stroke()}}
+  const widths=[...new Set(Array.from({length:20},(_,x)=>Math.floor((x+1)*k)-Math.floor(x*k)))].sort();ctx.__info=`${k}배: 한 칸이 화면 픽셀 ${widths.join(', ')}개`},
+ over(o,side){o.tagPx(o.ctx.__info||'',8*o.u,8*o.u,PAL.o,PAL.W)}};
+// 10 회전 깨짐: 맞고 날아가며 도는 기사
+const RN=36,RC=18;
+const ROTSRC=(()=>{const k=kGrid('idle'),b=trimBox(k),g=new Grid(RN,RN),ox=Math.round(RC-(b.x0+b.w/2)),oy=Math.round(RC-(b.y0+b.h/2));for(let y=0;y<k.h;y++)for(let x=0;x<k.w;x++){const c=k.get(x,y);if(c)g.set(x+ox,y+oy,c)}return g})();
+// 그냥 회전: 화면 칸마다 원래 그림에서 가장 가까운 칸을 가져온다
+function rotNear(th){const g=new Grid(RN,RN),c=Math.cos(-th),s=Math.sin(-th);for(let y=0;y<RN;y++)for(let x=0;x<RN;x++){const dx=x+.5-RC,dy=y+.5-RC,k=ROTSRC.get(Math.floor(RC+dx*c-dy*s),Math.floor(RC+dx*s+dy*c));if(k)g.set(x,y,k)}return g}
+// RotSprite: Scale2x를 세 번 해서 8배로 키우며 계단을 다듬고, 돌린 뒤 다시 원래 크기로 뽑는다
+function scale2x(src){const w=src.w,h=src.h,g=new Grid(w*2,h*2);for(let y=0;y<h;y++)for(let x=0;x<w;x++){const P=src.get(x,y),A=src.get(x,y-1),B=src.get(x+1,y),C=src.get(x-1,y),E=src.get(x,y+1);
+  let e0=P,e1=P,e2=P,e3=P;if(C===A&&C!==E&&A!==B)e0=A;if(A===B&&A!==C&&B!==E)e1=B;if(E===C&&E!==B&&C!==A)e2=C;if(B===E&&B!==A&&E!==C)e3=E;const i=(2*y)*(2*w)+2*x;g.a[i]=e0;g.a[i+1]=e1;g.a[i+2*w]=e2;g.a[i+2*w+1]=e3}return g}
+const ROT8=scale2x(scale2x(scale2x(ROTSRC)));
+function rotSprite(th){const g=new Grid(RN,RN),c=Math.cos(-th),s=Math.sin(-th);for(let y=0;y<RN;y++)for(let x=0;x<RN;x++){const dx=x+.5-RC,dy=y+.5-RC,k=ROT8.get(Math.floor((RC+dx*c-dy*s)*8),Math.floor((RC+dx*s+dy*c)*8));if(k)g.set(x,y,k)}return g}
+// 바깥선이 끊긴 곳: 안쪽 색이 투명한 칸과 바로 맞닿은 칸
+function breaks(g){const out=[];for(let y=0;y<g.h;y++)for(let x=0;x<g.w;x++){const c=g.get(x,y);if(!c||c==='o')continue;if(N4.some(([dx,dy])=>!g.get(x+dx,y+dy)))out.push([x,y])}return out}
+DEMO.rotate={w:RN,h:RN,anim:1,sl:{deg:0},tog:{brk:1},
+ ang(st){return st.manual?st.sl.deg*Math.PI/180:st.t*.55},
+ draw(n,side,st){n.fillStyle=PAL.c;n.fillRect(0,0,RN,RN);const th=this.ang(st),g=side==='a'?rotNear(th):rotSprite(th);n.drawImage(g.canvas(),0,0)},
+ over(o,side,st){const deg=((Math.round(this.ang(st)*180/Math.PI)%360)+360)%360,th=this.ang(st),br=breaks(side==='a'?rotNear(th):rotSprite(th));if(st.tog.brk)br.forEach(([x,y])=>o.cell(x,y,OV.hit));
+  const t=o.tagPx(side==='a'?`그냥 회전 ${deg}도`:`RotSprite ${deg}도`,8*o.u,8*o.u,PAL.o,PAL.W);o.tagPx(`외곽선이 끊긴 곳 ${br.length}칸`,8*o.u,t.y+t.h+6*o.u,PAL.o,PAL.W)}};
+// 11 픽셀 밀도
+function mk(rows){const g=new Grid(rows[0].length+2,rows.length+2);g.rows(rows,1,1);g.outline();return g}
+const TABLE=mk(['OOOOOOOOOOOOOOOOOOOOOO','RRRRRRRRRRRRRRRRRRRRRR','rrrrrrrrrrrrrrrrrrrrrr','.Rr................Rr.','.Rr................Rr.','.Rr................Rr.','.Rr................Rr.']);
+const TABLEH=mk(['OOOOOOOOOOO','RRRRRRRRRRR','.r.......r.','.r.......r.']);
+const CUP=mk(['LWW.','LWWL','LWWL','MLL.']);
+const CUPF=mk(['.LWWWL..','LrRrrL..','LWWWWLLL','LWWWWL.L','LWWWWL.L','LWWWWLLL','LWWWWL..','MLLLLM..']);
+const BARREL=(()=>{const w=9,h=11,g=new Grid(w+2,h+2);for(let y=0;y<h;y++){const bulge=Math.round(Math.sin((y+.5)/h*Math.PI)*1.2);for(let x=-bulge;x<w+bulge;x++){const p=(x+bulge)/(w+2*bulge);let c=p<.3?'O':p<.75?'R':'r';if(y===2||y===h-3)c=p<.3?'L':'M';g.set(x+1,y+1,c)}}g.outline();return g})();
+DEMO.density={w:58,h:34,even:1,
+ draw(n,side){const G=30;stage(n,58,34,G);putK(n,kGrid('idle'),11,G);n.drawImage(gcv(BARREL),46,G-BARREL.h+1);
+  if(side==='a')n.drawImage(gcv(TABLEH),20,G-TABLEH.h*2+2,TABLEH.w*2,TABLEH.h*2);else{n.drawImage(gcv(TABLE),20,G-TABLE.h+1);n.drawImage(gcv(CUP),30,G-TABLE.h+1-CUP.h+1)}},
+ over(o,side){const c=o.ctx,s=o.s,G=30;if(side==='a'){const ty=G-TABLEH.h*2+2;c.imageSmoothingEnabled=false;c.drawImage(gcv(CUPF),28*s,(ty+1)*s-CUPF.h*s/2,CUPF.w*s/2,CUPF.h*s/2);
+   o.tagPx('칸 반',30*s,(ty-5)*s,PAL.W,PAL.o,'c','b');o.tagPx('칸 2배',31*s,(G+3)*s,PAL.W,PAL.o,'c','t')}
+  else{o.tagPx('모두 1칸',o.W/2,(G+3)*s,PAL.W,PAL.o,'c','t')}}};
+// 12 기준 해상도
+DEMO.baseres={size:side=>side==='a'?{w:240,h:135}:{w:160,h:90},anim:1,fps:2,
+ draw(n,side,st){const z=this.size(side),G=Math.round(z.h*.78),clip={w:z.w,h:z.h,g:G};bg(n,clip,null,st.t);const kx=Math.round(z.w*.4);putK(n,kGrid('idle',K_LEGS.idle,st.f%2),kx,G);drawSlime(n,kx+26,G,16,11,false)},
+ over(o,side){const z=this.size(side),G=Math.round(z.h*.78),kx=Math.round(z.w*.4),s=o.s,c=o.ctx,x=(kx-12)*s,y0=(G-20)*s,y1=G*s;c.strokeStyle=PAL.Y;c.lineWidth=2.5*o.u;c.beginPath();c.moveTo(x+6*o.u,y0);c.lineTo(x,y0);c.lineTo(x,y1);c.lineTo(x+6*o.u,y1);c.stroke();
+  o.tagPx(`${z.w}x${z.h}: 기사 20칸은 화면 높이의 약 1/${Math.round(z.h/20)}`,8*o.u,8*o.u,PAL.o,PAL.W)}};
+// 13 광원 방향 통일
+function slimeLit(w,h,dir){const g=new Grid(w+2,h+2);for(let y=0;y<h;y++)for(let x=0;x<w;x++){const nx=(x+.5-w/2)/(w/2),ny=(h-(y+.5))/h;if(Math.pow(Math.abs(nx),2.6)+ny*ny>1)continue;const lx=nx*dir;
+  let c='g';if(-lx*.6+ny*.9>.62)c='G';if(lx>.58||ny<.13)c='t';const hx=lx+.42,hy=ny-.64;if(hx*hx*3+hy*hy*7<.07)c='W';g.set(x+1,y+1,c)}
+ const ex=Math.round(w*.26)+1,ey=Math.round(h*.4)+1;[[ex,ey],[ex,ey+1],[ex+3,ey],[ex+3,ey+1]].forEach(([x,y])=>g.set(x,y,'o'));g.outline();return g}
+const LIT={a:slimeLit(16,11,-1),b:slimeLit(16,11,1)};
+function shadow(n,x,y,w){n.fillStyle='rgba(26,28,44,.38)';for(let i=-w;i<=w;i++){const hh=Math.abs(i)>w*.6?1:2;n.fillRect(Math.round(x+i),y-hh+1,1,hh)}}
+DEMO.light={w:120,h:68,anim:1,fps:2,tog:{arrow:1},
+ draw(n,side,st){const G=54,clip={w:120,h:68,g:G};bg(n,clip,null,st.t);const kx=46,sx=74;shadow(n,kx+3,G,6);shadow(n,sx+(side==='a'?-4:3),G,8);putK(n,kGrid('idle',K_LEGS.idle,st.f%2),kx,G);n.drawImage(gcv(LIT[side]),sx-9,G-LIT[side].h+1)},
+ over(o,side,st){if(!st.tog.arrow)return;const s=o.s,c=o.ctx,arr=(tx,ty,fromRight)=>{const X=tx*s,Y=ty*s,dx=(fromRight?1:-1)*16*s,dy=-14*s;c.strokeStyle=PAL.Y;c.fillStyle=PAL.Y;c.lineWidth=3*o.u;c.beginPath();c.moveTo(X+dx,Y+dy);c.lineTo(X+dx*.25,Y+dy*.25);c.stroke();
+   const a=Math.atan2(-dy,-dx);c.beginPath();c.moveTo(X+dx*.18,Y+dy*.18);c.lineTo(X+dx*.18-Math.cos(a-.5)*9*o.u,Y+dy*.18-Math.sin(a-.5)*9*o.u);c.lineTo(X+dx*.18-Math.cos(a+.5)*9*o.u,Y+dy*.18-Math.sin(a+.5)*9*o.u);c.fill();c.beginPath();c.arc(X+dx,Y+dy,6*o.u,0,7);c.fill()};
+  arr(44,34,false);arr(74,44,side==='a')}};
+// 14 팔레트 고정
+const PALSL={a:(()=>{const w=44,h=26,c=document.createElement('canvas');c.width=w+2;c.height=h+2;const g=c.getContext('2d'),im=g.createImageData(w+2,h+2),d=im.data,stops=[[37,113,121],[56,183,100],[167,240,112],[244,244,244]],col=v=>{v=clamp(v,0,2.999);const i=Math.floor(v),f=v-i,a=stops[i],b=stops[i+1];return a.map((q,j)=>q+(b[j]-q)*f)};
+  const inside=(x,y)=>{const nx=(x+.5-w/2)/(w/2),ny=(h-(y+.5))/h;return ny>=0&&ny<=1&&Math.pow(Math.abs(nx),2.6)+ny*ny<=1};
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){if(!inside(x,y))continue;const nx=(x+.5-w/2)/(w/2),ny=(h-(y+.5))/h,hx=nx+.42,hy=ny-.64,spec=Math.max(0,1-(hx*hx*3+hy*hy*7)/.12);let v=clamp((-nx*.6+ny*.9+.35)*1.6,0,2)+spec*.95;const q=col(v),r=(hash(x,y)-.5)*14,i=((y+1)*(w+2)+x+1)*4;d[i]=q[0]+r;d[i+1]=q[1]+r;d[i+2]=q[2]+r;d[i+3]=255}
+  for(let y=-1;y<=h;y++)for(let x=-1;x<=w;x++){if(inside(x,y))continue;if(N4.some(([dx,dy])=>inside(x+dx,y+dy))){const i=((y+1)*(w+2)+x+1)*4;if(i>=0&&i<d.length){d[i]=26;d[i+1]=28;d[i+2]=44;d[i+3]=255}}}
+  const ex=Math.round(w*.26)+1,ey=Math.round(h*.4)+1;[[ex,ey],[ex,ey+1],[ex+1,ey],[ex+1,ey+1],[ex+5,ey],[ex+5,ey+1],[ex+6,ey],[ex+6,ey+1]].forEach(([x,y])=>{const i=(y*(w+2)+x)*4;d[i]=26;d[i+1]=28;d[i+2]=44});g.putImageData(im,0,0);return c})(),b:gcv(slimeClean(44,26))};
+function colorsOf(cv){const g=cv.getContext('2d'),d=g.getImageData(0,0,cv.width,cv.height).data,m=new Map();for(let i=0;i<d.length;i+=4){if(d[i+3]<255)continue;const k=(d[i]<<16)|(d[i+1]<<8)|d[i+2];m.set(k,(m.get(k)||0)+1)}return[...m.keys()].sort((a,b)=>((a>>16)+(a>>8&255)+(a&255))-((b>>16)+(b>>8&255)+(b&255)))}
+const PALCOL={a:colorsOf(PALSL.a),b:colorsOf(PALSL.b)};
+DEMO.palette={w:56,h:36,
+ draw(n,side){stage(n,56,36,30);n.drawImage(PALSL[side],5,30-PALSL[side].height+1)},
+ over(o,side){const cols=PALCOL[side],c=o.ctx,n=Math.min(cols.length,40),sw=Math.min(14*o.u,(o.W-16*o.u)/n),y=o.H-sw-8*o.u;for(let i=0;i<n;i++){const k=cols[Math.floor(i*cols.length/n)];c.fillStyle=`rgb(${k>>16},${k>>8&255},${k&255})`;c.fillRect(8*o.u+i*sw,y,sw,sw)}
+  o.tagPx(`색 ${cols.length}개`,8*o.u,8*o.u,PAL.o,PAL.W)}};
+// 15 3D 픽셀화: 나무 상자
+const CUBE={V:[[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]],F:[[0,1,2,3,[0,0,-1]],[5,4,7,6,[0,0,1]],[4,0,3,7,[-1,0,0]],[1,5,6,2,[1,0,0]],[3,2,6,7,[0,1,0]],[4,5,1,0,[0,-1,0]]]};
+const LGT=(()=>{const v=[-.55,.75,.45],l=Math.hypot(...v);return v.map(q=>q/l)})();
+function cubeShade(th,size,cx,cy,sc,fn){const ph=.5,ct=Math.cos(th),st=Math.sin(th),cp=Math.cos(ph),sp=Math.sin(ph);
+ const tr=([x,y,z])=>{const x1=x*ct+z*st,z1=-x*st+z*ct,y2=y*cp-z1*sp,z2=y*sp+z1*cp;return[x1,y2,z2]};
+ const P=CUBE.V.map(v=>{const[x,y]=tr(v);return[cx+x*size*sc,cy-y*size*sc]});
+ const faces=CUBE.F.map(f=>{const nrm=tr(f[4]);return{q:f.slice(0,4).map(i=>P[i]),nrm,b:Math.max(0,f[4][0]*LGT[0]*ct+0)}}).filter(f=>f.nrm[2]>.02);
+ faces.forEach(f=>{const nw=f.nrm;f.light=clamp(.25+.75*Math.max(0,nw[0]*LGT[0]+nw[1]*LGT[1]+nw[2]*LGT[2]),0,1)});return faces}
+function inQuad(q,x,y){let sgn=0;for(let i=0;i<4;i++){const[a,b]=[q[i],q[(i+1)%4]],cr=(b[0]-a[0])*(y-a[1])-(b[1]-a[1])*(x-a[0]);if(Math.abs(cr)<1e-9)continue;const s=cr>0?1:-1;if(sgn&&s!==sgn)return false;sgn=s}return true}
+function uvOf(q,x,y){const ex=[q[1][0]-q[0][0],q[1][1]-q[0][1]],ey=[q[3][0]-q[0][0],q[3][1]-q[0][1]],px=x-q[0][0],py=y-q[0][1],det=ex[0]*ey[1]-ex[1]*ey[0];return[(px*ey[1]-py*ey[0])/det,(ex[0]*py-ex[1]*px)/det]}
+const WOOD=['r','R','O','Y'];
+function crateB(th){const g=new Grid(44,40),faces=cubeShade(th,10,22,21,1);for(let y=0;y<40;y++)for(let x=0;x<44;x++){for(const f of faces){if(!inQuad(f.q,x+.5,y+.5))continue;const[u,v]=uvOf(f.q,x+.5,y+.5);let lv=f.light>.8?2:f.light>.5?1:0;const border=u<.14||u>.86||v<.14||v>.86||Math.abs(u-v)<.08;if(border)lv=Math.min(3,lv+1);else if((Math.floor(v*4.5))%2===0&&lv>0)lv-=0;g.set(x,y,WOOD[lv]);break}}g.outline();return g}
+const CRATEC={};
+function crateA(th,N){const S=6,W=44*S,H=40*S,c=document.createElement('canvas');c.width=W;c.height=H;const g=c.getContext('2d'),im=g.createImageData(W,H),d=im.data,faces=cubeShade(th,10,22*S,21*S,S);
+ const dark=[93,39,93],mid=[177,62,83],lite=[239,125,87],hi=[255,205,117];
+ for(let y=0;y<H;y+=1)for(let x=0;x<W;x+=1){for(const f of faces){if(!inQuad(f.q,x+.5,y+.5))continue;const[u,v]=uvOf(f.q,x+.5,y+.5);let L=f.light;const border=u<.14||u>.86||v<.14||v>.86||Math.abs(u-v)<.08;if(border)L=L*.8+.25;const n=(hash(Math.floor(u*60),Math.floor(v*60))-.5)*.18;L=clamp(L+n,0,1.2);
+   const q=L<.5?dark.map((a,j)=>a+(mid[j]-a)*L*2):L<1?mid.map((a,j)=>a+(lite[j]-a)*(L-.5)*2):lite.map((a,j)=>a+(hi[j]-a)*Math.min(1,(L-1)*5));const i=(y*W+x)*4;d[i]=q[0];d[i+1]=q[1];d[i+2]=q[2];d[i+3]=255;break}}
+ g.putImageData(im,0,0);N.imageSmoothingEnabled=true;N.imageSmoothingQuality='high';N.drawImage(c,0,0,44,40);N.imageSmoothingEnabled=false}
+DEMO.voxel={w:44,h:40,anim:1,
+ draw(n,side,st){n.fillStyle=PAL.D;n.fillRect(0,0,44,40);const th=st.t*.7;if(side==='a'){crateA(th,n)}else{const step=Math.PI*2/16,k=((Math.round(th/step)%16)+16)%16;if(!CRATEC[k])CRATEC[k]=crateB(k*step);n.drawImage(gcv(CRATEC[k]),0,0)}},
+ over(o,side){o.tagPx(side==='a'?'부드럽게 돌리고 줄이기만 함':'16방향 고정, 4색, 외곽선',8*o.u,8*o.u,PAL.o,PAL.W)}};
+// 첫 화면: 손맛 칼럼과 같은 기사와 슬라임
+DEMO.hero={w:288,h:84,anim:1,dur:7.2,draw(n,side,st){heroScene(n,st.t,{w:288,h:84,g:68},st.clock)}};
+
+// ===== 정수배 렌더러와 조작 =====
+const NATS={};function natOf(w,h){const k=w+'x'+h;if(!NATS[k]){const c=document.createElement('canvas');c.width=w;c.height=h;NATS[k]=c}return NATS[k]}
+function mkO(ctx,s,cv){const dpr=cv._dpr||1,u=dpr*clamp(cv.width/dpr/480,.85,1.25),W=cv.width,H=cv.height;
+ const tagPx=(text,X,Y,bg,fg,ax='l',ay='t')=>{ctx.font=`700 ${Math.round(13*u)}px ${FONT}`;const tw=ctx.measureText(text).width,pw=tw+14*u,ph=24*u;let x0=ax==='c'?X-pw/2:ax==='r'?X-pw:X,y0=ay==='b'?Y-ph:Y;x0=clamp(x0,4*u,W-pw-4*u);y0=clamp(y0,4*u,H-ph-4*u);
+  ctx.fillStyle=bg;ctx.beginPath();ctx.roundRect(x0,y0,pw,ph,6*u);ctx.fill();ctx.fillStyle=fg;ctx.textBaseline='middle';ctx.textAlign='left';ctx.fillText(text,x0+7*u,y0+ph/2+.5*u);return{x:x0,y:y0,w:pw,h:ph}};
+ return{ctx,s,u,W,H,tagPx,cell(x,y,col){ctx.strokeStyle=col;ctx.lineWidth=Math.max(1.5,s*.14);ctx.strokeRect(x*s+ctx.lineWidth/2,y*s+ctx.lineWidth/2,s-ctx.lineWidth,s-ctx.lineWidth)}}}
+function sizeOf(spec,side){return spec.size?spec.size(side):{w:spec.w,h:spec.h}}
+function renderDemo(it,cv){const spec=it.spec,side=cv.dataset.side||'a',z=sizeOf(spec,side),N=natOf(z.w,z.h),n=N.getContext('2d');n.imageSmoothingEnabled=false;n.globalAlpha=1;n.clearRect(0,0,z.w,z.h);
+ it.st.f=Math.floor(it.st.t*(spec.fps||1));spec.draw.call(spec,n,side,it.st);const ctx=cv.getContext('2d');ctx.imageSmoothingEnabled=false;ctx.clearRect(0,0,cv.width,cv.height);ctx.save();
+ if(spec.flip&&spec.flip(it.st)){ctx.translate(cv.width,0);ctx.scale(-1,1)}
+ if(spec.blit)spec.blit.call(spec,ctx,N,cv._s,side,it.st);else ctx.drawImage(N,0,0,z.w*cv._s,z.h*cv._s);ctx.restore();
+ if(spec.over)spec.over.call(spec,mkO(ctx,cv._s,cv),side,it.st)}
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const items=[...document.querySelectorAll('[data-demo]')].map(root=>{const spec=DEMO[root.dataset.demo],cvs=root.matches('canvas')?[root]:[...root.querySelectorAll('canvas[data-side]')];
+ const st={t:spec.dur?.85:0,tog:{...(spec.tog||{})},sl:{...(spec.sl||{})},playing:!!spec.anim&&!reduce,manual:false};const it={root,spec,cvs,st,visible:true,dirty:true};
+ const play=root.querySelector('.play'),sync=()=>{if(play)play.textContent=st.playing?'멈춤':'재생'};
+ if(play)play.addEventListener('click',()=>{st.playing=!st.playing;st.manual=false;sync()});
+ const step=root.querySelector('.step');if(step)step.addEventListener('click',()=>{st.playing=false;const fps=spec.fps||8;st.t=(Math.floor(st.t*fps)+1)/fps+1e-4;it.dirty=true;sync()});
+ root.querySelectorAll('.tog').forEach(b=>{const k=b.dataset.tog;b.setAttribute('aria-pressed',!!st.tog[k]);b.addEventListener('click',()=>{st.tog[k]=st.tog[k]?0:1;b.setAttribute('aria-pressed',!!st.tog[k]);it.dirty=true})});
+ root.querySelectorAll('input[data-sl]').forEach(inp=>{const k=inp.dataset.sl,out=inp.parentElement.querySelector('output'),fmt=inp.dataset.fmt||'{v}';const show=()=>{if(out)out.textContent=fmt.replace('{v}',inp.value)};inp.value=st.sl[k];show();
+  inp.addEventListener('input',()=>{st.sl[k]=inp.value;show();if(inp.dataset.pause){st.playing=false;st.manual=true;sync()}it.dirty=true})});
+ sync();return it});
+const fitAll=()=>items.forEach(it=>it.cvs.forEach(cv=>{const dpr=Math.min(window.devicePixelRatio||1,2),box=cv.parentElement.getBoundingClientRect(),target=Math.max(1,Math.floor(box.width*dpr)),side=cv.dataset.side||'a',z=sizeOf(it.spec,side);
+ let w,h,s;if(it.spec.fixed){w=target;h=Math.round(target*(it.spec.aspect||z.h/z.w));s=1}else{s=Math.max(1,Math.floor(target/z.w));if(it.spec.even&&s>2&&s%2)s--;w=z.w*s;h=z.h*s}
+ if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;it.dirty=true}cv._s=s;cv._dpr=dpr;cv.style.width=(w/dpr)+'px';cv.style.height=(h/dpr)+'px'}));
+new ResizeObserver(fitAll).observe(document.body);
+const io=new IntersectionObserver(es=>es.forEach(e=>{const it=items.find(q=>q.root===e.target);if(it){it.visible=e.isIntersecting;if(it.visible)it.dirty=true}}),{rootMargin:'150px'});items.forEach(it=>io.observe(it.root));
+function winR(s,a,b){const r=.1;if(s<a-r||s>b+r)return 0;if(s<a)return ss((s-(a-r))/r);if(s<=b)return 1;return 1-ss((s-b)/r)}
+let last=0;function loop(now){const dt=last?Math.min(.05,(now-last)/1000):0;last=now;
+ for(const it of items){if(!it.visible)continue;const sp=it.spec,st=it.st;if(st.playing){let rate=1;if(sp.slow)rate=1-(1-sp.slow.rate)*winR(st.t,sp.slow.a,sp.slow.b);st.t+=dt*rate;st.clock=(st.clock??st.t)+dt*rate;if(sp.dur&&st.t>=sp.dur)st.t-=sp.dur;it.dirty=true}
+  if(it.dirty){it.cvs.forEach(cv=>renderDemo(it,cv));it.dirty=false}}requestAnimationFrame(loop)}
+window.__seekDot=(id,t)=>{const it=items.find(q=>q.root.id===id||q.root.dataset.demo===id);it.st.playing=false;it.st.t=t;it.st.clock=t;it.cvs.forEach(cv=>renderDemo(it,cv))};
+Promise.all([document.fonts.load(`700 16px ${FONT}`),document.fonts.load(`500 16px ${FONT}`)]).catch(()=>{}).then(()=>{fitAll();requestAnimationFrame(loop)});
+
+</script></body></html>
