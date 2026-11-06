@@ -685,5 +685,5 @@ document.querySelectorAll('.say').forEach(el=>{const b=el.querySelector('.copy-s
 // 시험용: 특정 장면 시각으로 멈춰 그린다
 window.__seek=(id,s,slow=true)=>{const p=players.find(q=>q.root.id===id||q.root.dataset.clip===id);p.playing=false;p.s=s;p.clock=s;p.slowOn=slow;p.dirty=true;p.cvs.forEach(cv=>render(p,cv,cv.dataset.scene))};
 Promise.all([document.fonts.load(`700 16px ${FONT}`),document.fonts.load(`500 16px ${FONT}`)]).catch(()=>{}).then(()=>{fit();requestAnimationFrame(frame)});
-</script><!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "eb9c31f861f94b378f5ca0eb41d716d7"}'></script><!-- End Cloudflare Web Analytics -->
+</script><script src="../stats.js?v=1" data-p="sonmat" defer></script><!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "eb9c31f861f94b378f5ca0eb41d716d7"}'></script><!-- End Cloudflare Web Analytics -->
 </body></html>
