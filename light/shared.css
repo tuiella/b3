@@ -78,7 +78,7 @@ a{color:inherit}
 .say .en{color:var(--muted);font-size:14px;margin-left:6px}
 .pipe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 28px;margin:20px 0 0;padding:0;list-style:none}
 @media (max-width:860px){.pipe{grid-template-columns:repeat(2,minmax(0,1fr))}.pipe li:nth-child(2n)::after{content:''}}
-.pipe li{position:relative;background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--kind,var(--line));border-radius:10px;padding:12px 12px 12px;font-size:14px;line-height:1.5}
+.pipe li{position:relative;background:var(--surface);border:1.5px solid var(--kind,var(--line));border-radius:10px;padding:12px 12px 12px;font-size:14px;line-height:1.5}
 .pipe li::after{content:'→';position:absolute;right:-24px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:18px;font-weight:700}
 .pipe li:nth-child(4n)::after{content:''}
 .pipe li .ex{display:block;margin-top:8px;font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink)}
