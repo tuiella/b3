@@ -55,16 +55,6 @@
   <li class="k-disp"><b>07 색역 변환</b><i>출력 기기의 삼각형으로 바꿈</i><span class="ex">SDR이면 그대로</span><em>화면값</em></li>
   <li class="k-store"><b>08 출력</b><i>곡선으로 인코딩해 보내면 모니터가 빛으로</i><span class="ex">0.96 → 251 → 빛</span><em>저장값 → 빛</em></li>
  </ol>
- <div class="note"><b>같은 숫자, 다른 뜻</b>0.5라는 숫자가 저장값이면 빛의 양으로 0.21이고, 빛의 양이면 저장값으로 188이며, 화면값이면 모니터 최대 밝기의 절반입니다. 색 문제의 대부분은 어느 종류의 숫자인지 헷갈린 데서 시작합니다. 1장은 저장값과 빛의 양의 차이(01~03), 2장은 천장 없는 범위(04~05), 3장은 화면으로 가는 마지막 변환(06~08)을 다룹니다.</div>
- <table class="t" aria-label="색공간은 세 가지 약속">
-  <thead><tr><th>색공간을 이루는 약속</th><th>묻는 것</th><th>이 글에서 다루는 곳</th></tr></thead>
-  <tbody>
-   <tr><td>전달 함수 (transfer function)</td><td>저장값과 빛의 양이 어떤 곡선으로 이어지는가</td><td>02, 08</td></tr>
-   <tr><td>원색 (primaries)과 색역 (gamut)</td><td>빨강 1.0이 어떤 빨강인가, 표현할 수 있는 색의 범위가 얼마나 넓은가</td><td>07</td></tr>
-   <tr><td>백색점 (white point)</td><td>(1, 1, 1)을 어떤 흰색으로 볼 것인가</td><td>07, 08</td></tr>
-  </tbody>
- </table>
- <p class="note" style="margin-top:14px"><b>시연에 대해</b>모든 장면은 페이지 안의 셰이더가 실시간으로 그립니다. 3D 장면은 레이마칭으로 선형 HDR 버퍼에 한 번 렌더링한 뒤 항목마다 다른 후처리를 거칩니다. 브라우저 캔버스는 8비트 sRGB가 기본이라 HDR 출력과 넓은 색역은 흉내만 낼 수 있습니다.</p>
 </section>
 
 <section class="part" aria-labelledby="p1">
