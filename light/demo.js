@@ -45,7 +45,7 @@ vec2 map(vec3 p,bool forShadow){
 }
 vec3 calcN(vec3 p){vec2 e=vec2(0.0012,0.);return normalize(vec3(map(p+e.xyy,false).x-map(p-e.xyy,false).x,map(p+e.yxy,false).x-map(p-e.yxy,false).x,map(p+e.yyx,false).x-map(p-e.yyx,false).x));}
 vec2 march(vec3 ro,vec3 rd){float t=0.02,id=0.;for(int i=0;i<160;i++){vec3 p=ro+rd*t;if(p.x>3.31){id=0.;break;}vec2 h=map(p,false);if(h.x<0.0006*t){id=h.y;break;}t+=h.x*0.9;if(t>40.){id=0.;break;}}return vec2(t,id);}
-float shadow(vec3 ro,vec3 rd,float maxd,float k){float res=1.,t=0.03,ph=1e10;for(int i=0;i<80;i++){vec3 p=ro+rd*t;if(p.x>3.31)break;float h=map(p,true).x;float y=h*h/(2.*ph);float d=sqrt(max(h*h-y*y,0.));res=min(res,k*d/max(t-y,1e-4));ph=h;if(res<0.002||t>maxd)break;t+=clamp(h,0.008,0.25);}return sat(res);}
+float shadow(vec3 ro,vec3 rd,float maxd,float k){float res=1.,t=0.03,ph=1e10;for(int i=0;i<80;i++){vec3 p=ro+rd*t;if(p.x>3.31)break;float h=map(p,true).x;if(h<0.0005)return 0.;float y=h*h/(2.*ph);float d=sqrt(max(h*h-y*y,0.));res=min(res,k*d/max(t-y,1e-4));ph=h;if(res<0.002||t>maxd)break;t+=clamp(h,0.008,0.25);}return sat(res);}
 float shadowFast(vec3 ro,vec3 rd){float t=0.05;for(int i=0;i<28;i++){vec3 p=ro+rd*t;if(p.x>3.31)return 1.;float h=map(p,true).x;if(h<0.004)return 0.;t+=max(h,0.03);if(t>12.)break;}return 1.;}
 float ao(vec3 p,vec3 n){float occ=0.,sca=1.;for(int i=0;i<5;i++){float h=0.02+0.12*float(i);float d=map(p+n*h,false).x;occ+=(h-d)*sca;sca*=0.75;}return sat(1.-1.6*occ);}
 struct M{vec3 alb;float rough;vec3 emi;};
