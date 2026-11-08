@@ -73,7 +73,6 @@
 
  <article class="term" id="two">
   <div class="term-head"><span class="no">01</span><h3>두 가지 숫자</h3><span class="en">Encoded Value vs Linear Light</span></div>
-  <ol class="where" aria-label="파이프라인 위치"><li class="on">저장</li><li>디코딩</li><li>계산</li><li>HDR</li><li>톤매핑</li><li>색 보정</li><li>색역</li><li>출력</li></ol>
   <p class="one">온도계의 섭씨와 화씨처럼, 같은 밝기를 적는 두 눈금이 있습니다.<small>하나는 "빛의 양"이고 하나는 "저장값"입니다. 두 눈금의 50은 같은 밝기가 아닙니다. 다만 섭씨와 화씨와 달리 두 눈금 사이는 곧은 비례가 아니라 휜 곡선이라, 저장값이 50에서 100으로 가도 밝기는 두 배가 되지 않습니다.</small></p>
   <div class="stage stack">
    <figure><figcaption><span class="ab">A</span>같은 간격으로 나눈 8칸, 두 가지 눈금</figcaption><div class="frame"><canvas data-demo="two-bars" width="1280" height="720" role="img" aria-label="위: 빛의 양을 같은 간격으로 나눈 8칸. 아래: 저장값을 같은 간격으로 나눈 8칸"></canvas></div></figure>
@@ -99,7 +98,6 @@
 
  <article class="term" id="gamma">
   <div class="term-head"><span class="no">02</span><h3>감마 곡선과 sRGB</h3><span class="en">Gamma, Transfer Function, OETF and EOTF</span></div>
-  <ol class="where" aria-label="파이프라인 위치"><li>저장</li><li class="on">디코딩</li><li>계산</li><li>HDR</li><li>톤매핑</li><li>색 보정</li><li>색역</li><li>출력</li></ol>
   <p class="one">어두운 쪽에 눈금을 촘촘히 새긴 자입니다.<small>8비트 256칸을 어두운 쪽에 몰아 주는 규칙이 감마 곡선이고, 그 표준 규격 하나가 sRGB입니다. 쓰는 쪽과 읽는 쪽이 같은 곡선을 써야 합니다.</small></p>
   <div class="stage">
    <figure><figcaption><span class="ab">A</span>어두운 그라데이션을 8비트 선형으로 저장</figcaption><div class="frame"><canvas data-demo="band-a" width="1280" height="720" role="img" aria-label="A: 빛의 양을 8비트로 그대로 저장한 어두운 그라데이션. 띠가 보임"></canvas></div></figure>
@@ -127,7 +125,6 @@
 
  <article class="term" id="linear">
   <div class="term-head"><span class="no">03</span><h3>선형에서 계산하기</h3><span class="en">Linear Workflow, Gamma-correct Blending</span></div>
-  <ol class="where" aria-label="파이프라인 위치"><li>저장</li><li>디코딩</li><li class="on">계산</li><li>HDR</li><li>톤매핑</li><li>색 보정</li><li>색역</li><li>출력</li></ol>
   <p class="one">압축한 봉투째로 저울에 올리면 무게가 틀립니다. 풀고 재야 합니다.<small>저장값은 압축된 숫자입니다. 더하기(조명)와 평균(섞기, 흐리기, 축소)은 압축을 풀고(선형으로 바꾸고) 한 뒤 다시 압축해야 맞습니다.</small></p>
   <div class="stage">
    <figure><figcaption><span class="ab">A</span>더하기: 저장값끼리 더한 두 광원</figcaption><div class="frame"><canvas data-demo="add-a" width="1280" height="720" role="img" aria-label="A: 두 광원의 저장값을 더해 겹치는 곳이 하얗게 포화됨"></canvas></div></figure>
@@ -165,7 +162,6 @@
 
  <article class="term" id="hdr">
   <div class="term-head"><span class="no">04</span><h3>HDR 버퍼와 노출</h3><span class="en">HDR Rendering, Scene-referred, Exposure</span></div>
-  <ol class="where" aria-label="파이프라인 위치"><li>저장</li><li>디코딩</li><li>계산</li><li class="on">HDR</li><li>톤매핑</li><li>색 보정</li><li>색역</li><li>출력</li></ol>
   <p class="one">녹음기의 볼륨 미터입니다. 바늘이 끝까지 가도 소리는 계속 커집니다.<small>8비트 이미지는 1.0이 천장입니다. 실제 장면의 빛은 천장이 없습니다. 엔진은 천장 없는 실수(float) 버퍼에 장면을 그리고, 노출로 어디까지 보여 줄지 고릅니다.</small></p>
   <div class="stage">
    <figure><figcaption><span class="ab">A</span>1.0에서 잘라 8비트로 저장 (SDR 렌더링)</figcaption><div class="frame"><canvas data-demo="hdr-a" width="1280" height="720" role="img" aria-label="A: HDR 값을 1.0에서 클램프한 결과. 창밖과 햇빛이 든 바닥이 하얗게 날아감"></canvas></div></figure>
@@ -197,7 +193,6 @@
 
  <article class="term" id="tonemap">
   <div class="term-head"><span class="no">05</span><h3>톤매핑</h3><span class="en">Tone Mapping, Tone Curve, ACES</span></div>
-  <ol class="where" aria-label="파이프라인 위치"><li>저장</li><li>디코딩</li><li>계산</li><li>HDR</li><li class="on">톤매핑</li><li>색 보정</li><li>색역</li><li>출력</li></ol>
   <p class="one">긴 두루마리를 액자에 넣으려고 양 끝을 부드럽게 접는 일입니다.<small>잘라 버리지(클램프) 않고 접습니다. 어떻게 접느냐가 곡선이고, 곡선마다 색과 대비가 달라집니다.</small></p>
   <div class="stage stack">
    <figure><figcaption><span class="ab">A</span>톤 곡선: 장면 값 → 화면값</figcaption><div class="frame paper"><canvas data-demo="tm-graph" width="1280" height="720" role="img" aria-label="선택한 톤매핑 연산자의 곡선. 가로축은 장면 값의 로그 눈금, 세로축은 화면값"></canvas></div></figure>
@@ -249,7 +244,6 @@
 
  <article class="term" id="lut">
   <div class="term-head"><span class="no">06</span><h3>색 보정과 LUT</h3><span class="en">Color Grading, 3D LUT</span></div>
-  <ol class="where" aria-label="파이프라인 위치"><li>저장</li><li>디코딩</li><li>계산</li><li>HDR</li><li>톤매핑</li><li class="on">색 보정</li><li>색역</li><li>출력</li></ol>
   <p class="one">"이 색이 들어오면 저 색으로 바꿔라"를 적어 둔 번역 사전입니다.<small>LUT(Look-Up Table)는 함수가 아니라 표입니다. 표를 바꾸면 계산을 바꾸지 않고도 시간대, 날씨, 감정 톤이 바뀝니다.</small></p>
   <div class="stage stack">
    <figure><figcaption><span class="ab">A</span>LUT 자체 (16×16×16을 펼친 256×16)</figcaption><div class="frame pixel"><canvas data-demo="lut-strip" width="256" height="16" role="img" aria-label="16단계 3D LUT를 가로로 펼친 띠. 중립이면 매끈한 그라데이션, 보정하면 색이 바뀜"></canvas></div></figure>
@@ -280,7 +274,6 @@
 
  <article class="term" id="gamut">
   <div class="term-head"><span class="no">07</span><h3>색역과 작업 색공간</h3><span class="en">Gamut, Primaries, Working Color Space, Rec.709 / 2020</span></div>
-  <ol class="where" aria-label="파이프라인 위치"><li>저장</li><li>디코딩</li><li>계산</li><li>HDR</li><li>톤매핑</li><li>색 보정</li><li class="on">색역</li><li>출력</li></ol>
   <p class="one">물감 세트입니다. 세 가지 원색 물감으로 만들 수 있는 색의 범위가 삼각형입니다.<small>RGB 세 숫자는 삼각형이 정해져야 색이 됩니다. 삼각형을 말하지 않고 숫자만 주고받으면 같은 파일이 기기마다 다른 색이 됩니다.</small></p>
   <div class="stage stack">
    <figure><figcaption><span class="ab">A</span>색도 다이어그램 위의 세 삼각형</figcaption><div class="frame paper"><canvas data-demo="gamut" width="1280" height="720" role="img" aria-label="CIE 1931 색도 다이어그램 위에 sRGB, Display P3, Rec.2020 삼각형과 D65 백색점"></canvas></div></figure>
@@ -316,7 +309,6 @@
 
  <article class="term" id="eotf">
   <div class="term-head"><span class="no">08</span><h3>출력 인코딩과 디스플레이</h3><span class="en">Output Encoding, EOTF, BT.1886, PQ, Paper White</span></div>
-  <ol class="where" aria-label="파이프라인 위치"><li>저장</li><li>디코딩</li><li>계산</li><li>HDR</li><li>톤매핑</li><li>색 보정</li><li>색역</li><li class="on">출력</li></ol>
   <p class="one">보내는 쪽의 암호 규칙과 받는 쪽의 해독 규칙이 같아야 글이 읽힙니다.<small>엔진이 곡선으로 인코딩해 보낸 값을 모니터는 자기 EOTF로 해독합니다. SDR은 "모니터 최대의 몇 퍼센트"라는 상대값이고, HDR의 PQ는 "몇 니트"라는 절대값입니다. 니트(nit)는 밝기 단위로, 일반 모니터의 최대가 200~300니트, HDR TV가 1,000니트 이상입니다.</small></p>
   <div class="stage">
    <figure><figcaption><span class="ab">A</span>제작자 모니터 (sRGB로 해독)</figcaption><div class="frame"><canvas data-demo="eotf-a" width="1280" height="720" role="img" aria-label="A: 제작자가 본 장면"></canvas></div></figure>
