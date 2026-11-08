@@ -31,12 +31,12 @@ vec2 map(vec3 p,bool forShadow){
  frame=min(frame,min(sdBox(w,vec3(0.035,0.76,0.03)),sdBox(w,vec3(0.035,0.03,0.81))));
  frame=min(frame,sdBox(p-vec3(3.0,0.97,-1.9),vec3(0.2,0.03,0.95)));
  r=opU(r,vec2(frame,4.));
- float top=sdBox(p-vec3(0.6,0.72,-1.6),vec3(0.9,0.03,0.5));vec3 lq=p-vec3(0.6,0.36,-1.6);lq.xz=abs(lq.xz)-vec2(0.8,0.4);float legs=sdBox(lq,vec3(0.04,0.36,0.04));
+ float top=sdBox(p-vec3(0.6,0.72,-1.6),vec3(0.9,0.03,0.5));vec3 lq=p-vec3(0.6,0.35,-1.6);lq.xz=abs(lq.xz)-vec2(0.8,0.4);float legs=sdBox(lq,vec3(0.04,0.36,0.04));
  r=opU(r,vec2(min(top,legs),5.));
  r=opU(r,vec2(length(p-vec3(0.25,0.98,-1.7))-0.23,6.));
  r=opU(r,vec2(sdBox(p-vec3(1.0,0.79,-1.45),vec3(0.19,0.04,0.14)),7.));
  r=opU(r,vec2(sdBox(p-vec3(1.03,0.86,-1.48),vec3(0.16,0.03,0.12)),8.));
- r=opU(r,vec2(sdBox(p-vec3(-1.7,0.3,-2.5),vec3(0.3)),9.));
+ r=opU(r,vec2(sdBox(p-vec3(-1.7,0.285,-2.5),vec3(0.3)),9.));
  r=opU(r,vec2(sdBox(p-vec3(0.3,0.008,-0.4),vec3(1.5,0.008,1.1)),10.));
  r=opU(r,vec2(sdBox(p-vec3(-0.9,1.8,-3.96),vec3(0.5,0.38,0.035)),11.));
  vec3 cq=p-vec3(-2.2,0.45,-0.2);float chair=min(sdBox(cq,vec3(0.25,0.03,0.25)),sdBox(cq-vec3(-0.22,0.3,0.),vec3(0.03,0.33,0.25)));vec3 clq=cq-vec3(0.,-0.24,0.);clq.xz=abs(clq.xz)-0.2;chair=min(chair,sdBox(clq,vec3(0.025,0.22,0.025)));
