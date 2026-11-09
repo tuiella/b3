@@ -711,5 +711,5 @@ let last=0;function loop(now){const dt=last?Math.min(.05,(now-last)/1000):0;last
 window.__seekDot=(id,t)=>{const it=items.find(q=>q.root.id===id||q.root.dataset.demo===id);it.st.playing=false;it.st.t=t;it.st.clock=t;it.cvs.forEach(cv=>renderDemo(it,cv))};
 Promise.all([document.fonts.load(`700 16px ${FONT}`),document.fonts.load(`500 16px ${FONT}`)]).catch(()=>{}).then(()=>{fitAll();requestAnimationFrame(loop)});
 
-</script><script src="../stats.js?v=1" data-p="dot" defer></script><!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "eb9c31f861f94b378f5ca0eb41d716d7"}'></script><!-- End Cloudflare Web Analytics -->
+</script><script src="../stats.js?v=2" data-p="dot" defer></script><!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "eb9c31f861f94b378f5ca0eb41d716d7"}'></script><!-- End Cloudflare Web Analytics -->
 </body></html>

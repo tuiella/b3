@@ -78,6 +78,18 @@
     if (t && t.type === 'range') ctl(t, t.dataset.sl ? 'sl:' + t.dataset.sl : 'seek');
   }, true);
 
+  // 모음집(hub): 어느 글로 넘어갔는지. 항목은 링크 주소에서 뽑는다(light, pixel-glossary:anim ...)
+  if (page === 'hub') document.addEventListener('click', e => {
+    const a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    const u = new URL(a.href, location.href);
+    const segs = u.pathname.replace(/\.html$/, '').split('/').filter(Boolean);
+    if (u.host === location.host && segs[0] === 'b3') segs.shift();
+    const item = (segs.join(':') || u.host).toLowerCase().replace(/[^a-z0-9_:-]/g, '').slice(0, 24);
+    q.push(['ctl', item, a.classList.contains('main') ? 'go' : 'go:sub', 1]);
+    send();
+  }, true);
+
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) { send(); band.forEach(stop); vis0 = null; }
     else { vis0 = now(); band.forEach(id => { if (!on.has(id)) on.set(id, now()); }); }
