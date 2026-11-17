@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>당신은 빛을 다뤄야 한다</title>
+<title>다이나믹 라이트의 원리와 적용</title>
 <meta name="description" content="그래픽스 엔진과 빛 연산 2부. 다이나믹 라이트가 무엇이고, 어떻게 쓰고, 어떤 효과가 있는지를 노멀 맵과 dot(N, L) 계산, 그림자, 비용, 분위기와 플레이 규칙까지 실시간 시연으로 익힙니다.">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="../light/shared.css">
@@ -24,8 +24,8 @@
 <a class="hub-link" href="../">B3 아티클 모음</a>
 
 <header class="top">
- <p class="series">그래픽스 엔진과 빛 연산 2부: 다이나믹 라이트</p>
- <h1>당신은 빛을 다뤄야 한다</h1>
+ <p class="series">그래픽스 엔진과 빛 연산 2부</p>
+ <h1>다이나믹 라이트의 원리와 적용</h1>
  <p class="lede">다이나믹 라이트는 그림에 칠해 둔 빛이 아니라, 프레임마다 픽셀 하나하나에서 다시 계산하는 빛입니다. 무엇을 계산하는지 알면 어떻게 쓸지가 보이고, 어떻게 쓸지 알면 그 빛이 플레이에 무엇을 해 주는지 정할 수 있습니다.</p>
  <div class="frame hero-frame"><canvas data-demo="hero" width="1280" height="720" class="pt" role="img" aria-label="도트로 그린 3층 선술집 홀을 캐릭터들이 걸어 다님. 지하는 랜턴, 홀은 기둥의 횃불과 벽난로 불, 3층은 약한 횃불이 비추고 창으로 푸른 달빛이 듦."></canvas></div>
  <div class="controls"><button class="btn" type="button" data-dim="2d" aria-pressed="true">2D 스프라이트</button><button class="btn" type="button" data-dim="3d" aria-pressed="false">3D 장면</button></div>
