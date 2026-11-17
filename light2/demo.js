@@ -30,7 +30,7 @@ void main(){vec4 cn=texture(u_cn,uv);if(cn.a>0.5){o=vec4(cn.rgb,1.);return;}floa
 const VIEW_FS=G.COMMON+`uniform sampler2D u_h,u_n;uniform int u_mode;uniform vec4 u_win;void main(){vec2 s=(u_win.xy+uv*u_win.zw)/vec2(16.,9.);if(u_mode==0){float h=texture(u_h,s).r/0.85;o=vec4(encS3(vec3(h)),1.);return;}vec3 e=texture(u_n,s).rgb;if(u_mode==1)o=vec4(e,1.);else{float v=u_mode==2?e.r:(u_mode==3?e.g:e.b);o=vec4(vec3(v),1.);}}`;
 const LIGHT_FS=G.COMMON+`
 uniform sampler2D u_alb,u_n,u_h,u_mask,u_cm;uniform vec4 u_lp[12];uniform vec4 u_lc[12];uniform int u_nl;uniform float u_radius;uniform int u_fall;
-uniform vec4 u_win;uniform int u_decode,u_xform,u_fixN,u_shadow,u_steps,u_view,u_quant;uniform float u_pix,u_spec,u_amb,u_floors,u_rim,u_glow;uniform vec3 u_ambC;uniform vec2 u_cs[6];uniform int u_csn;uniform float u_sss,u_flat,u_gl,u_cflat,u_blend,u_back,u_lq;uniform int u_target;uniform vec2 u_box,u_spot;uniform vec2 u_beam;
+uniform vec4 u_win;uniform int u_decode,u_xform,u_fixN,u_shadow,u_steps,u_view,u_quant;uniform float u_pix,u_spec,u_amb,u_floors,u_rim,u_glow;uniform vec3 u_ambC;uniform vec2 u_cs[6];uniform int u_csn;uniform float u_ambFlat,u_sss,u_flat,u_gl,u_cflat,u_blend,u_back,u_lq;uniform int u_target;uniform vec2 u_box,u_spot;uniform vec2 u_beam;
 float blob(vec2 q,vec2 f,float off){vec2 e=(q-vec2(f.x+off,f.y))/vec2(0.46+abs(off)*0.8,0.13);return 1.-smoothstep(0.55,1.,length(e));}
 const vec2 SC=vec2(16.,9.);
 vec2 xf(vec2 q){vec2 c=SC*0.5;vec2 p=q-c;if(u_xform==1)p.x=-p.x;else if(u_xform==2)p=vec2(p.y,-p.x);else if(u_xform==3)p=-p;return p+c;}
@@ -43,7 +43,7 @@ void main(){vec2 q0=u_win.xy+uv*u_win.zw;if(u_pix>0.){vec2 px=vec2(0.05);q0=(flo
  bool inside=suv.x>=0.&&suv.x<=1.&&suv.y>=0.&&suv.y<=1.;if(!inside){o=vec4(0.02,0.02,0.025,1.);return;}
  vec4 a4=texture(u_alb,suv);vec4 h4=texture(u_h,suv);vec3 alb=a4.rgb;float rough=a4.a,own=h4.g,metal=h4.b;
  vec3 n=fixN(decodeN(texture(u_n,suv).rgb));vec3 nS=n;if(u_cflat>0.&&own>0.5)n=normalize(mix(n,vec3(0.,0.,1.),u_cflat));
- vec3 light=u_ambC*u_amb*(0.6+0.4*n.z)*(0.75+0.25*sat(h4.r/2.5));if(own<0.5)for(int c=0;c<6;c++){if(c>=u_csn)break;light*=1.-0.55*blob(q0,u_cs[c],0.);}float edge=0.,edgeW=0.,backG=0.,backR=0.;if(own>0.5){vec2 tx=vec2(0.05)/SC;edge=1.-step(0.5,min(min(texture(u_h,suv+vec2(tx.x,0.)).g,texture(u_h,suv-vec2(tx.x,0.)).g),min(texture(u_h,suv+vec2(0.,tx.y)).g,texture(u_h,suv-vec2(0.,tx.y)).g)));float e2=1.-step(0.5,min(min(texture(u_h,suv+vec2(tx.x*2.,0.)).g,texture(u_h,suv-vec2(tx.x*2.,0.)).g),min(texture(u_h,suv+vec2(0.,tx.y*2.)).g,texture(u_h,suv-vec2(0.,tx.y*2.)).g)));edgeW=max(edge,e2*0.55);for(int i=0;i<12;i++){if(i>=u_nl)break;if(floor(u_lp[i].w/10.+0.01)==2.&&abs(u_lp[i].y-q0.y)<2.){float bg=1.-smoothstep(0.6,1.25,abs(u_lp[i].x-q0.x));if(bg>backG){backG=bg;vec2 fd=u_lp[i].xy-q0;backR=exp(-dot(fd,fd)*1.1)*(u_lp[i].w-20.);}}}}backG*=u_back;backR*=u_back;light*=1.-0.8*backG;vec3 lightB=light;vec3 specAcc=vec3(0.),rimAcc=vec3(0.),glowAcc=vec3(0.),glAcc=vec3(0.);vec4 cm=texture(u_cm,suv);float mtl=own*cm.a*cm.r,hairM=own*cm.a*cm.g;float nlView=0.;
+ vec3 light=u_ambC*u_amb*(u_ambFlat>0.5?1.:(0.6+0.4*n.z)*(0.75+0.25*sat(h4.r/2.5)));if(own<0.5)for(int c=0;c<6;c++){if(c>=u_csn)break;light*=1.-0.55*blob(q0,u_cs[c],0.);}float edge=0.,edgeW=0.,backG=0.,backR=0.;if(own>0.5){vec2 tx=vec2(0.05)/SC;edge=1.-step(0.5,min(min(texture(u_h,suv+vec2(tx.x,0.)).g,texture(u_h,suv-vec2(tx.x,0.)).g),min(texture(u_h,suv+vec2(0.,tx.y)).g,texture(u_h,suv-vec2(0.,tx.y)).g)));float e2=1.-step(0.5,min(min(texture(u_h,suv+vec2(tx.x*2.,0.)).g,texture(u_h,suv-vec2(tx.x*2.,0.)).g),min(texture(u_h,suv+vec2(0.,tx.y*2.)).g,texture(u_h,suv-vec2(0.,tx.y*2.)).g)));edgeW=max(edge,e2*0.55);for(int i=0;i<12;i++){if(i>=u_nl)break;if(floor(u_lp[i].w/10.+0.01)==2.&&abs(u_lp[i].y-q0.y)<2.){float bg=1.-smoothstep(0.6,1.25,abs(u_lp[i].x-q0.x));if(bg>backG){backG=bg;vec2 fd=u_lp[i].xy-q0;backR=exp(-dot(fd,fd)*1.1)*(u_lp[i].w-20.);}}}}backG*=u_back;backR*=u_back;light*=1.-0.8*backG;vec3 lightB=light;vec3 specAcc=vec3(0.),rimAcc=vec3(0.),glowAcc=vec3(0.),glAcc=vec3(0.);vec4 cm=texture(u_cm,suv);float mtl=own*cm.a*cm.r,hairM=own*cm.a*cm.g;float nlView=0.;
  for(int i=0;i<12;i++){if(i>=u_nl)break;vec3 lp=u_lp[i].xyz;float kd=floor(u_lp[i].w/10.+0.01);float fkk=u_lp[i].w-kd*10.;vec3 lcB=u_lc[i].rgb*u_lc[i].a*2.6;vec3 lc=lcB*fkk;vec2 qL=u_lq>0.?(floor(q0/u_lq)+0.5)*u_lq:q0;vec2 dir=lp.xy-qL;float d=length(dir);vec3 L=normalize(vec3(dir,lp.z));float fl=1.;if(u_floors>0.5)fl=leak(q0.y,lp.y,2.2)*leak(q0.y,lp.y,6.65);float att=fall(d)*fl;float sh=1.;float moon=kd==1.?1.:0.;float beam=0.;
   if(moon>0.5){vec2 bd=normalize(u_beam);vec2 v=q0-lp.xy;float al=dot(v,bd);float pe=abs(v.x*bd.y-v.y*bd.x);float w=0.42+0.2*max(al,0.);beam=(1.-smoothstep(w*0.6,w,pe))*smoothstep(-0.35,0.15,al)*exp(-max(al,0.)*0.2);float fy=lp.y>6.65?6.7:2.65;float cut=smoothstep(fy-0.05,fy+0.2,q0.y);beam*=cut;att=(beam*0.6+exp(-d*d*2.2)*0.45*cut)*fl;L=normalize(vec3(-bd,0.9));dir=-bd;}
   if(kd==3.){float cc=dot(normalize(-dir+1e-5),normalize(u_beam));att*=smoothstep(u_spot.y,u_spot.x,cc);}
@@ -59,12 +59,14 @@ void main(){vec2 q0=u_win.xy+uv*u_win.zw;if(u_pix>0.){vec2 px=vec2(0.05);q0=(flo
  if(u_flat>0.&&own>0.5){light=vec3(u_flat);rimAcc=vec3(0.);}
  if(u_view==1){o=vec4(vec3(nlView),1.);return;}
  if(u_view==2){o=vec4(light/3.14159*0.42,1.);return;}
+ if(u_view==3){o=vec4(alb*mix(1.,0.25,metal),1.);return;}
  if(u_quant>0){float lum=dot(light,vec3(0.2126,0.7152,0.0722));float lmin=log2(0.06),lmax=log2(2.2);float t=sat((log2(max(lum,1e-4))-lmin)/(lmax-lmin));float qn=floor(t*float(u_quant-1)+0.5)/float(u_quant-1);float target=exp2(mix(lmin,lmax,qn));light*=target/max(lum,1e-4);specAcc=vec3(0.);}
  if(u_blend>0.&&own>0.5){float ll=dot(light,vec3(0.2126,0.7152,0.0722));vec3 tint=light/max(ll,1e-4);alb=mix(alb,vec3(dot(alb,vec3(0.2126,0.7152,0.0722))),0.12*u_blend);light*=mix(vec3(1.),tint,0.3*u_blend)*(1.-0.12*u_blend);}
  {float rl=dot(rimAcc,vec3(0.2126,0.7152,0.0722));rimAcc*=min(1.,1.1/max(rl,1e-4));}
  vec3 col=alb*mix(1.,0.25,metal)*light/3.14159+specAcc+alb*rimAcc*1.4+glowAcc*0.6+mix(alb,vec3(1.),0.12)*vec3(1.,0.52,0.2)*edge*backG*backR*smoothstep(2.62,2.9,q0.y)*2.4;if(u_gl>0.){float g=dot(glAcc,vec3(0.2126,0.7152,0.0722))*u_gl;float lv=mtl>0.5?floor(min(g,1.)*2.+0.5)/2.*1.5:step(0.5,g)*0.5;col+=normalize(glAcc+1e-5)*mix(vec3(1.),alb,0.3)*lv;}
  o=vec4(col,1.);}
 `;
+const COMP_FS=G.COMMON+`uniform sampler2D u_a,u_l;void main(){o=vec4(texture(u_a,uv).rgb*texture(u_l,uv).rgb/0.42,1.);}`;
 const POST_FS=G.COMMON+`uniform sampler2D u_src;uniform float u_exposure;void main(){vec3 c=texture(u_src,uv).rgb*u_exposure;o=vec4(encS3(aces(c)),1.);}`;
 
 
@@ -128,7 +130,7 @@ void main(){vec2 q=uv*vec2(16.,9.);if(u_pixq>0.)q=(floor(q/u_pixq)+0.5)*u_pixq;
  o=vec4(col,1.);}
 `;
 /* ---------- 프로그램과 버퍼 ---------- */
-const P={mat:G.prog(MAT_FS),normal:G.prog(NORMAL_FS),view:G.prog(VIEW_FS),light:G.prog(LIGHT_FS),s3:G.prog(S3_FS),top:G.prog(TOP_FS),post:G.prog(POST_FS)};
+const P={mat:G.prog(MAT_FS),normal:G.prog(NORMAL_FS),view:G.prog(VIEW_FS),light:G.prog(LIGHT_FS),s3:G.prog(S3_FS),top:G.prog(TOP_FS),post:G.prog(POST_FS),comp:G.prog(COMP_FS)};
 const TW=320,TH=180;const albTex=G.tex(TW,TH,{nearest:true}),hTex=G.tex(TW,TH,{nearest:true}),nTex=G.tex(TW,TH,{nearest:true});const matFbo=G.fbo(albTex,hTex),nFbo=G.fbo(nTex);
 const OW=1280,OH=720;const litTex=G.tex(OW,OH),litFbo=G.fbo(litTex);const maskTex=G.tex(OW,OH),maskFbo=G.fbo(maskTex);
 const loadTex=src=>new Promise((res,rej)=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=im.width;c.height=im.height;const x=c.getContext('2d');x.translate(0,im.height);x.scale(1,-1);x.drawImage(im,0,0);res(G.texData(im.width,im.height,new Uint8Array(x.getImageData(0,0,im.width,im.height).data.buffer),{nearest:true}));};im.onerror=rej;im.src=src;});
@@ -162,7 +164,7 @@ const L=(x,y,z,c,I)=>({x,y,z,c,I});
 let noFlick=false;
 function packLights(ls){const lp=[],lc=[];for(let i=0;i<12;i++){const l=ls[i]||{x:0,y:0,z:1,c:[0,0,0],I:0};const fa=l.sun||l.kind==='moon'||l.kind==='orb'||l.kind==='lamp'||l.kind==='spot'||l.kind==='box'?0:l.kind==='lantern'?0.025:l.kind==='fire'?0.16:0.08;const sl=(a1,w1,a2,w2)=>1+a1*Math.sin(T*w1+i*2.3)+a2*Math.sin(T*w2+i*5.1);const fk=l.kind==='lantern'?sl(0.13,0.8,0.05,1.9):l.kind==='wtorch'?sl(0.18,1.3,0.08,2.9):l.kind==='fire'?sl(0.15,1.1,0.06,2.5):1+fa*Math.sin(T*11+i*2.3)*Math.sin(T*4.7+i);lp.push(l.x,l.y,l.z,(l.kind==='moon'?10:l.kind==='fire'?20:l.kind==='spot'?30:l.kind==='box'?40:0)+(noFlick?1:fk));lc.push(l.c[0],l.c[1],l.c[2],l.I);}return {u_lp:lp,u_lc:lc,u_nl:ls.length};}
 const FULL=[0,0,16,9],ZW=[3.4,2.35,4.4,2.475];/* ZW: 서 있는 캐릭터 둘레를 확대한 창 */
-const baseU=()=>({u_cm:cTexM,u_win:FULL,u_alb:albTex,u_n:nTex,u_h:hTex,u_mask:maskTex,u_radius:9,u_fall:1,u_decode:0,u_xform:0,u_fixN:1,u_shadow:0,u_steps:48,u_view:0,u_quant:0,u_pix:4,u_spec:0,u_amb:0.14,u_floors:1,u_rim:1,u_glow:1,u_ambC:[1,1,1],u_cs:new Array(12).fill(0),u_csn:0,u_sss:0,u_flat:0,u_gl:0,u_cflat:0,u_blend:0,u_back:1,u_lq:0,u_target:0,u_box:[1,1],u_spot:[0.92,0.7],u_beam:[-0.62,-1]});
+const baseU=()=>({u_cm:cTexM,u_win:FULL,u_alb:albTex,u_n:nTex,u_h:hTex,u_mask:maskTex,u_radius:9,u_fall:1,u_decode:0,u_xform:0,u_fixN:1,u_shadow:0,u_steps:48,u_view:0,u_quant:0,u_pix:4,u_spec:0,u_amb:0.14,u_ambFlat:0,u_floors:1,u_rim:1,u_glow:1,u_ambC:[1,1,1],u_cs:new Array(12).fill(0),u_csn:0,u_sss:0,u_flat:0,u_gl:0,u_cflat:0,u_blend:0,u_back:1,u_lq:0,u_target:0,u_box:[1,1],u_spot:[0.92,0.7],u_beam:[-0.62,-1]});
 function light(c,lights,over,exposure=1){const u=Object.assign(baseU(),packLights(lights),over);if(!over||!over.castShadow)u.u_shadow=0;G.draw(P.light,u,litFbo);G.present(P.post,{u_src:litTex,u_exposure:exposure},c);}
 /* 벽 횃불: pixelfx의 fire/torch를 스프라이트 시트(72×120, 60프레임, 30fps)로 내보내 재생한다. 자루와 받침은 고정, 불꽃만 움직인다 */
 const [cvF,cxF]=mk();
@@ -363,19 +365,25 @@ function drawWay(){if(!cv('way-a'))return;light(cv('way-a'),[BAKED],{u_flat:0.5}
 
 /* 엔진이 빛을 그리는 방식: 스프라이트, 라이트 텍스처, 합성 */
 const ltL=L(6.2,4.6,1.4,WARM,9);ltL.kind='orb';const ltL2=L(12.2,4.3,1.4,[0.5,0.7,1],7);ltL2.kind='orb';
-function drawLt(){if(!cv('lt-a'))return;const sc=parseFloat(ctl('lt-s').value);const lq=sc>=1?0:0.05/sc;const ls=[ltL,ltL2];
- light(cv('lt-a'),[],{u_decode:4,u_amb:3.14159,u_glow:0});light(cv('lt-b'),ls,{u_view:2,u_lq:lq,u_glow:0,u_rim:0,u_decode:4});light(cv('lt-c'),ls,{u_lq:lq,u_decode:4,u_rim:0});markLights(cv('lt-c'),ls);
- const o=$('[data-out="lt"]');if(o)o.innerHTML=`라이트 텍스처 ${Math.round(OW*sc)}×${Math.round(OH*sc)}, 스프라이트 ${OW}×${OH}`;}
+/* 라이트 텍스처는 고른 배율의 크기로 따로 그리고, 원본 크기의 색과 곱한다 */
+const ltBuf={};const ltTarget=sc=>{const w=Math.max(1,Math.round(OW*sc)),h=Math.max(1,Math.round(OH*sc));const k=w+'x'+h;if(!ltBuf[k]){const t=G.tex(w,h);ltBuf[k]={t,f:G.fbo(t)};}return ltBuf[k];};
+const albTex2=G.tex(OW,OH),albFbo=G.fbo(albTex2),compTex=G.tex(OW,OH),compFbo=G.fbo(compTex);
+function drawLt(){if(!cv('lt-a'))return;const sc=parseFloat(ctl('lt-s').value);const ls=[ltL,ltL2];const lt=ltTarget(sc);
+ light(cv('lt-a'),[],{u_decode:4,u_amb:3.14159,u_glow:0});
+ G.draw(P.light,Object.assign(baseU(),packLights(ls),{u_view:2,u_amb:0,u_glow:0,u_rim:0,u_decode:4}),lt.f);G.present(P.post,{u_src:lt.t,u_exposure:1},cv('lt-b'));
+ G.draw(P.light,Object.assign(baseU(),packLights([]),{u_view:3,u_decode:4}),albFbo);G.draw(P.comp,{u_a:albTex2,u_l:lt.t},compFbo);G.present(P.post,{u_src:compTex,u_exposure:1},cv('lt-c'));markLights(cv('lt-c'),ls);
+ const o=$('[data-out="lt"]');if(o)o.textContent=`라이트 텍스처 ${lt.f.w}×${lt.f.h}, 스프라이트 ${OW}×${OH}`;}
 ctl('lt-s')?.addEventListener('change',()=>redrawAll());pointerLight(cv('lt-c'),ltL,drawLt);pointerLight(cv('lt-b'),ltL,drawLt);
 
 /* 광원의 종류 */
-let ty='spot';ty=radio('ty',v=>ty=v)||ty;const tyL=L(13.5,6.5,1.3,WARM,9);
+let ty='spot';ty=radio('ty',v=>ty=v)||ty;const tyL=L(13.5,6.5,1.3,WARM,9);const tyBox={x:8,y:4.1};
+const tyPtr={set x(v){(ty==='free'?tyBox:tyL).x=v;},set y(v){(ty==='free'?tyBox:tyL).y=v;}};
 function drawTy(){if(!cv('ty'))return;const c=cv('ty');const night={u_amb:0.1,u_ambC:[0.6,0.7,1]};
- if(ty==='global'){light(c,[],{u_amb:1.25,u_ambC:[0.62,0.74,1],u_glow:0});return;}
+ if(ty==='global'){light(c,[],{u_amb:1.25,u_ambFlat:1,u_ambC:[0.62,0.74,1],u_glow:0});return;}
  const l=Object.assign({},tyL,{kind:ty==='point'?'orb':ty==='spot'?'spot':'box'});
- if(ty==='free'){l.x=8;l.y=4.1;l.I=7;light(c,[l],Object.assign({u_box:[5.2,0.9],u_glow:0},night));return;}
+ if(ty==='free'){l.x=tyBox.x;l.y=tyBox.y;l.I=7;light(c,[l],Object.assign({u_box:[5.2,0.9],u_glow:0},night));return;}
  light(c,[l],Object.assign({u_beam:[0.25,-1],u_spot:[0.9,0.62]},night));markLights(c,[l]);}
-pointerLight(cv('ty'),tyL,drawTy);
+pointerLight(cv('ty'),tyPtr,drawTy);
 
 /* 무엇을 비출지 정하기 */
 let tg='both';tg=radio('tg',v=>tg=v)||tg;const tgL=L(7.2,4.2,1.3,WARM,9);tgL.kind='orb';
@@ -418,7 +426,7 @@ function drawMoodN(){if(!cv('mn-a'))return;const m=MOODS[mood];const ls=moodLigh
 
 /* ---------- 재생 루프: 화면에 보이는 시연만 움직인다 ---------- */
 const vis={};const io=new IntersectionObserver(es=>es.forEach(e=>{vis[e.target.dataset.demo]=e.isIntersecting;}),{rootMargin:'100px'});
-const LIVE={hero:()=>drawHero(),'bake-b':()=>drawBake(),'mood-b':()=>drawMood(),'nl-b':()=>drawNl(),'sh-a':()=>drawSh(),'rule-b':()=>drawRule(),'px-a':()=>drawPx(),'tan-a':()=>drawTan(),'enc-a':()=>drawEnc(),'fo-scene':()=>drawFo(),'nm-map':()=>drawNm(),'mk-n':()=>drawNm(),asm:()=>drawAsm(),'way-c':()=>drawWay(),'lt-c':()=>drawLt(),ty:()=>drawTy(),tg:()=>drawTg(),st:()=>drawSt(),'why-b':()=>drawWhy(),'ap-b':()=>drawAp(),'mn-b':()=>drawMoodN(),nhero:()=>drawNHero()};
+const LIVE={hero:()=>drawHero(),'bake-b':()=>drawBake(),'mood-b':()=>drawMood(),'nl-b':()=>drawNl(),'sh-a':()=>drawSh(),'rule-b':()=>drawRule(),'px-a':()=>drawPx(),'tan-a':()=>drawTan(),'enc-a':()=>drawEnc(),'fo-scene':()=>drawFo(),'nm-map':()=>drawNm(),'mk-n':()=>drawNm(),asm:()=>drawAsm(),'way-a':drawWay,'way-b':drawWay,'way-c':drawWay,'lt-c':()=>drawLt(),ty:()=>drawTy(),tg:()=>drawTg(),st:()=>drawSt(),'why-b':()=>drawWhy(),'ap-b':()=>drawAp(),'mn-b':()=>drawMoodN(),nhero:()=>drawNHero()};
 Object.keys(LIVE).forEach(n=>{const c=cv(n);if(c)io.observe(c);});
 let last=0;
 (function loop(ts){if(!reduced){if(ts-last>50){const dt=Math.min(0.1,(ts-last)/1000);T+=dt;sceneTime+=dt;last=ts;
@@ -428,7 +436,7 @@ let last=0;
    if(bakeAuto){bakeL.x=8+5.2*Math.cos(T*0.5+2.2);bakeL.y=4.6+1.6*Math.sin(T*0.7+1.2);}
    if(whyAuto){whyL.x=8+5.5*Math.cos(T*0.45);whyL.y=4.6+1.6*Math.sin(T*0.6);}
    if(apAuto){apL.x=8+3.4*Math.cos(T*0.5+0.6);apL.y=4.3+1.0*Math.sin(T*0.8);}
-   for(const n in LIVE)if(vis[n])LIVE[n]();}}
+   const ran=new Set();for(const n in LIVE)if(vis[n]&&!ran.has(LIVE[n])){ran.add(LIVE[n]);LIVE[n]();}}}
  requestAnimationFrame(loop);}})(0);
 
 function redrawAll(){buildScene();drawBake();drawNv();drawNm();drawNl();drawFo();drawSh();drawEnc();drawTan();drawCost();drawMood();drawRule();drawPx();drawHero();drawAsm();drawWay();drawLt();drawTy();drawTg();drawSt();drawWhy();drawBk();drawAp();drawMoodN();drawNHero();}
