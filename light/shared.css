@@ -1,6 +1,10 @@
+@font-face{font-family:"HS Hyosung";src:url(../fonts/HSHyosung-Light.woff2) format("woff2");font-weight:300;font-display:swap}
+@font-face{font-family:"HS Hyosung";src:url(../fonts/HSHyosung-Medium.woff2) format("woff2");font-weight:400 500;font-display:swap}
+@font-face{font-family:"HS Hyosung";src:url(../fonts/HSHyosung-Bold.woff2) format("woff2");font-weight:600 800;font-display:swap}
 /* 그래픽스 엔진과 빛 연산: b3 아티클 공통 서식을 따른 학습형 페이지 */
 :root{
- --font:"Pretendard Variable",Pretendard,"HS Hyosung","Noto Sans KR",sans-serif;
+ --font:"Pretendard Variable",Pretendard,"Noto Sans KR",sans-serif;
+ --font-title:"HS Hyosung","HS효성체","Pretendard Variable",Pretendard,"Noto Sans KR",sans-serif;
  --bg:#f4f4f2;--surface:#ffffff;--ink:#1a1c2c;--muted:#566c86;--line:#dde1e7;
  --accent:#b13e53;--accent-ink:#ffffff;--accent-soft:#b13e5314;--sky:#73eff7;
  --frame:#262b40;--good:#2f7d5a;--warn:#c47a1a;
@@ -20,8 +24,8 @@ a{color:inherit}
 .hub-link{position:absolute;top:20px;right:16px;display:inline-flex;align-items:center;min-height:36px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:14px;font-weight:700;line-height:1;text-decoration:none}
 .hub-link:hover{border-color:var(--ink)}
 .top .series{margin:0 0 8px;font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.02em}
-.top h1{text-wrap:balance;font-weight:700;font-size:clamp(34px,6vw,62px);line-height:1.1;letter-spacing:-.025em;margin:0;overflow-wrap:break-word;min-width:0}
-.lede{margin:16px 0 0;max-width:var(--measure);font-size:clamp(18px,2vw,21px);line-height:1.65;color:var(--muted);font-weight:500}
+.top h1{font-family:var(--font-title);text-wrap:balance;font-weight:700;font-size:clamp(34px,6vw,62px);line-height:1.1;letter-spacing:-.025em;margin:0;overflow-wrap:break-word;min-width:0}
+.lede{font-family:var(--font-title);margin:16px 0 0;max-width:var(--measure);font-size:clamp(18px,2vw,21px);line-height:1.65;color:var(--muted);font-weight:500}
 .hero-frame{margin-top:36px}
 .how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0 0;padding:0;list-style:none}
 .how li{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;font-size:15px;line-height:1.65}
@@ -40,7 +44,7 @@ a{color:inherit}
 .term{margin-top:36px;padding-top:36px;border-top:1px solid var(--line)}
 .term-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px}
 .term-head .no{color:var(--accent);font-weight:700;font-size:16px}
-.term-head h3{text-wrap:balance;margin:0;font-size:clamp(24px,3.2vw,32px);font-weight:700;letter-spacing:-.015em;line-height:1.25;min-width:0}
+.term-head h3{font-family:var(--font-title);text-wrap:balance;margin:0;font-size:clamp(24px,3.2vw,32px);font-weight:700;letter-spacing:-.015em;line-height:1.25;min-width:0}
 .term-head .en{color:var(--muted);font-weight:400;font-size:16px}
 .one{max-width:var(--measure);margin:14px 0 0;padding:12px 16px;border:1px solid var(--line);background:var(--accent-soft);border-radius:8px;font-weight:700}
 .one small{display:block;font-weight:500;color:var(--muted);font-size:14px;margin-top:2px}
@@ -118,3 +122,4 @@ footer p{margin:0}
 .where li.on{color:var(--accent-ink);background:var(--accent);border-color:var(--accent)}
 .controls .grp{font-size:13px;font-weight:700;color:var(--muted);margin-right:4px}
 .facts dd table.t{margin-top:4px}
+.readout:empty{display:none}
